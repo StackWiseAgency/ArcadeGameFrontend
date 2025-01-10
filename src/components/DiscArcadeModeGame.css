@@ -1,0 +1,315 @@
+
+.arcade-game-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countdown-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 2rem;
+  text-align: center;
+  z-index: 10;
+}
+
+.retro-top-section {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.timer-display,
+.misses-display {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.timer-display img,
+.misses-display img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.retro-score-display {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.retro-game-board {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  width: 300px;
+  height: 300px;
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid rgb(255, 255, 255);
+  padding: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.retro-board-cell {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 4px solid white;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.retro-board-cell.bonus-cell {
+  background-color: #ffd700; 
+}
+
+.retro-board-cell.normal-cell {
+  background-color: #00bfff; 
+}
+
+.retro-disc-pile {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.retro-disc-stack {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.normal-disc-stack,
+.bonus-disc-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  width: 100px; 
+  height: 100px; 
+  margin-bottom: 20px; 
+}
+
+.normal-disc-stack img,
+.bonus-disc-stack img {
+  position: absolute;
+  width: 70%; 
+  height: 70%;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.normal-disc-stack img {
+  border-color: #000; 
+}
+
+.bonus-disc-stack img {
+  border-color: #f00; 
+}
+
+.normal-disc-stack img:nth-child(n),
+.bonus-disc-stack img:nth-child(n) {
+  z-index: calc(100 - n); 
+  left: calc(5px * n); 
+}
+
+.normal-disc-stack h3,
+.bonus-disc-stack h3 {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+} 
+
+
+/* copy 
+
+.arcade-game-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countdown-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 2rem;
+  text-align: center;
+  z-index: 10;
+}
+
+.retro-top-section {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.timer-display,
+.misses-display {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.timer-display img,
+.misses-display img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.retro-score-display {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.retro-game-board {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  width: 300px;
+  height: 300px;
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid rgb(255, 255, 255);
+  padding: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.retro-board-cell {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 4px solid white;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.retro-board-cell.bonus-cell {
+  background-color: #ffd700; 
+}
+
+.retro-board-cell.normal-cell {
+  background-color: #00bfff; 
+}
+
+.retro-disc-pile {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.retro-disc-stack {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.normal-disc-stack,
+.bonus-disc-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  width: 100px; 
+  height: 100px; 
+  margin-bottom: 20px; 
+}
+
+.normal-disc-stack img,
+.bonus-disc-stack img {
+  position: absolute;
+  width: 70%; 
+  height: 70%;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.normal-disc-stack img {
+  border-color: #000; 
+}
+
+.bonus-disc-stack img {
+  border-color: #f00; 
+}
+
+.normal-disc-stack img:nth-child(n),
+.bonus-disc-stack img:nth-child(n) {
+  z-index: calc(100 - n); 
+  left: calc(5px * n); 
+}
+
+.normal-disc-stack h3,
+.bonus-disc-stack h3 {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}  */
+
+

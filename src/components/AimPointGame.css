@@ -1,0 +1,133 @@
+
+.game-container-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0e1b0e;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.game-board-point {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.board-cell-point {
+  width: 100px;
+  height: 100px;
+  background-color: #202c20;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.active-target-point {
+  background-color: green;
+}
+
+.scoreboard-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.scoreboard-point h2 {
+  margin: 5px 0;
+}
+
+.game-over-point {
+  color: red;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.target-duration-point {
+  color: yellow;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.activation-interval-point {
+  color: orange;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* copy
+
+.game-container-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0e1b0e;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.game-board-point {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.board-cell-point {
+  width: 100px;
+  height: 100px;
+  background-color: #202c20;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.active-target-point {
+  background-color: green;
+}
+
+.scoreboard-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.scoreboard-point h2 {
+  margin: 5px 0;
+}
+
+.game-over-point {
+  color: red;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.target-duration-point {
+  color: yellow;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.activation-interval-point {
+  color: orange;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+} */
+

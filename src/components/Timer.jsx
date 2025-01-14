@@ -34,7 +34,7 @@ const Timer = ({ userHasThrown, onStart }) => {
 
   return (
     <div className="timer">
-      {isCountdownRunning ? `Game starts in: ${countdown}s` : "Get ready...Start the Game!!!"}
+      {isCountdownRunning ? `Game starts in:  ${countdown}s` : "Get ready...!!!"}
     </div>
   );
 };

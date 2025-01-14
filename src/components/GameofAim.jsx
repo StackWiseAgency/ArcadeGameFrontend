@@ -53,6 +53,14 @@ const GameofAim = () => {
       console.log(`Handling move: Row=${row}, Col=${col}`);
 
       if (target) {
+        console.log(`Removing target regardless of match or miss.`);
+        setTarget(null);
+        setTargetWall((prev) =>
+          prev.map((r, rIdx) =>
+            r.map((c, cIdx) => (rIdx === target[0] && cIdx === target[1] ? null : c))
+          )
+        );
+
         if (target[0] === row && target[1] === col) {
           console.log(`Player ${currentPlayer} matched the target!`);
           showPopup("Successful Match", `Player ${currentPlayer} matched the target!`);
@@ -60,12 +68,12 @@ const GameofAim = () => {
             ...prev,
             [currentPlayer]: prev[currentPlayer] + 10,
           }));
-          setTarget(null);
-          setTargetWall((prev) =>
-            prev.map((r, rIdx) =>
-              r.map((c, cIdx) => (rIdx === row && cIdx === col ? null : c))
-            )
-          );
+          // setTarget(null);
+          // setTargetWall((prev) =>
+          //   prev.map((r, rIdx) =>
+          //     r.map((c, cIdx) => (rIdx === row && cIdx === col ? null : c))
+          //   )
+          // );
           setCurrentPlayer((prev) => (prev === "player1" ? "player2" : "player1"));
         } else {
           console.log(`Player ${currentPlayer} missed the target.`);
@@ -85,6 +93,7 @@ const GameofAim = () => {
             }
             return updatedLetters;
           });
+          
           setCurrentPlayer(currentPlayer); // Allow the player who missed to set the next target
         }
       } else {
@@ -114,21 +123,26 @@ const GameofAim = () => {
     [targetWall, target, winner, currentPlayer]
   );
 
-    const handleCellClick = (row, col) => {
-        console.log("Cell clicked:", { row, col });
-        if (winner) {
-            console.log("Game has ended. Cell clicks are disabled.");
-            return; // Do nothing if the game has ended
-        }
-        if (!userHasThrown) {
-            setUserHasThrown(true); // Start the game immediately if the user makes a move
-            console.log("Game started: User has thrown.");
-        }
-        if (useManualInput) {
-            console.log(`Manual input: Cell clicked at Row=${row}, Col=${col}`);
-            handleMove({ row, col });
-        }
-    };
+  const handleCellClick = useCallback(
+    (row, col) => {
+      if (winner) {
+        console.log("Game has ended. Cell clicks are disabled.");
+        return;
+      }
+      if (!userHasThrown) {
+        setUserHasThrown(true); // Start the game immediately if the user makes a move
+        console.log("Game started: User has thrown.");
+      }
+      if (useManualInput) {
+        console.log(`Manual input: Cell clicked at Row=${row}, Col=${col}`);
+        handleMove({ row, col });
+      } else if (useWebSocket) {
+        console.log(`WebSocket input: Cell clicked at Row=${row}, Col=${col}`);
+        handleMove({ row, col });
+      }
+    },
+    [winner, userHasThrown, useManualInput, useWebSocket, handleMove]
+  );
 
 
   useEffect(() => {
@@ -149,7 +163,7 @@ const GameofAim = () => {
         console.log("SignalR connection established.");
         connection.on("ReceiveMove", (row, col) => {
           console.log(`Move received: Row=${row}, Col=${col}`);
-          handleMove({ row, col });
+          handleCellClick(row, col); // Use handleCellClick to process the move
         });
       })
       .catch((err) => console.error("SignalR connection error:", err));
@@ -161,7 +175,7 @@ const GameofAim = () => {
           .catch((err) => console.error("Error stopping SignalR connection:", err));
       }
     };
-  }, [useWebSocket, winner, handleMove]);
+  }, [useWebSocket, winner, handleCellClick]);
 
   useEffect(() => {
     if (discs.total === 0 && !winner) {
@@ -187,7 +201,7 @@ const GameofAim = () => {
       <h1 className="game-title-aim">Game of AIM</h1>
 
       <div className="scoreboard-aim">
-        <div className="team-aim team-a-aim">
+        <div className="team-aim-team-a-aim">
           <h2 className="team-title-aim">Player 1</h2>
           <div className="stats-box-aim">
             <img src={maleAvatar} alt="Player 1 Avatar" className="player-icon-aim" />
@@ -219,7 +233,7 @@ const GameofAim = () => {
           ))}
         </div>
 
-        <div className="team-aim team-b-aim">
+        <div className="team-aim-team-b-aim">
           <h2 className="team-title-aim">Player 2</h2>
           <div className="stats-box-aim">
             <img src={profileIcon} alt="Player 2 Avatar" className="player-icon-aim" />

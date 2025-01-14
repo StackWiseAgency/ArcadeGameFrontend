@@ -12,6 +12,9 @@ import blueDisc from "../assets/bluedisc.png";
 import yellowDisc from "../assets/yellowdisc.png";
 import greenDisc from "../assets/greendisc.png";
 import backgroundImage from "../assets/background-image.png";
+import pawn from "../assets/pawn.png";
+import star from "../assets/star.png";
+import gameRemote from "../assets/gameremote.png";
 
 const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const [score, setScore] = useState(0);
@@ -20,7 +23,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const [gameStarted, setGameStarted] = useState(false);
   const [startButtonDisabled, setStartButtonDisabled] = useState(false);
   
-  const [timeRemaining, setTimeRemaining] = useState(20); 
+  const [timeRemaining, setTimeRemaining] = useState(30); 
   // eslint-disable-next-line
   const [gameEnded, setGameEnded] = useState(false);
 
@@ -183,9 +186,17 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
      
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
+      <div className="game-name">
+        <h1>Retro Disc Golf</h1>
+      </div>
+      <img src={pawn} alt="Pawn" className="pawn-icon" />
+      <img src={star} alt="Star" className="star-icon" />
       <div className="retro-top-section">
         <div className="timer-display">
           <span>Time Remaining: {Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}</span>
+        </div>
+        <div className="retro-score-display">
+        <h3>Score: {score.toString().padStart(3, "0")}</h3>
         </div>
         <div className="misses-display">
           <img src={forbiddenCircle} alt="Misses Icon" />
@@ -193,12 +204,53 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         </div>
       </div>
 
-      <div className="retro-score-display">
-        <h1>{score.toString().padStart(3, "0")}</h1>
-      </div>
-      <div className="retro-disc-pile">
-        <h2>Discs Left</h2>
-        <div className="retro-disc-stack">
+      {!gameStarted && (
+        <>
+          <div className="retro-game-board">
+            {grid.map((row, rowIndex) => (
+              <div key={rowIndex} className="retro-board-row">
+                {row.map((cell, colIndex) => (
+                  <div
+                    key={colIndex}
+                    className={`retro-board-cell ${cell?.type === "B" ? "bonus-cell" : cell?.type === "N" ? "normal-cell" : ""}`}
+                    onClick={() => handleManualThrow(rowIndex, colIndex)}
+                    style={{ backgroundImage: cell?.color ? `url(${cell.color})` : "none" }}
+                  ></div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <button
+            className="start-button"
+            onClick={() => {
+              setGameStarted(true);
+              setStartButtonDisabled(true);
+            }}
+            disabled={startButtonDisabled}
+          >
+            Start Game
+          </button>
+        </>
+      )}
+
+      {gameStarted && (
+        <div className="retro-game-board">
+          {grid.map((row, rowIndex) => (
+            <div key={rowIndex} className="retro-board-row">
+              {row.map((cell, colIndex) => (
+                <div
+                  key={colIndex}
+                  className={`retro-board-cell ${cell?.type === "B" ? "bonus-cell" : cell?.type === "N" ? "normal-cell" : ""}`}
+                  onClick={() => handleManualThrow(rowIndex, colIndex)}
+                  style={{ backgroundImage: cell?.color ? `url(${cell.color})` : "none" }}
+                ></div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+        
+      <div className="retro-disc-stack">
           <div className="normal-disc-stack">
             <h3>Normal Discs: {remainingDiscs.filter((disc) => disc.type === "normal").length}</h3>
             <div className="stack-container">
@@ -233,58 +285,12 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
               ))}
             </div>
           </div>
-        </div>
       </div>
 
-      {!gameStarted && (
-        <>
-          <button
-            className="start-button"
-            onClick={() => {
-              setGameStarted(true);
-              setStartButtonDisabled(true);
-            }}
-            disabled={startButtonDisabled}
-          >
-            Start Game
-          </button>
-          <div className="retro-game-board">
-            {grid.map((row, rowIndex) => (
-              <div key={rowIndex} className="retro-board-row">
-                {row.map((cell, colIndex) => (
-                  <div
-                    key={colIndex}
-                    className={`retro-board-cell ${cell?.type === "B" ? "bonus-cell" : cell?.type === "N" ? "normal-cell" : ""}`}
-                    onClick={() => handleManualThrow(rowIndex, colIndex)}
-                    style={{ backgroundImage: cell?.color ? `url(${cell.color})` : "none" }}
-                  ></div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-
-      {gameStarted && (
-        <div className="game-board tictactoe-board">
-          {grid.map((row, rowIndex) => (
-            <div key={rowIndex} className="retro-board-row">
-              {row.map((cell, colIndex) => (
-                <div
-                  key={colIndex}
-                  className={`retro-board-cell ${cell?.type === "B" ? "bonus-cell" : cell?.type === "N" ? "normal-cell" : ""}`}
-                  onClick={() => handleManualThrow(rowIndex, colIndex)}
-                  style={{ backgroundImage: cell?.color ? `url(${cell.color})` : "none" }}
-                ></div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
-
-      <button className="back-button" onClick={navigateToSelection}>
+      {/* <button className="back-button" onClick={navigateToSelection}>
         Back to Selection
-      </button>
+      </button> */}
+      <img src={gameRemote} alt="Game Remote" className="game-remote" />
     </div>
   );
 };

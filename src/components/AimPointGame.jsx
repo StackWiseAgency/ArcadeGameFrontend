@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./AimPointGame.css";
-// eslint-disable-next-line
-import { convertLegacyProps } from "antd/es/button";
 
 const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule, setMissedTargets, score) => {
   const [activeTarget, setActiveTarget] = useState(null);

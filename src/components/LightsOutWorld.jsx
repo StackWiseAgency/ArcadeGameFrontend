@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import Timer from "./Timer";
 import "./LightsOutWorld.css";
 import * as signalR from "@microsoft/signalr";
+import forbiddenCircle from "../assets/forbiddenCircle.png";
 
 const LightsOutWorld = ({ navigateToSelection }) => {
   const [grid, setGrid] = useState(
@@ -142,9 +143,11 @@ const LightsOutWorld = ({ navigateToSelection }) => {
     const connection = new signalR.HubConnectionBuilder()
       .withUrl("https://arcadegamebackendapi20241227164011.azurewebsites.net/gameHub", {
         transport: signalR.HttpTransportType.WebSockets | 
-                   signalR.HttpTransportType.ServerSentEvents | 
-                   signalR.HttpTransportType.LongPolling, // Enable fallback transports
+                  signalR.HttpTransportType.ServerSentEvents | 
+                  signalR.HttpTransportType.LongPolling, 
+                   //skipNegotiation: true,
       })
+      .withHubProtocol(new signalR.JsonHubProtocol())
       .configureLogging(signalR.LogLevel.Information) // Optional: Logging for debugging
       .withAutomaticReconnect() 
       .build();
@@ -202,9 +205,11 @@ const LightsOutWorld = ({ navigateToSelection }) => {
     <div className="lights-container">
       <h1 className="lights-game-title">Lights Out</h1>
       <div className="lights-scoreboard">
-        <p>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</p>
-        <p>Discs Left: {remainingDiscs}</p>
-        <p>Misses: {misses}</p>
+        <div className="lights-time-display"><span>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</span></div>
+        <div className="lights-disc-display"><span>Discs Left: {remainingDiscs}</span></div>
+        <div className="lights-misses-display">
+          <img src={forbiddenCircle} alt="Misses Icon" />
+          <span>Misses: {misses}</span></div>
       </div>
       <div className="lights-grid">
         {grid.map((row, rowIndex) => (

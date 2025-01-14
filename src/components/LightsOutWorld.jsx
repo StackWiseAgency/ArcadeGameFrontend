@@ -215,13 +215,13 @@ const LightsOutWorld = ({ navigateToSelection }) => {
           <span>Misses: {misses}</span></div>
           <img src={forbiddenCircle} alt="Misses Icon" />
       </div>
-      <div className="lights-grid">
+      <div className="lights-game-board">
         {grid.map((row, rowIndex) => (
-          <div key={rowIndex} className="lights-grid-row">
+          <div key={rowIndex} className="lights-board-row">
             {row.map((cell, colIndex) => (
               <div
                 key={colIndex}
-                className={`lights-cell ${cell ? "lit" : "off"}`}
+                className={`lights-board-cell ${cell ? "lit" : "off"}`}
                 onClick={() => useManualInput && handleThrow(rowIndex, colIndex)}
               ></div>
             ))}

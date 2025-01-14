@@ -3,6 +3,7 @@ import Timer from "./Timer";
 import "./LightsOutWorld.css";
 import * as signalR from "@microsoft/signalr";
 import forbiddenCircle from "../assets/forbiddenCircle.png";
+import timerpng from "../assets/forbiddenCircle.png";
 
 const LightsOutWorld = ({ navigateToSelection }) => {
   const [grid, setGrid] = useState(
@@ -205,8 +206,11 @@ const LightsOutWorld = ({ navigateToSelection }) => {
     <div className="lights-container">
       <h1 className="lights-game-title">Lights Out</h1>
       <div className="lights-scoreboard">
-        <div className="lights-time-display"><span>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</span></div>
-        <div className="lights-disc-display"><span>Discs Left: {remainingDiscs}</span></div>
+        <div className="lights-time-display">
+        <img src={timerpng} alt="timer icon" />
+          <span>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</span></div>
+        <div className="lights-disc-display">
+          <span>Discs Left: {remainingDiscs}</span></div>
         <div className="lights-misses-display">
           <img src={forbiddenCircle} alt="Misses Icon" />
           <span>Misses: {misses}</span></div>

@@ -1,13 +1,28 @@
 
 .game-container-point {
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  font-family: "Gameplay", sans-serif;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #0e1b0e;
   color: white;
   height: 100vh;
-  padding: 20px;
+  padding: 20px; */
 }
 
 .game-board-point {

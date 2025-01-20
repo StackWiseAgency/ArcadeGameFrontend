@@ -117,7 +117,7 @@ const GameSelectionPage = () => {
                   {!(hasPaid && game.numericPrice === paidPrice) && (
                     <p className="game-price">{game.price}</p>
                   )}
-                  <h3 className="game-title">{game.name}</h3>
+                  <h3 className="game-title-selection">{game.name}</h3>
                   <p className="game-description">{game.description}</p>
                   <button
                     className="play-button"

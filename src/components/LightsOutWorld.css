@@ -24,16 +24,7 @@
     width: 90%;
     margin-top: 20px;
    
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-    width: 80%;
-    max-width: 600px;
-    font-size: 1.2rem;
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); */
+   
 }
 
 .lights-time-display,
@@ -47,10 +38,16 @@
 .lights-time-display img,
 .lights-misses-display img,
 .lights-disc-display img {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+ 
   margin-right: 10px;
   object-fit: cover;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.timer-icon{
+    display: block;
 }
 
 .lights-game-title {
@@ -73,22 +70,10 @@
     padding: 10px;
     border: 7px solid #fff;
     box-sizing: border-box;
-   
-    /* display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-    border: 4px solid #fff;
-    background-color: #333;
-    padding: 10px;
-    box-sizing: border-box; */
 }
 
 .lights-board-row {
-    display: contents; /* Ensures cells are properly part of the grid */
+    display: contents; 
 }
 
 .lights-board-cell {
@@ -108,15 +93,15 @@
     height: 99%; 
 }
 .lights-board-cell:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
+    transform: scale(1.05); 
 }
 
 .lights-board-cell.lit {
-    background-color: rgb(179, 237, 179); /* Bright green for lit cells */
+    background-color: rgb(86, 229, 71, 1); 
 }
 
 .lights-board-cell.off {
-    background-color: #222; /* Dark gray for off cells */
+    background-color: #222; 
 }
 
 .lights-result-screen {
@@ -150,6 +135,158 @@
 .lights-back-button:hover {
     background-color: #c00;
 }
+
+/* Responsive Styles */
+
+/* Large Devices (Desktops, >1024px) */
+@media screen and (min-width: 1024px) {
+    .lights-game-title {
+        font-size: 3rem;
+    }
+  
+    .lights-scoreboard {
+        justify-content: space-between;
+        max-width: 1100px;
+    }
+  
+    .lights-game-board {
+        width: calc(700px - 2 * 7px); /* Larger board size */
+        height: calc(700px - 2 * 7px);
+        gap: 20px;
+    }
+  
+    .lights-board-cell {
+        border-width: 8px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 30px; /* Slightly larger icons */
+    }
+  }
+  
+  /* Extra Large Devices (>1440px) */
+  @media screen and (min-width: 1700px) {
+    .lights-game-title {
+        font-size: 3.5rem;
+    }
+  
+    .lights-scoreboard {
+        justify-content: space-around;
+        max-width: 1400px;
+    }
+  
+    .lights-game-board {
+        width: calc(900px - 2 * 7px); /* Significantly larger board size */
+        height: calc(900px - 2 * 7px);
+        gap: 30px;
+    }
+  
+    .lights-board-cell {
+        border-width: 10px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 40px; /* Larger icons */
+    }
+  }
+  
+  /* Tablets (768px to 1024px) */
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .lights-game-title {
+        font-size: 2.8rem;
+    }
+  
+    .lights-scoreboard {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 900px;
+    }
+  
+    .lights-game-board {
+        width: calc(500px - 2 * 7px); /* Medium board size */
+        height: calc(500px - 2 * 7px);
+        gap: 15px;
+    }
+  
+    .lights-board-cell {
+        border-width: 6px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 25px; /* Medium-sized icons */
+    }
+  }
+  
+  /* General Visibility Handling */
+  .pawn-icon, .star-icon, .game-remote {
+    z-index: 1;
+    visibility: visible;
+  }
+  
+  .lights-game-board, .lights-scoreboard {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .pawn-icon.overlap, .star-icon.overlap, .game-remote.overlap {
+    visibility: hidden;
+  }
+  
+/* Small Devices (Phones, <768px) */
+@media screen and (max-width: 767px) {
+    .lights-game-title {
+        font-size: 2rem;
+    }
+  
+    .lights-scoreboard {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 100%;
+    }
+  
+    .lights-game-board {
+        width: calc(300px - 2 * 7px); /* Smaller board size */
+        height: calc(300px - 2 * 7px);
+        gap: 10px; /* Adjust gap for smaller screens */
+    }
+  
+    .lights-board-cell {
+        border-width: 4px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 20px; /* Smaller icons */
+    }
+  
+    .stats-box {
+        width: 80px; /* Smaller stats box */
+    }
+  
+    .stat1 span, .stat2 span {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+  
+    .team img.player-icon {
+        width: 50px;
+        height: 50px;
+    }
+  
+    .pawn-icon, .star-icon, .game-remote {
+        display: none; /* Hide decorative elements on small screens */
+    }
+  }
+  
 
 /* copy 
 

@@ -169,12 +169,22 @@
     transform: translateY(-50%);
   }
   
-  .star-icon-aim {
+  /* .star-icon-aim {
     width: 40px;
     position: absolute;
     left: 400px;
     top: 13%;
+  } */
+
+  .star-icon-aim {
+    width: 40px;
+    position: absolute;
+    left: 5%; /* Adjusted to align with the left side of the game board */
+    top: 10%; /* Vertically centered relative to the game board */
+    transform: translateY(-50%);
+    z-index: 1; /* Ensure proper layering */
   }
+  
   
   .game-remote-aim {
     width: 200px;
@@ -203,6 +213,216 @@
     color: #f1f1f1;
   }
   
+/* Responsive Styles */
+
+/* Large Devices (Desktops, >1024px) */
+
+@media screen and (min-width: 1024px) {
+  /* .game-title-aim {
+      font-size: 3rem;
+  }
+
+  .scoreboard-aim {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 1100px;
+  }
+
+  .game-board-aim {
+      width: calc(600px - 2 * 7px); 
+      height: calc(600px - 2 * 7px);
+      gap: 20px;
+  }
+
+  .board-cell-aim {
+      border-width: 8px;
+  }
+
+  .stats-box-aim {
+      width: 200px; 
+  }
+
+  .stat1-aim span, .stat2-aim span {
+      width: 130px;
+      height: 130px;
+      font-size: 3.5rem;
+  } */
+
+  .player-icon-aim {
+      width: 90px;
+      height: 90px;
+  }
+
+  .pawn-icon-aim {
+      width: 250px;
+      top: 5%;
+      right: 5%;
+  }
+
+  .game-remote-aim {
+      width: 250px;
+      bottom: 5%;
+      right: 5%;
+  }
+}
+
+/* Extra Large Devices (>1440px) */
+@media screen and (min-width: 1600px) {
+  .game-title-aim {
+      font-size: 3.5rem;
+  }
+
+  .scoreboard-aim {
+      justify-content: space-around;
+      max-width: 1400px;
+  }
+
+  .game-board-aim {
+      width: calc(900px - 2 * 7px); /* Significantly larger board size */
+      height: calc(900px - 2 * 7px);
+      gap: 30px;
+  }
+
+  .board-cell-aim {
+      border-width: 10px;
+  }
+
+  .stats-box-aim {
+      width: 250px; /* Largest stats box */
+  }
+
+  .stat1-aim span, .stat2-aim span {
+      width: 160px;
+      height: 160px;
+      font-size: 4.5rem;
+  }
+
+  .player-icon-aim {
+      width: 120px;
+      height: 120px;
+  }
+
+  .pawn-icon-aim {
+      width: 350px;
+      top: 5%;
+      right: 5%;
+  }
+
+  .game-remote-aim {
+      width: 350px;
+      bottom: 5%;
+      right: 5%;
+  }
+}
+
+/* Tablets (768px to 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .game-title-aim {
+      font-size: 2.8rem;
+  }
+
+  .scoreboard-aim {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 900px;
+  }
+
+  .game-board-aim {
+      width: calc(500px - 2 * 7px); /* Medium board size */
+      height: calc(500px - 2 * 7px);
+      gap: 15px;
+  }
+
+  .board-cell-aim {
+      border-width: 6px;
+  }
+
+  .stats-box-aim {
+      width: 170px; /* Medium stats box */
+  }
+
+  .stat1-aim span, .stat2-aim span {
+      width: 100px;
+      height: 100px;
+      font-size: 3rem;
+  }
+
+  .player-icon-aim {
+      width: 70px;
+      height: 70px;
+  }
+
+  .pawn-icon-aim {
+      width: 200px;
+      top: 10%;
+      right: 10%;
+  }
+
+  .game-remote-aim {
+      width: 200px;
+      bottom: 10%;
+      right: 10%;
+  }
+}
+
+/* Small Devices (Phones, <768px) */
+@media screen and (max-width: 767px) {
+  .game-title-aim {
+      font-size: 2rem;
+  }
+
+  .scoreboard-aim {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      max-width: 100%;
+  }
+
+  .game-board-aim {
+      width: calc(300px - 2 * 7px); /* Smaller board size */
+      height: calc(300px - 2 * 7px);
+      gap: 10px;
+  }
+
+  .board-cell-aim {
+      border-width: 4px;
+  }
+
+  .stats-box-aim {
+      width: 120px; /* Smaller stats box */
+  }
+
+  .stat1-aim span, .stat2-aim span {
+      width: 70px;
+      height: 70px;
+      font-size: 2rem;
+  }
+
+  .player-icon-aim {
+      width: 50px;
+      height: 50px;
+  }
+
+  .pawn-icon-aim, .star-icon-aim, .game-remote-aim {
+      display: none; /* Hide decorative elements */
+  }
+}
+
+/* General Visibility Handling */
+.pawn-icon-aim, .star-icon-aim, .game-remote-aim {
+  z-index: 1;
+  visibility: visible;
+}
+
+.game-board-aim, .scoreboard-aim {
+  position: relative;
+  z-index: 2;
+}
+
+.pawn-icon-aim.overlap, .star-icon-aim.overlap, .game-remote-aim.overlap {
+  visibility: hidden; /* Hide elements overlapping with the game components */
+}
+
 
 
 /* .tictactoe-container-aim {

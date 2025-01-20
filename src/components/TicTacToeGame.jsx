@@ -2,12 +2,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import { notification } from "antd";
 import Timer from "./Timer"; // Import Timer Component
 import "./TicTacToeGame.css";
-import backgroundImage from "../assets/background-image.png";
-import gameRemote from "../assets/gameremote.png";
+// import backgroundImage from "../assets/background-image.png";
 import maleAvatar from "../assets/maleavatar.png";
 import profileIcon from "../assets/profile-icon.png";
 import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
+import gameRemote from "../assets/gameremote.png";
 
 const TicTacToeGame = ({ navigateToSelection }) => {
   const initialBoard = Array(3)
@@ -286,7 +286,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
   return (
     <div
       className="tictactoe-container"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      // style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       {isLoading && <div className="api-loader"></div>}
 

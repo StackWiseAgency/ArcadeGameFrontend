@@ -4,6 +4,9 @@ import "./LightsOutWorld.css";
 import * as signalR from "@microsoft/signalr";
 import forbiddenCircle from "../assets/forbiddenCircle.png";
 import timerpng from "../assets/timer.png";
+import pawn from "../assets/pawn.png";
+import star from "../assets/star.png";
+import gameRemote from "../assets/gameremote.png";
 
 const LightsOutWorld = ({ navigateToSelection }) => {
   const [grid, setGrid] = useState(
@@ -204,16 +207,27 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   // Game Board
   const renderGameBoard = () => (
     <div className="lights-container">
+      <img src={pawn} alt="Pawn" className="pawn-icon" />
+      <img src={star} alt="Star" className="star-icon" />
       <h1 className="lights-game-title">Lights Out</h1>
       <div className="lights-scoreboard">
         <div className="lights-time-display">
-          <span>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</span></div>
-          <img src={timerpng} alt="timer icon" />
+          <span>Time </span> 
+          <img src={timerpng} alt="timer icon" className="timer-icon"/> 
+         
+          <span>{`${Math.floor(timer / 60)}:${timer % 60}`}</span>
+        </div>
+          
         <div className="lights-disc-display">
-          <span>Discs Left: {remainingDiscs}</span></div>
+          <span>Discs Left: {remainingDiscs}</span>
+        </div>
         <div className="lights-misses-display">
-          <span>Misses: {misses}</span></div>
+          <span>Misses </span>
           <img src={forbiddenCircle} alt="Misses Icon" />
+         
+          <span>{misses}</span>
+        </div>
+          
       </div>
       <div className="lights-game-board">
         {grid.map((row, rowIndex) => (
@@ -228,6 +242,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
           </div>
         ))}
       </div>
+      <img src={gameRemote} alt="Game Remote" className="game-remote" />
     </div>
   );
   // Return Main Component

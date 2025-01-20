@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./AimPointGame.css";
+import pawn from "../assets/pawn.png";
+import star from "../assets/star.png";
+import gameRemote from "../assets/gameremote.png";
 
 const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule, setMissedTargets, score) => {
   const [activeTarget, setActiveTarget] = useState(null);
@@ -172,6 +175,8 @@ const AimPointGame = () => {
   // Render UI
   return (
     <div className="game-container-point">
+       <img src={pawn} alt="Pawn" className="pawn-icon-point" />
+       <img src={star} alt="Star" className="star-icon-point" />
       <div className="game-board-point">
         {board.flat().map((_, index) => (
           <div
@@ -202,6 +207,7 @@ const AimPointGame = () => {
 
       </div>
       {gameEnded && <h2 className="game-over-point">Game Over!</h2>}
+      <img src={gameRemote} alt="Game Remote" className="game-remote-point" />
     </div>
   );
 };

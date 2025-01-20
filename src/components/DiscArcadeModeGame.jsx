@@ -5,6 +5,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./DiscArcadeModeGame.css";
 import * as signalR from "@microsoft/signalr"; 
 import forbiddenCircle from "../assets/forbiddenCircle.png";
+import timerpng from "../assets/timer.png";
 import purpleDisc from "../assets/purpledisc.png";
 import redDisc from "../assets/reddisc.png";
 import orangeDisc from "../assets/orangedisc.png";
@@ -194,14 +195,14 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       <img src={star} alt="Star" className="star-icon" />
       <div className="retro-top-section">
         <div className="timer-display">
-          <span>Time Remaining: {Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}</span>
+          <span>Time Remaining: </span><img src={timerpng} alt="Timer Icon" /> <span>{Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}</span>
         </div>
         <div className="retro-score-display">
         <h3>Score: {score.toString().padStart(3, "0")}</h3>
         </div>
         <div className="misses-display">
-          <img src={forbiddenCircle} alt="Misses Icon" />
           <span>Misses: {misses}</span>
+          <img src={forbiddenCircle} alt="Misses Icon" />
         </div>
       </div>
 

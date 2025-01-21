@@ -17,7 +17,7 @@
   background-position: center;
   background-repeat: no-repeat;
   text-transform: uppercase;
-  width: 300px;
+  width: 320px;
   height:fit-content;
   color: #ffffff;
   padding: 20px;
@@ -42,14 +42,13 @@
 }
 
 .guest-id-image {
-  width: 90%;
-  max-width: 250px;
-  padding: 20px;
+  width: 224px; 
+  max-width: 90%;
+  padding: 10px;
   height: auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
 }
 
 .guest-signin-input {
@@ -57,7 +56,8 @@
   top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%; 
+  width: 120px; 
+  max-width: 90%;
   padding: 1px;
   border: 1px solid white;
   font-size: 1rem;
@@ -73,10 +73,9 @@
 }
 
 .guest-signin-button {
-  width: 35%;
   padding: 5px;
   margin-top: 20px;
-  background: #007f40;
+  background: #399F2E;
   border: none;
   font-size: 1rem;
   color: white;
@@ -111,7 +110,9 @@
 
   .guest-signin-input {
     font-size: 0.9rem;
-    padding: 8px;
+    padding: 1px;
+    width: 120px; 
+
   }
 
   .guest-signin-button {

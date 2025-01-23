@@ -54,34 +54,6 @@ const games = [
   },
 ];
 
-// useEffect(() => {
-//   const buttons = document.querySelectorAll(".play-button");
-
-//   buttons.forEach((button) => {
-//     const observer = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           button.classList.add("sticky");
-//         } else {
-//           button.classList.remove("sticky");
-//         }
-//       },
-//       {
-//         root: null,
-//         threshold: 1.0,
-//       }
-//     );
-
-//     observer.observe(button.parentElement);
-//   });
-
-//   return () => {
-//     buttons.forEach((button) => {
-//       observer.unobserve(button.parentElement);
-//     });
-//   };
-// }, []);
-
 const GameSelectionPage = () => {
   const [selectedGame, setSelectedGame] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

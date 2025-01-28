@@ -96,7 +96,7 @@ const GameSelectionPage = () => {
     <div className="game-selection-container">
       {!isGameStarted ? (
         <>
-          {/* <div className="header">
+          <div className="header">
             <div className="reward-points">
               <img src={TrophyIcon} alt="Trophy" className="trophy-icon" />
               <p>Reward Points: 200pts</p>
@@ -106,35 +106,7 @@ const GameSelectionPage = () => {
               <p>Azeem Khalid</p>
               <span>azeemsmart1777</span>
             </div>
-          </div> */}
-          <div className="header">
-            {/* Reward Points Section */}
-            <div className="reward-points">
-              <img src={TrophyIcon} alt="Trophy" className="trophy-icon" />
-              <div className="reward-text">
-                <span className="reward-title">REWARD POINTS</span>
-                <span className="reward-value">200PTS</span>
-              </div>
-            </div>
-
-            {/* Game Points Information */}
-            <div className="game-points-info">
-              <p>EARN 1 POINT PER GAME</p>
-              <p>5 POINTS = 1 FREE GAME</p>
-            </div>
-
-            {/* Logged-in User Section */}
-            <div className="logged-in-user">
-              <img src={ProfileIcon} alt="User" className="profile-icon" />
-              <div className="user-text">
-                <span className="user-name">AZEEM KHALID</span>
-                <span className="user-username">AZEEMSMART1777</span>
-              </div>
-            </div>
           </div>
-
-
-
           <h1 className="select-games-title">Select Games</h1>
           <div className="games-grid">
             {games.map((game, index) => (

@@ -62,7 +62,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  height: 80px;
+  height: 70px;
   background: transparent;
   backdrop-filter: blur(5px);
 }
@@ -77,19 +77,19 @@
 
 /* Increase trophy icon size to match the text height */
 .trophy-icon {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
 }
 
 /* Increase profile image size and ensure it's proportional */
 .profile-icon {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
- 
+  border: 2px solid #00ffcc;
 }
 
-/* Styling reward points and user text sections */
+/* Style for text inside reward points */
 .reward-text,
 .user-text {
   display: flex;
@@ -99,7 +99,7 @@
 
 .reward-title,
 .user-name {
-  font-size: 1rem;
+  font-size: 1rem; /* Make font match icon height */
   font-weight: bold;
   color: white;
   text-transform: uppercase;
@@ -107,7 +107,7 @@
 
 .reward-value,
 .user-username {
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Slightly increase username font */
   color: #00ffcc;
   letter-spacing: 0.5px;
 }
@@ -115,11 +115,12 @@
 /* Centered game points info */
 .game-points-info {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
-  line-height: 0.6;
+  line-height: 1.3;
 }
+
 
 
 

@@ -86,7 +86,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
- 
+  border: 2px solid #00ffcc;
 }
 
 /* Styling reward points and user text sections */
@@ -115,10 +115,10 @@
 /* Centered game points info */
 .game-points-info {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: bold;
   color: white;
-  line-height: 0.6;
+  line-height: 0.8;
 }
 
 

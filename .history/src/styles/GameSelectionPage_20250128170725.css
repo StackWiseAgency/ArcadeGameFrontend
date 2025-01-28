@@ -56,71 +56,73 @@
   font-size: 0.8rem;
   color: #00ffcc;
 } */
+
 .header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  height: 80px;
-  background: transparent;
-  backdrop-filter: blur(5px);
+  background: linear-gradient(to right, #000, #002b22);
 }
 
-/* Ensuring both reward points and user section align properly */
 .reward-points,
 .logged-in-user {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Increase trophy icon size to match the text height */
-.trophy-icon {
-  width: 45px;
-  height: 45px;
-}
-
-/* Increase profile image size and ensure it's proportional */
-.profile-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
- 
-}
-
-/* Styling reward points and user text sections */
-.reward-text,
-.user-text {
+.reward-points div,
+.logged-in-user div {
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  text-align: left;
 }
 
-.reward-title,
-.user-name {
-  font-size: 1rem;
+.trophy-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.reward-title {
+  font-size: 0.8rem;
   font-weight: bold;
   color: white;
   text-transform: uppercase;
 }
 
-.reward-value,
-.user-username {
+.reward-value {
   font-size: 0.9rem;
   color: #00ffcc;
-  letter-spacing: 0.5px;
 }
 
-/* Centered game points info */
 .game-points-info {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: bold;
   color: white;
-  line-height: 0.6;
 }
 
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #00ffcc;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+
+.user-username {
+  font-size: 0.8rem;
+  color: #00ffcc;
+  letter-spacing: 1px;
+}
 
 
 .select-games-title {

@@ -86,7 +86,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
- 
+  border: 2px solid #00ffcc;
 }
 
 /* Styling reward points and user text sections */
@@ -118,7 +118,7 @@
   font-size: 0.8rem;
   font-weight: bold;
   color: white;
-  line-height: 0.6;
+  line-height: 0.8;
 }
 
 

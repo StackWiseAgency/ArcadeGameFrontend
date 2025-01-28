@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// eslint-disable-next-line
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 import "./../styles/GameSelectionPage.css";
@@ -104,7 +104,7 @@ const GameSelectionPage = () => {
 
   const handleLogout = () => {
     console.log("User logged out.");
-    navigate("/signin"); // Redirect to login page
+    navigate("/login"); // Redirect to login page
   };
 
 
@@ -147,28 +147,25 @@ const GameSelectionPage = () => {
                 <span className="user-username">AZEEMSMART1777</span>
               </div>
             </div> */}
-            <div className="logged-in-user">
-              <img
-                src={ProfileIcon}
-                alt="User"
-                className="profile-icon"
-                onClick={toggleDropdown}
-              />
-              <div className="user-text">
-                <span className="user-name">AZEEM KHALID</span>
-                <span className="user-username">AZEEMSMART1777</span>
-              </div>
-              {dropdownOpen && (
-                <div className="dropdown-menu">
-                  {/* <Link to="/profile" className="dropdown-item">
-                    Profile
-                  </Link> */}
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Logout
-                  </button>
+            <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown} className="user-dropdown">
+              <DropdownToggle tag="div" className="logged-in-user">
+                <img src={ProfileIcon} alt="User" className="profile-icon" />
+                <div className="user-text">
+                  <span className="user-name">AZEEM KHALID</span>
+                  <span className="user-username">AZEEMSMART1777</span>
                 </div>
-              )}
-            </div>
+              </DropdownToggle>
+              <DropdownMenu end>
+                <DropdownItem tag={Link} to="/profile">
+                  <i className="mdi mdi-account-circle font-size-17 align-middle me-1" />
+                  Profile
+                </DropdownItem>
+                <DropdownItem onClick={handleLogout} className="text-danger">
+                  <i className="bx bx-power-off font-size-17 align-middle me-1 text-danger" />
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </div>
 
 

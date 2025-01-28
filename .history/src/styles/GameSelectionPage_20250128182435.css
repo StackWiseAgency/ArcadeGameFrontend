@@ -122,32 +122,21 @@
 }
 
 
+.user-dropdown {
+  cursor: pointer;
+}
+
 .dropdown-menu {
-  position: absolute;
-  right: 0;
-  top: 50px;
-  background: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  width: 120px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
+  background-color: #222; /* Dark dropdown background */
+  border: none;
 }
 
 .dropdown-item {
-  padding: 8px 10px;
-  color: #000;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background 0.3s;
-  border: none;
-  background: none;
-  text-align: left;
+  color: white;
 }
 
 .dropdown-item:hover {
-  background: #f0f0f0;
+  background-color: #444;
 }
 
 

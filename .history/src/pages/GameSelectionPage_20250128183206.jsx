@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// eslint-disable-next-line
 import { Link, useNavigate } from "react-router-dom";
 
 import "./../styles/GameSelectionPage.css";
@@ -95,16 +94,16 @@ const GameSelectionPage = () => {
     setIsQueueOpen(false);
   };
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
+    setIsOpen(!isOpen);
   };
 
   const handleLogout = () => {
     console.log("User logged out.");
-    navigate("/signin"); // Redirect to login page
+    navigate("/login"); // Redirect to login page
   };
 
 
@@ -147,24 +146,21 @@ const GameSelectionPage = () => {
                 <span className="user-username">AZEEMSMART1777</span>
               </div>
             </div> */}
-            <div className="logged-in-user">
-              <img
-                src={ProfileIcon}
-                alt="User"
-                className="profile-icon"
-                onClick={toggleDropdown}
-              />
-              <div className="user-text">
-                <span className="user-name">AZEEM KHALID</span>
-                <span className="user-username">AZEEMSMART1777</span>
+            <div className="user-dropdown">
+              <div className="logged-in-user" onClick={toggleDropdown}>
+                <img src={ProfileIcon} alt="User" className="profile-icon" />
+                <div className="user-text">
+                  <span className="user-name">AZEEM KHALID</span>
+                  <span className="user-username">AZEEMSMART1777</span>
+                </div>
               </div>
-              {dropdownOpen && (
+              {isOpen && (
                 <div className="dropdown-menu">
-                  {/* <Link to="/profile" className="dropdown-item">
-                    Profile
-                  </Link> */}
-                  <button className="dropdown-item" onClick={handleLogout}>
-                    Logout
+                  <Link to="/profile" className="dropdown-item">
+                    <span className="icon">👤</span> Profile
+                  </Link>
+                  <button onClick={handleLogout} className="dropdown-item logout">
+                    <span className="icon">🔴</span> Logout
                   </button>
                 </div>
               )}

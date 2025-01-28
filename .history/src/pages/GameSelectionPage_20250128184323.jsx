@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// eslint-disable-next-line
 import { Link, useNavigate } from "react-router-dom";
 
 import "./../styles/GameSelectionPage.css";
@@ -160,9 +159,9 @@ const GameSelectionPage = () => {
               </div>
               {dropdownOpen && (
                 <div className="dropdown-menu">
-                  {/* <Link to="/profile" className="dropdown-item">
+                  <Link to="/profile" className="dropdown-item">
                     Profile
-                  </Link> */}
+                  </Link>
                   <button className="dropdown-item" onClick={handleLogout}>
                     Logout
                   </button>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// eslint-disable-next-line
 import { Link, useNavigate } from "react-router-dom";
 
 import "./../styles/GameSelectionPage.css";
@@ -104,7 +103,7 @@ const GameSelectionPage = () => {
 
   const handleLogout = () => {
     console.log("User logged out.");
-    navigate("/signin"); // Redirect to login page
+    navigate("/login"); // Redirect to login page
   };
 
 
@@ -149,20 +148,16 @@ const GameSelectionPage = () => {
             </div> */}
             <div className="logged-in-user">
               <img
-                src={ProfileIcon}
+                src="ProfileIcon"
                 alt="User"
                 className="profile-icon"
                 onClick={toggleDropdown}
               />
-              <div className="user-text">
-                <span className="user-name">AZEEM KHALID</span>
-                <span className="user-username">AZEEMSMART1777</span>
-              </div>
               {dropdownOpen && (
                 <div className="dropdown-menu">
-                  {/* <Link to="/profile" className="dropdown-item">
+                  <Link to="/profile" className="dropdown-item">
                     Profile
-                  </Link> */}
+                  </Link>
                   <button className="dropdown-item" onClick={handleLogout}>
                     Logout
                   </button>

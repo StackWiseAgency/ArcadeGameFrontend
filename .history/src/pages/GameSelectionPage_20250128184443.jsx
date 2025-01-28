@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// eslint-disable-next-line
 import { Link, useNavigate } from "react-router-dom";
 
 import "./../styles/GameSelectionPage.css";

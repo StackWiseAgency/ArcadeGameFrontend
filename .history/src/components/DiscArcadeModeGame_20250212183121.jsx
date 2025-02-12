@@ -218,15 +218,13 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       <p>Misses: {gameResults?.misses}</p>
       <p>Time Spent: {gameResults?.timeElapsed} sec</p>
       <p>Status: {gameResults?.status}</p>
-      {/* <button className="back-button" onClick={navigateToSelection}>Back to Selection</button> */}
+      <button className="back-button" onClick={navigateToSelection}>Back to Selection</button>
     </div>
   );
   
 
   return (
     <div className="arcade-game-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
-       {gameEnded ? renderResultScreen() : (
-      <>
       <div className="game-name">
         <h1>Retro Disc Golf</h1>
       </div>
@@ -333,8 +331,6 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         Back to Selection
       </button> */}
       <img src={gameRemote} alt="Game Remote" className="game-remote" />
-      </>
-    )}
     </div>
   );
 };

@@ -227,15 +227,16 @@ const GameofAim = () => {
   const renderResultScreen = () => (
     <div className="result-screen-aim">
       <h1>Game Over</h1>
-      <h2 className="winner-aim">
-          {winner === "player1" ? "Player 1 Wins!" : "Player 2 Wins!"}
-        </h2>
-      {/* <button className="back-button-aim" onClick={() => window.location.reload()}>Play Again</button> */}
+      <p>Winner: {gameResults?.winner === "player1" ? "Player 1" : "Player 2"}</p>
+      <p>Player 1 Score: {gameResults?.player1?.score}</p>
+      <p>Player 1 Discs Left: {gameResults?.player1?.discsLeft}</p>
+      <p>Player 1 Letters: {gameResults?.player1?.letters}</p>
+      <p>Player 2 Score: {gameResults?.player2?.score}</p>
+      <p>Player 2 Discs Left: {gameResults?.player2?.discsLeft}</p>
+      <p>Player 2 Letters: {gameResults?.player2?.letters}</p>
+      <button className="back-button-aim" onClick={() => window.location.reload()}>Play Again</button>
     </div>
   );
-  
-  
-  
   
 
   return (
@@ -243,8 +244,7 @@ const GameofAim = () => {
       className="tictactoe-container-aim"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      {winner ? renderResultScreen() : (
-        <>
+
       {!userHasThrown && !winner && (
         <Timer userHasThrown={userHasThrown} onStart={() => setUserHasThrown(true)} />
       )}
@@ -297,7 +297,7 @@ const GameofAim = () => {
         </div>
       </div>
 
-      
+      {winner ? renderResultScreen() : (
     
 
       {/* {winner && (
@@ -305,12 +305,9 @@ const GameofAim = () => {
           {winner === "player1" ? "Player 1 Wins!" : "Player 2 Wins!"}
         </h2>
       )} */}
-      
+      )}
 
       <img src={gameRemote} alt="Game Remote" className="game-remote-aim" />
-      </>
-    )}
-    
     </div>
   );
 };

@@ -27,9 +27,6 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const [timeRemaining, setTimeRemaining] = useState(30); 
   // eslint-disable-next-line
   const [gameEnded, setGameEnded] = useState(false);
-  const [gameResults, setGameResults] = useState(null); // Store game results
-
-  const API_send_result = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
 
   // Flags for input modes
   const useManualInput = true; 
@@ -130,42 +127,9 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
     if (timeRemaining === 0 || remainingDiscs.length === 0) {
       setGameStarted(false);
       setGameEnded(true);
-
-      const results = {
-        score: score,
-        misses: misses,
-        timeElapsed: 30 - timeRemaining, // Time spent playing
-        status: remainingDiscs.length === 0 ? "All Discs Used!" : "Time Over!",
-    };
-
-    setGameResults(results); // Store results
-    console.log("Game Results:", results);
-    //sendResultsToAPI(results); // Send results to API
-
     }
-  }, [timeRemaining, remainingDiscs.length, misses, score]);
+  }, [timeRemaining, remainingDiscs.length]);
   
-  const sendResultsToAPI = async (results) => {
-    try {
-        const response = await fetch(API_send_result, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(results),
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to send game results.");
-        }
-
-        console.log("Game results sent successfully.");
-    } catch (error) {
-        console.error("Error sending game results:", error);
-    }
-  };
-
-
   useEffect(() => {
     console.log("Timer effect triggered");
     let timer;
@@ -211,22 +175,19 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
     };
   }, [useApiInput, gameStarted, handleInputThrow]);
 
-  const renderResultScreen = () => (
-    <div className="result-screen">
-      <h1>Game Over</h1>
-      <p>Final Score: {gameResults?.score}</p>
-      <p>Misses: {gameResults?.misses}</p>
-      <p>Time Spent: {gameResults?.timeElapsed} sec</p>
-      <p>Status: {gameResults?.status}</p>
-      {/* <button className="back-button" onClick={navigateToSelection}>Back to Selection</button> */}
-    </div>
-  );
-  
+  useEffect(() => {
+    if (remainingDiscs.length === 0 || timeRemaining <= 0) {
+      setGameStarted(false);
+      setGameEnded(true);
+    }
+  }, [remainingDiscs, timeRemaining]);
 
   return (
-    <div className="arcade-game-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
-       {gameEnded ? renderResultScreen() : (
-      <>
+    <div
+      className="arcade-game-container"
+     
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className="game-name">
         <h1>Retro Disc Golf</h1>
       </div>
@@ -328,13 +289,10 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
           </div>
       </div>
 
-
       {/* <button className="back-button" onClick={navigateToSelection}>
         Back to Selection
       </button> */}
       <img src={gameRemote} alt="Game Remote" className="game-remote" />
-      </>
-    )}
     </div>
   );
 };

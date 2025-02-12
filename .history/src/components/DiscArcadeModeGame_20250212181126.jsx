@@ -140,10 +140,10 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
 
     setGameResults(results); // Store results
     console.log("Game Results:", results);
-    //sendResultsToAPI(results); // Send results to API
+    sendResultsToAPI(results); // Send results to API
 
     }
-  }, [timeRemaining, remainingDiscs.length, misses, score]);
+  }, [timeRemaining, remainingDiscs.length]);
   
   const sendResultsToAPI = async (results) => {
     try {
@@ -211,22 +211,14 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
     };
   }, [useApiInput, gameStarted, handleInputThrow]);
 
-  const renderResultScreen = () => (
-    <div className="result-screen">
-      <h1>Game Over</h1>
-      <p>Final Score: {gameResults?.score}</p>
-      <p>Misses: {gameResults?.misses}</p>
-      <p>Time Spent: {gameResults?.timeElapsed} sec</p>
-      <p>Status: {gameResults?.status}</p>
-      {/* <button className="back-button" onClick={navigateToSelection}>Back to Selection</button> */}
-    </div>
-  );
-  
+ 
 
   return (
-    <div className="arcade-game-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
-       {gameEnded ? renderResultScreen() : (
-      <>
+    <div
+      className="arcade-game-container"
+     
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className="game-name">
         <h1>Retro Disc Golf</h1>
       </div>
@@ -328,13 +320,10 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
           </div>
       </div>
 
-
       {/* <button className="back-button" onClick={navigateToSelection}>
         Back to Selection
       </button> */}
       <img src={gameRemote} alt="Game Remote" className="game-remote" />
-      </>
-    )}
     </div>
   );
 };

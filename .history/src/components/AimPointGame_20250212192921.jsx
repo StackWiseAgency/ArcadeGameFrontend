@@ -18,8 +18,8 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
     let activationTimeout; // Timeout for activation interval
 
     const handleActivationInterval = () => {
-      // console.log("Activation Interval Started");
-      // console.log(`Schedule Index: ${scheduleIndexRef.current}, Interval: ${intervalSchedule[scheduleIndexRef.current]}`);
+      console.log("Activation Interval Started");
+      console.log(`Schedule Index: ${scheduleIndexRef.current}, Interval: ${intervalSchedule[scheduleIndexRef.current]}`);
       activationTimeout = setTimeout(() => {
         handleTargetDuration(); // Begin target duration
       }, intervalSchedule[scheduleIndexRef.current] * 1000);
@@ -29,8 +29,8 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
 
 
     const handleTargetDuration = () => {
-      // console.log("Target Duration Started");
-      // console.log(`Schedule Index: ${scheduleIndexRef.current}, Duration: ${durationSchedule[scheduleIndexRef.current]}`);
+      console.log("Target Duration Started");
+      console.log(`Schedule Index: ${scheduleIndexRef.current}, Duration: ${durationSchedule[scheduleIndexRef.current]}`);
       let randomIndex;
       // Ensure no overlap with the last active target
       do {
@@ -41,7 +41,7 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
       lastActiveTargetRef.current = randomIndex;
 
       targetTimeout = setTimeout(() => {
-        // console.log("Target Duration Ended");
+        console.log("Target Duration Ended");
         setMissedTargets((prev) => prev + 1);
         setActiveTarget(null); // Clear active target
         handleActivationInterval(); // Trigger next activation interval
@@ -146,7 +146,7 @@ const AimPointGame = () => {
     const socket = new WebSocket("ws://your-websocket-url");
   
     socket.onopen = () => {
-      // console.log("WebSocket connection established");
+      console.log("WebSocket connection established");
     };
   
     socket.onmessage = (event) => {
@@ -155,16 +155,16 @@ const AimPointGame = () => {
         const { index } = data; // Assuming server sends index of the target
         handleMove(index); // Handle the target move
       } catch (error) {
-        // console.error("Error processing WebSocket message:", error);
+        console.error("Error processing WebSocket message:", error);
       }
     };
   
     socket.onerror = (error) => {
-      // console.error("WebSocket error:", error);
+      console.error("WebSocket error:", error);
     };
   
     socket.onclose = () => {
-      // console.log("WebSocket connection closed");
+      console.log("WebSocket connection closed");
     };
   
     return () => {
@@ -186,8 +186,8 @@ const AimPointGame = () => {
       };
   
       setGameResults(results);
-      // console.log("Game Results:", results);
-     // sendResultsToAPI(results);
+      console.log("Game Results:", results);
+      sendResultsToAPI(results);
 
     }
   }, [timer, frisbees, missedTargets, score]);
@@ -207,9 +207,9 @@ const AimPointGame = () => {
         throw new Error("Failed to send game results.");
       }
   
-      // console.log("Game results sent successfully.");
+      console.log("Game results sent successfully.");
     } catch (error) {
-      // console.error("Error sending game results:", error);
+      console.error("Error sending game results:", error);
     }
   };
   
@@ -220,9 +220,9 @@ const AimPointGame = () => {
       <h2>Missed Targets: {gameResults?.missedTargets}</h2>
       <h2>Time Left: {gameResults?.timeLeft}s</h2>
       <h2>Frisbees Left: {gameResults?.frisbeesLeft}</h2>
-      {/* <button className="back-button-point" onClick={() => window.location.reload()}>
+      <button className="back-button-point" onClick={() => window.location.reload()}>
         Play Again
-      </button> */}
+      </button>
     </div>
   );
   

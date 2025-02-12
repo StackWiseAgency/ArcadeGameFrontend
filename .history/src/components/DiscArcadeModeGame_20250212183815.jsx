@@ -218,7 +218,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       <p>Misses: {gameResults?.misses}</p>
       <p>Time Spent: {gameResults?.timeElapsed} sec</p>
       <p>Status: {gameResults?.status}</p>
-      {/* <button className="back-button" onClick={navigateToSelection}>Back to Selection</button> */}
+      <button className="back-button" onClick={navigateToSelection}>Back to Selection</button>
     </div>
   );
   

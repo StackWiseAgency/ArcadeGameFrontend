@@ -230,7 +230,7 @@ const GameofAim = () => {
       <h2 className="winner-aim">
           {winner === "player1" ? "Player 1 Wins!" : "Player 2 Wins!"}
         </h2>
-      {/* <button className="back-button-aim" onClick={() => window.location.reload()}>Play Again</button> */}
+      <button className="back-button-aim" onClick={() => window.location.reload()}>Play Again</button>
     </div>
   );
   

@@ -236,9 +236,9 @@ const LightsOutWorld = ({ navigateToSelection }) => {
       <p>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</p>
       <p>Discs Left: {remainingDiscs}</p>
       <p>Misses: {misses}</p>
-      {/* <button className="lights-back-button" onClick={navigateToSelection}>
+      <button className="lights-back-button" onClick={navigateToSelection}>
         Back to Game Selection
-      </button> */}
+      </button>
     </div>
   );
 

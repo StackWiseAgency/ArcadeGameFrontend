@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback } from "react";
 import { notification } from "antd";
 import * as signalR from "@microsoft/signalr";
@@ -22,10 +21,6 @@ const GameofAim = () => {
   const [target, setTarget] = useState(null); // Current target to match
   const [winner, setWinner] = useState(null); // Winner of the game
   const [userHasThrown, setUserHasThrown] = useState(false); // To track if the user has started
-  const [gameResults, setGameResults] = useState(null); // Store game results
-
-  const API_result_send = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
-
 
   const useManualInput = true; // Flag for manual input
   const useWebSocket = false; // Flag for WebSocket connection
@@ -186,65 +181,17 @@ const GameofAim = () => {
     if (discs.total === 0 && !winner) {
       const p1Letters = letters.player1.length;
       const p2Letters = letters.player2.length;
-
       console.log("All discs used. Determining winner:", { player1: p1Letters, player2: p2Letters });
       setWinner(p1Letters < p2Letters ? "player1" : "player2");
-      const finalWinner = p1Letters < p2Letters ? "player1" : "player2";
-    setWinner(finalWinner);
-
-    const results = {
-      winner: finalWinner,
-      player1: { score: scores.player1, discsLeft: discs.player1, letters: letters.player1 },
-      player2: { score: scores.player2, discsLeft: discs.player2, letters: letters.player2 },
-    };
-
-    setGameResults(results);
-    console.log("Game Results:", results);
-    //sendResultsToAPI(results);
     }
-  }, [discs, letters, winner, scores.player1, scores.player2]);
-
-  const sendResultsToAPI = async (results) => {
-    try {
-      const response = await fetch(API_result_send, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(results),
-      });
-  
-      if (!response.ok) {
-        throw new Error("Failed to send game results.");
-      }
-  
-      console.log("Game results sent successfully.");
-    } catch (error) {
-      console.error("Error sending game results:", error);
-    }
-  };
-  
-  const renderResultScreen = () => (
-    <div className="result-screen-aim">
-      <h1>Game Over</h1>
-      <h2 className="winner-aim">
-          {winner === "player1" ? "Player 1 Wins!" : "Player 2 Wins!"}
-        </h2>
-      {/* <button className="back-button-aim" onClick={() => window.location.reload()}>Play Again</button> */}
-    </div>
-  );
-  
-  
-  
-  
+  }, [discs, letters, winner]);
 
   return (
     <div
       className="tictactoe-container-aim"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      {winner ? renderResultScreen() : (
-        <>
+
       {!userHasThrown && !winner && (
         <Timer userHasThrown={userHasThrown} onStart={() => setUserHasThrown(true)} />
       )}
@@ -297,20 +244,13 @@ const GameofAim = () => {
         </div>
       </div>
 
-      
-    
-
-      {/* {winner && (
+      {winner && (
         <h2 className="winner-aim">
           {winner === "player1" ? "Player 1 Wins!" : "Player 2 Wins!"}
         </h2>
-      )} */}
-      
+      )}
 
       <img src={gameRemote} alt="Game Remote" className="game-remote-aim" />
-      </>
-    )}
-    
     </div>
   );
 };

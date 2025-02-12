@@ -9,7 +9,7 @@ import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
 
-const API_URL_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
+const API_URL_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameSimulation/add";
 
 const TicTacToeGame = ({ navigateToSelection }) => {
   const initialBoard = Array(3)

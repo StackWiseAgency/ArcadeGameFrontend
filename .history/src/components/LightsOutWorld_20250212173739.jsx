@@ -31,7 +31,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
   const sendResultsToAPI = async (results) => {
     try {
-        const response = await fetch(API_URL_result, {
+        const response = await fetch("API_URL_result", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -60,9 +60,9 @@ const LightsOutWorld = ({ navigateToSelection }) => {
       misses: misses
     };
 
-    setGameResults(results); // Store results
+    setGameResults(results); // ✅ Store results
     console.log("Game Results:", results);
-    sendResultsToAPI(results); // Send results to API
+    sendResultsToAPI(results); // ✅ Send results to API
 
   }, [grid, timer, remainingDiscs, misses]);
 

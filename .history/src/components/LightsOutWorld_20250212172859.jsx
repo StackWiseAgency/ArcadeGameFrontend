@@ -8,8 +8,6 @@ import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
 
-
-
 const LightsOutWorld = ({ navigateToSelection }) => {
   const [grid, setGrid] = useState(
     Array(3)
@@ -27,44 +25,9 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   const [useWebSocketInput] = useState(false); // WebSocket mode flag
   const [gameResults, setGameResults] = useState(null); // Store game results
 
-  const API_URL_result = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
-
-  const sendResultsToAPI = async (results) => {
-    try {
-        const response = await fetch(API_URL_result, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(results),
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to send game results.");
-        }
-
-        console.log("Game results sent successfully.");
-    } catch (error) {
-        console.error("Error sending game results:", error);
-    }
-  };
-
-
   const handleGameEnd = useCallback(() => {
     setIsGameOver(true);
-
-    const results = {
-      status: grid.flat().every((cell) => !cell) ? "All Lights Turned Off!" : "Out of Discs!",
-      timeElapsed: timer,
-      discsLeft: remainingDiscs,
-      misses: misses
-    };
-
-    setGameResults(results); // Store results
-    console.log("Game Results:", results);
-    sendResultsToAPI(results); // Send results to API
-
-  }, [grid, timer, remainingDiscs, misses]);
+  }, []);
 
   const resetGrid = useCallback(() => {
     const newGrid = Array(3)

@@ -8,8 +8,6 @@ import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
 
-
-
 const LightsOutWorld = ({ navigateToSelection }) => {
   const [grid, setGrid] = useState(
     Array(3)
@@ -27,11 +25,10 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   const [useWebSocketInput] = useState(false); // WebSocket mode flag
   const [gameResults, setGameResults] = useState(null); // Store game results
 
-  const API_URL_result = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
 
   const sendResultsToAPI = async (results) => {
     try {
-        const response = await fetch(API_URL_result, {
+        const response = await fetch("https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameSimulation/results", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -60,9 +57,9 @@ const LightsOutWorld = ({ navigateToSelection }) => {
       misses: misses
     };
 
-    setGameResults(results); // Store results
+    setGameResults(results); // ✅ Store results
     console.log("Game Results:", results);
-    sendResultsToAPI(results); // Send results to API
+    sendResultsToAPI(results); // ✅ Send results to API
 
   }, [grid, timer, remainingDiscs, misses]);
 

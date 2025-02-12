@@ -9,7 +9,7 @@ import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
 
-const API_URL_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
+const API_URL_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameSimulation/add";
 
 const TicTacToeGame = ({ navigateToSelection }) => {
   const initialBoard = Array(3)
@@ -171,19 +171,8 @@ const TicTacToeGame = ({ navigateToSelection }) => {
          
           showPopup(`Invalid Steal Attempt! Player ${stealPlayer} loses.`, "Alas!");
 
-          setWinner("A"); // Player A wins
+          setWinner(currentPlayer === "A" ? "B" : "A"); // Player A wins
           setStealMode(false); // End steal mode
-
-          const results = {
-            winner: "A",
-            playerA: { discs: putters.A, steals: steals.A, misses: misses.A },
-            playerB: { discs: putters.B, steals: steals.B, misses: misses.B },
-          };
-    
-          setGameResults(results);
-          console.log("Game Results:", results);
-          sendResultsToAPI(results); // Send data to API
-
           return;
         } 
         // Proceed with valid steal
@@ -208,20 +197,28 @@ const TicTacToeGame = ({ navigateToSelection }) => {
       if (!stealMode && checkWinCondition(newBoard, currentPlayer)) {
         setWinner(currentPlayer);
 
-        
+        const results = {
+          winner: currentPlayer,
+          playerA: { discs: putters.A, steals: steals.A, misses: misses.A },
+          playerB: { discs: putters.B, steals: steals.B, misses: misses.B },
+        };
+  
+        setGameResults(results);
+        console.log("Game Results:", results);
+        sendResultsToAPI(results); // Send data to API
   
     
         if (currentPlayer === "A") {
             if (stealPlayer === null) {
                 // First-time win by Player A
                 //notify(`Player ${currentPlayer} wins! Player B gets a steal chance!`);
-                showPopup( `Player ${currentPlayer} Matches Cells`,"Player B gets a steal chance!");
+                showPopup(`Player ${currentPlayer} Wins!`, "Player B gets a steal chance!");
                 setStealPlayer("B");
                 setStealMode(true);
             } else if (stealPlayer === "B") {
                 // Subsequent win by Player A, allow Player B to steal again
                 //notify(`Player ${currentPlayer} wins again! Player B gets another steal chance!`);
-                showPopup(`Player ${currentPlayer} Matches Cells`, "Player B gets a steal chance!");
+                showPopup(`Player ${currentPlayer} Wins!`, "Player B gets a steal chance!");
                 setStealMode(true);
             }
         } else if (currentPlayer === "B") {
@@ -230,17 +227,6 @@ const TicTacToeGame = ({ navigateToSelection }) => {
             setStealMode(false);
             setStealPlayer(null); // Clear any potential steal opportunity
             setGameEnded(true); 
-
-            const results = {
-              winner: currentPlayer,
-              playerA: { discs: putters.A, steals: steals.A, misses: misses.A },
-              playerB: { discs: putters.B, steals: steals.B, misses: misses.B },
-            };
-      
-            setGameResults(results);
-            console.log("Game Results:", results);
-            sendResultsToAPI(results); // Send data to API
-
             return; // Explicitly exit the function
         }
       }

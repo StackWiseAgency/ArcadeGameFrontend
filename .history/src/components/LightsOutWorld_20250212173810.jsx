@@ -60,9 +60,9 @@ const LightsOutWorld = ({ navigateToSelection }) => {
       misses: misses
     };
 
-    setGameResults(results); // Store results
+    setGameResults(results); // ✅ Store results
     console.log("Game Results:", results);
-    sendResultsToAPI(results); // Send results to API
+    sendResultsToAPI(results); // ✅ Send results to API
 
   }, [grid, timer, remainingDiscs, misses]);
 

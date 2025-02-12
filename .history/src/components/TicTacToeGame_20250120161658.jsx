@@ -9,8 +9,6 @@ import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
 
-const API_URL_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
-
 const TicTacToeGame = ({ navigateToSelection }) => {
   const initialBoard = Array(3)
     .fill(null)
@@ -29,7 +27,6 @@ const TicTacToeGame = ({ navigateToSelection }) => {
   const useManualInput = true; // Toggle for manual board clicks
   const [userHasThrown, setUserHasThrown] = useState(false); // Track if the user has started
   const [gameEnded, setGameEnded] = useState(false); // To mark the game as ended
-  const [gameResults, setGameResults] = useState(null); // Store game results
 
   // Dynamic Popup for Notifications
   const showPopup = (message, description) => {
@@ -76,20 +73,9 @@ const TicTacToeGame = ({ navigateToSelection }) => {
       console.log("Draw condition detected through useEffect.");
       showPopup("Game Draw", "No more moves left!");
       setGameEnded(true); 
-
-      const results = {
-        winner: "Draw",
-        playerA: { discs: putters.A, steals: steals.A, misses: misses.A },
-        playerB: { discs: putters.B, steals: steals.B, misses: misses.B },
-      };
-  
-      setGameResults(results);
-      console.log("Game Results:", results);
-      sendResultsToAPI(results); // Send data to API
-  
       return;
     }
-  }, [putters.A, putters.B, board, checkWinCondition, steals.A, steals.B, misses.A, misses.B]);
+  }, [putters, board, checkWinCondition]);
   
 
   // Update game state based on antenna data
@@ -171,19 +157,8 @@ const TicTacToeGame = ({ navigateToSelection }) => {
          
           showPopup(`Invalid Steal Attempt! Player ${stealPlayer} loses.`, "Alas!");
 
-          setWinner("A"); // Player A wins
+          setWinner(currentPlayer === "A" ? "B" : "A"); // Player A wins
           setStealMode(false); // End steal mode
-
-          const results = {
-            winner: "A",
-            playerA: { discs: putters.A, steals: steals.A, misses: misses.A },
-            playerB: { discs: putters.B, steals: steals.B, misses: misses.B },
-          };
-    
-          setGameResults(results);
-          console.log("Game Results:", results);
-          sendResultsToAPI(results); // Send data to API
-
           return;
         } 
         // Proceed with valid steal
@@ -207,21 +182,18 @@ const TicTacToeGame = ({ navigateToSelection }) => {
 
       if (!stealMode && checkWinCondition(newBoard, currentPlayer)) {
         setWinner(currentPlayer);
-
-        
-  
     
         if (currentPlayer === "A") {
             if (stealPlayer === null) {
                 // First-time win by Player A
                 //notify(`Player ${currentPlayer} wins! Player B gets a steal chance!`);
-                showPopup( `Player ${currentPlayer} Matches Cells`,"Player B gets a steal chance!");
+                showPopup(`Player ${currentPlayer} Wins!`, "Player B gets a steal chance!");
                 setStealPlayer("B");
                 setStealMode(true);
             } else if (stealPlayer === "B") {
                 // Subsequent win by Player A, allow Player B to steal again
                 //notify(`Player ${currentPlayer} wins again! Player B gets another steal chance!`);
-                showPopup(`Player ${currentPlayer} Matches Cells`, "Player B gets a steal chance!");
+                showPopup(`Player ${currentPlayer} Wins!`, "Player B gets a steal chance!");
                 setStealMode(true);
             }
         } else if (currentPlayer === "B") {
@@ -230,17 +202,6 @@ const TicTacToeGame = ({ navigateToSelection }) => {
             setStealMode(false);
             setStealPlayer(null); // Clear any potential steal opportunity
             setGameEnded(true); 
-
-            const results = {
-              winner: currentPlayer,
-              playerA: { discs: putters.A, steals: steals.A, misses: misses.A },
-              playerB: { discs: putters.B, steals: steals.B, misses: misses.B },
-            };
-      
-            setGameResults(results);
-            console.log("Game Results:", results);
-            sendResultsToAPI(results); // Send data to API
-
             return; // Explicitly exit the function
         }
       }
@@ -261,7 +222,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
 
       setCurrentPlayer(currentPlayer === "A" ? "B" : "A");
     },
-    [board, currentPlayer, winner, checkWinCondition, stealMode, stealPlayer, winningCells, useManualInput, misses.A, misses.B, putters.A, putters.B, steals.A, steals.B]
+    [board, currentPlayer, winner, checkWinCondition, stealMode, stealPlayer, winningCells, useManualInput]
   );
 
   // Manual Input Handler
@@ -281,27 +242,6 @@ const TicTacToeGame = ({ navigateToSelection }) => {
       }
     }
   };
-
-  const sendResultsToAPI = async (results) => {
-    try {
-        const response = await fetch(API_URL_gameresult, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(results),
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to send game results.");
-        }
-
-        console.log("Game results sent successfully.");
-    } catch (error) {
-        console.error("Error sending game results:", error);
-    }
-  };
-
 
   // Simulate Antenna Input
   const simulateAntennaInput = useCallback(() => {

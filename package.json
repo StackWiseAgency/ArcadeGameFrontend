@@ -17,7 +17,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "scripts": {
     "build": "set CI=false && react-scripts build",
     "test": "cross-env CI=false react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",

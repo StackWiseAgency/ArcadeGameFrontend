@@ -51,7 +51,7 @@ const SigninPage = () => {
 
       console.log("Response Data:", response.data);
       if (response.status === 200) {
-        navigate("/GameSelect");
+        navigate("/GameSelectionPage");
       } else {
         alert("Invalid credentials, please try again.");
       }

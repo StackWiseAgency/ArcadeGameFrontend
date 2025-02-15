@@ -11,7 +11,7 @@ const GuestSignin = () => {
   const handleContinue = () => {
     if (guestId) {
       alert(`Guest ID: ${guestId}`);
-      navigate("/GameSelect"); // Redirect to GameSelect page after signup
+      navigate("/GameSelectionPage"); // Redirect to GameSelect page after signup
     } else {
       alert("Please fill in Guest ID field!");
     }

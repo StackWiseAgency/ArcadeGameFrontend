@@ -44,11 +44,11 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^react-router-dom$": "<rootDir>/node_modules/react-router-dom"
-    }
-  },
+"jest": {
+  "moduleNameMapper": {
+    "^react-router-dom$": "<rootDir>/node_modules/react-router-dom"
+  }
+},
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.57.1",

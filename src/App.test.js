@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-// ✅ Remove extra BrowserRouter (since App already has it)
-test("renders learn react link", () => {
+test("renders Signin page heading", () => {
   render(<App />);
-  
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  // ✅ Change the expected text to match your UI
+  const headingElement = screen.getByText(/Welcome to Fling Disc/i);
+  expect(headingElement).toBeInTheDocument();
 });

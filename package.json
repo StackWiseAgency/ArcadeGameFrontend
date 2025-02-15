@@ -15,14 +15,13 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
-"scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "set CI=false && react-scripts test",
-  "eject": "react-scripts eject",
-  "lint": "eslint . --fix"
-},
-
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "cross-env CI=false react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint . --fix"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -44,13 +43,20 @@
       "last 1 safari version"
     ]
   },
-"jest": {
-  "moduleNameMapper": {
-    "^react-router-dom$": "<rootDir>/node_modules/react-router-dom"
-  }
-},
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(axios|react-router-dom)/)"
+    ],
+    "moduleNameMapper": {
+      "^react-router-dom$": "<rootDir>/node_modules/react-router-dom"
+    }
+  },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "babel-jest": "^29.5.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.1",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4"

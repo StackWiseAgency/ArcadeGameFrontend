@@ -24,7 +24,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests (Optional)
+
+      - name: Run Tests (Optional, can be skipped)
         run: |
           set CI=false
           npm test || echo "Skipping tests, continuing deployment"

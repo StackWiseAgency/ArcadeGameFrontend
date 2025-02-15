@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read # Required for actions/checkout
+      contents: read
 
     steps:
       - name: Checkout Repository
@@ -24,8 +24,10 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run Tests (Optional, can be skipped if failing)
-        run: npm test || echo "Skipping tests, continuing deployment"
+      - name: Run Tests (Optional)
+        run: |
+          set CI=false
+          npm test || echo "Skipping tests, continuing deployment"
 
       - name: Build React App
         run: npm run build

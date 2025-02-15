@@ -1,10 +1,9 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
 
-test("renders Signin page heading", () => {
-  render(<App />);
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-  // ✅ Change the expected text to match your UI
+test('renders welcome message', () => {
+  // Update this line to match the actual text in your component
   const headingElement = screen.getByText(/Welcome to Fling Disc/i);
   expect(headingElement).toBeInTheDocument();
 });

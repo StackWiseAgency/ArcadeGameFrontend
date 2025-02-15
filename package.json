@@ -43,14 +43,14 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(axios|react-router-dom)/)"
-    ],
-    "moduleNameMapper": {
-      "^react-router-dom$": "<rootDir>/node_modules/react-router-dom"
-    }
-  },
+"jest": {
+  "transformIgnorePatterns": [
+    "/node_modules/(?!(axios|react-router-dom)/)"
+  ],
+  "moduleNameMapper": {
+    "^react-router-dom$": "<rootDir>/node_modules/react-router-dom"
+  }
+},
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.22.5",

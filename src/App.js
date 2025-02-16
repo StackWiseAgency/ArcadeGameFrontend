@@ -3,7 +3,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import SigninPage from "./pages/SigninPage";
 import SignupPage from "./pages/SignupPage";
 import GuestSignin from "./pages/GuestSignin";
-import GameSelectionPage from "./pages/GameSelectionPage"; 
+import GameSelectionPage from "./pages/GameSelect"; 
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/guest" element={<GuestSignin />} />
-        <Route path="/game-select" element={<GameSelectionPage />} />
+        <Route path="/game-select" element={<GameSelect />} />
 
         {/* Handle 404 Routes */}
         <Route path="*" element={<NotFound />} />

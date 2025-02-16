@@ -13,7 +13,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/guest" element={<GuestSignin />} />
-        <Route path="/game-select" element={<GameSelect />} />
+        <Route path="/GameSelect" element={<GameSelectionPage />} />
 
         {/* Handle 404 Routes */}
         <Route path="*" element={<NotFound />} />

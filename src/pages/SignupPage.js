@@ -75,7 +75,7 @@ const SignupPage = () => {
 
         if (result.status === 200) {
           alert("Account created successfully!");
-          navigate("/GameSelectionPage");
+          navigate("/GameSelect");
         }
       } catch (error) {
         console.error("Error creating account:", error.response || error.message);

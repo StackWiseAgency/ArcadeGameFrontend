@@ -3,7 +3,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import SigninPage from "./pages/SigninPage";
 import SignupPage from "./pages/SignupPage";
 import GuestSignin from "./pages/GuestSignin";
-import GameSelectionPage from "./pages/GameSelect"; 
+import GameSelectionPage from "./pages/GameSelectionPage"; 
 
 function App() {
   return (

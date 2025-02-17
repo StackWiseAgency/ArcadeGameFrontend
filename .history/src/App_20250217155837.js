@@ -16,7 +16,7 @@ function App() {
         <Route path="/GameSelect" element={<GameSelectionPage />} />
 
         {/* Handle 404 Routes */}
-        {/* <Route path="*" element={<NotFound />} /> */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

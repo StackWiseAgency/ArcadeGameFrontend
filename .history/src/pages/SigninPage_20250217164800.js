@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Link from "react-router-dom";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import Coins from "./../assets/coins.png";

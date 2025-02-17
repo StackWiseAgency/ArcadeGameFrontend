@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Coins from "./../assets/coins.png";
 import "./../styles/SigninPage.css"; // Import the CSS file
 

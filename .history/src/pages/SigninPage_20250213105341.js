@@ -11,6 +11,14 @@ const SigninPage = () => {
 
   const API_login_URL="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Auth/Login";
 
+  // const handleLogin = () => {
+  //   if (useremail && password) {
+  //     navigate("/GameSelect");
+  //   } else {
+  //     alert("Please enter both useremail and password");
+  //   }
+  // };
+
   const handleLogin = async (event) => {
     event.preventDefault(); // Prevent the form from refreshing the page
 
@@ -25,6 +33,7 @@ const SigninPage = () => {
     }
 
     try {
+      console.log("Request Payload:", { email, password });
 
       // Create form data
       const formData = new URLSearchParams();
@@ -41,37 +50,9 @@ const SigninPage = () => {
           },
         }
       );
-     
-      if (response.data && response.data.dataModel) {
-        const { token, user } = response.data.dataModel;
-        
-        console.log("Extracted User Data:", user);
-        
-        if (!token) {
-          alert("No token received! Login might have failed.");
-          return;
-        }
 
-        // Store authToken securely in sessionStorage
-        
-
-        const filteredUserDetails = {
-          name: user.name,
-          username: user.username,
-          profilePicture: user.picture, // Use profilePicturePath
-          // profilePicture: user.picture ? `${baseURL}/uploads/${user.picture}` : null, 
-          email: user.email,
-          role: user.role
-      };
-      console.log("Filtered User Details:", filteredUserDetails);
-
-            // Store the authToken securely in sessionStorage
-            sessionStorage.setItem("authToken", token);
-
-            // Store filtered user details in localStorage
-            localStorage.setItem("authUser", JSON.stringify(filteredUserDetails));
-
-            // Navigate to the game selection page
+      console.log("Response Data:", response.data);
+      if (response.status === 200) {
         navigate("/GameSelect");
       } else {
         alert("Invalid credentials, please try again.");

@@ -52,12 +52,13 @@ const GameSelectionPage = () => {
             const parsedUser = JSON.parse(storedUser);
 
             if (parsedUser?.name && parsedUser?.username) {
-              setUser({
-                  ...parsedUser,
-                  profilePicture: parsedUser.profilePicture && parsedUser.profilePicture !== "null"
+              // Ensure profile picture is valid, otherwise set default
+              parsedUser.profilePicture = 
+                  parsedUser.profilePicture && parsedUser.profilePicture !== "null"
                       ? parsedUser.profilePicture
-                      : ProfileIcon // Use default if missing
-              });
+                      : ProfileIcon; // Use default if profile picture is missing
+              
+              setUser(parsedUser);
             } else {
                 console.warn("authUser is missing required fields!");
             }
@@ -70,15 +71,11 @@ const GameSelectionPage = () => {
   }, []);
 
 
+  const profilePicture = user.profilePicture && user.profilePicture !== "null"
+    ? user.profilePicture
+    : ProfileIcon;
   const userName = user.name || "Guest User";
-console.log(" User Name:", userName); // Logs the name or "Guest User" if missing
-
-const userUsername = user.username || "Guest";
-console.log("User Username:", userUsername); // Logs the username or "Guest" if missing
-
-const profilePicture = user.profilePicture;
-console.log(" Profile Picture:", profilePicture); // Logs the profile picture URL or fallback image
-
+  const userUsername = user.username || "Guest";
 
   useEffect(() => {
     const fetchGames = async () => {
@@ -188,10 +185,6 @@ console.log(" Profile Picture:", profilePicture); // Logs the profile picture UR
                 src={profilePicture}
                 alt="User"
                 className="profile-icon"
-                onError={(e) => { 
-                  console.error(" Image failed to load:", e.target.src);
-                  e.target.src = ProfileIcon; // Set default icon if error
-              }}
                 onClick={toggleDropdown}
               />
               <div className="user-text">

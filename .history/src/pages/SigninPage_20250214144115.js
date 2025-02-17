@@ -42,10 +42,10 @@ const SigninPage = () => {
         }
       );
      
-      if (response.data && response.data.dataModel) {
-        const { token, user } = response.data.dataModel;
+      if (response.status === 200) {
+        const { token, profilePicture, ...userDetails } = response.data.dataModel;
         
-        console.log("Extracted User Data:", user);
+        // console.log("Received Token:", token);
         
         if (!token) {
           alert("No token received! Login might have failed.");
@@ -56,22 +56,17 @@ const SigninPage = () => {
         
 
         const filteredUserDetails = {
-          name: user.name,
-          username: user.username,
-          profilePicture: user.picture, // Use profilePicturePath
-          // profilePicture: user.picture ? `${baseURL}/uploads/${user.picture}` : null, 
-          email: user.email,
-          role: user.role
+          token: userDetails.token,
+          name: userDetails.name,
+          username: userDetails.username,
+          profilePicture: userDetails.profilePicture,
+          email: userDetails.email,
+          role: userDetails.role,
       };
-      console.log("Filtered User Details:", filteredUserDetails);
-
-            // Store the authToken securely in sessionStorage
-            sessionStorage.setItem("authToken", token);
-
-            // Store filtered user details in localStorage
-            localStorage.setItem("authUser", JSON.stringify(filteredUserDetails));
-
-            // Navigate to the game selection page
+      sessionStorage.setItem("authToken", token);
+      // Store the filtered user data in localStorage
+      localStorage.setItem("authUser", JSON.stringify(filteredUserDetails));
+      console.log("Received profilePicture:", profilePicture,userName, userUsername);
         navigate("/GameSelect");
       } else {
         alert("Invalid credentials, please try again.");

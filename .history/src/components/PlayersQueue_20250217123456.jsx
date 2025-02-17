@@ -12,8 +12,6 @@ const PlayersQueue = ({ onClose }) => {
   const [startingGame, setStartingGame] = useState(false);
 
   useEffect(() => {
-    fetchPlayers();
-  }, []);
     const fetchPlayers = async () => {
       try {
         const response = await fetch(API_URL);
@@ -40,7 +38,8 @@ const PlayersQueue = ({ onClose }) => {
       }
     };
 
-    
+    fetchPlayers();
+  }, []);
 
   const startGameSession = async () => {
     if (players.length === 0) {
@@ -56,7 +55,6 @@ const PlayersQueue = ({ onClose }) => {
 
       if (response.status === 200) {
         alert(`Game session started successfully for ${firstPlayer.name}!`);
-        onClose();
       } else {
         throw new Error("Failed to start game session.");
       }
@@ -119,15 +117,8 @@ const PlayersQueue = ({ onClose }) => {
         )}
 
         <div className="queue-footer">
-          {/* <button onClick={onClose} className="close-button" aria-label="Close Queue">
+          <button onClick={onClose} className="close-button" aria-label="Close Queue">
             Close
-          </button> */}
-           <button 
-            onClick={startGameSession} 
-            className="start-button"
-            disabled={startingGame || players.length === 0}
-          >
-            {startingGame ? "Starting..." : "Start"}
           </button>
           <p>Total Players in Queue: {players.length}</p>
         </div>

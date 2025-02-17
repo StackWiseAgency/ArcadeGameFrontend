@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import "./PaymentTran.css";
 import PaymentMachineCard from "../assets/payment-machine-plus-card.png";

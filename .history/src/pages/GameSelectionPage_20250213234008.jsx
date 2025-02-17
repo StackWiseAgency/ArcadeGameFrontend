@@ -36,63 +36,45 @@ const GameSelectionPage = () => {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const token = sessionStorage.getItem("authToken");
-  //   if (!token) {
+  useEffect(() => {
+    const token = sessionStorage.getItem("authToken");
+     console.log("Received Token:", token);
+    if (!token) {
      
-  //     navigate("/signin");
-  //   }
-  // }, [navigate]);
+      navigate("/signin");
+    }
+  }, [navigate]);
 
   useEffect(() => {
+    // Ensure localStorage is read after component mounts
     const storedUser = localStorage.getItem("authUser");
-
     if (storedUser) {
-        try {
-            const parsedUser = JSON.parse(storedUser);
-
-            if (parsedUser?.name && parsedUser?.username) {
-              setUser({
-                  ...parsedUser,
-                  profilePicture: parsedUser.profilePicture && parsedUser.profilePicture !== "null"
-                      ? parsedUser.profilePicture
-                      : ProfileIcon // Use default if missing
-              });
-            } else {
-                console.warn("authUser is missing required fields!");
-            }
-        } catch (error) {
-            console.error("Error parsing user data:", error);
-        }
-    } else {
-        console.warn("No authUser found in localStorage!");
+      try {
+        setUser(JSON.parse(storedUser)); // Set user state with parsed data
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
     }
   }, []);
 
-
+  const profilePicture = user.profilePicturePath || ProfileIcon;
   const userName = user.name || "Guest User";
-console.log(" User Name:", userName); // Logs the name or "Guest User" if missing
+  const userUsername = user.username || "Guest";
 
-const userUsername = user.username || "Guest";
-console.log("User Username:", userUsername); // Logs the username or "Guest" if missing
+  
 
-const profilePicture = user.profilePicture;
-console.log(" Profile Picture:", profilePicture); // Logs the profile picture URL or fallback image
+  console.log("Retrieved User Data:", storedUser);
+ 
 
+  
+
+  console.log("Final UserName:", userName);
+  console.log("Final UserUsername:", userUsername);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const token = sessionStorage.getItem("authToken"); // Retrieve token from storage
-        // if (!token) throw new Error("No auth token found");
-
-        const response = await fetch(API_GAMES_URL, {
-          method: "GET",
-          headers: {
-              "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(API_GAMES_URL);
         if (!response.ok) throw new Error("Failed to fetch games");
 
         const result = await response.json();
@@ -152,7 +134,7 @@ console.log(" Profile Picture:", profilePicture); // Logs the profile picture UR
   };
 
   const handleLogout = () => {
-    
+    console.log("User logged out.");
     sessionStorage.removeItem("authToken");
     localStorage.removeItem("authUser");
     localStorage.removeItem("profilePicture");
@@ -188,10 +170,6 @@ console.log(" Profile Picture:", profilePicture); // Logs the profile picture UR
                 src={profilePicture}
                 alt="User"
                 className="profile-icon"
-                onError={(e) => { 
-                  console.error(" Image failed to load:", e.target.src);
-                  e.target.src = ProfileIcon; // Set default icon if error
-              }}
                 onClick={toggleDropdown}
               />
               <div className="user-text">

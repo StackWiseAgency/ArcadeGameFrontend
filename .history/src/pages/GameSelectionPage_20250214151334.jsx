@@ -76,7 +76,7 @@ console.log(" User Name:", userName); // Logs the name or "Guest User" if missin
 const userUsername = user.username || "Guest";
 console.log("User Username:", userUsername); // Logs the username or "Guest" if missing
 
-const profilePicture = user.profilePicture;
+const profilePicture = user.profilePicture || ProfileIcon;
 console.log(" Profile Picture:", profilePicture); // Logs the profile picture URL or fallback image
 
 
@@ -188,10 +188,6 @@ console.log(" Profile Picture:", profilePicture); // Logs the profile picture UR
                 src={profilePicture}
                 alt="User"
                 className="profile-icon"
-                onError={(e) => { 
-                  console.error(" Image failed to load:", e.target.src);
-                  e.target.src = ProfileIcon; // Set default icon if error
-              }}
                 onClick={toggleDropdown}
               />
               <div className="user-text">

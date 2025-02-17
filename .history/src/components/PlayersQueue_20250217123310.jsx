@@ -12,8 +12,6 @@ const PlayersQueue = ({ onClose }) => {
   const [startingGame, setStartingGame] = useState(false);
 
   useEffect(() => {
-    fetchPlayers();
-  }, []);
     const fetchPlayers = async () => {
       try {
         const response = await fetch(API_URL);
@@ -28,7 +26,6 @@ const PlayersQueue = ({ onClose }) => {
           game: player.gameName,
           score: player.highScore,
           avatar: player.avatar !== "string" ? player.avatar : null,
-          userId: player.userId,
         }));
 
         setPlayers(formattedPlayers);
@@ -40,33 +37,8 @@ const PlayersQueue = ({ onClose }) => {
       }
     };
 
-    
-
-  const startGameSession = async () => {
-    if (players.length === 0) {
-      alert("No players in queue.");
-      return;
-    }
-
-    const firstPlayer = players[0]; // First player in the queue
-    setStartingGame(true);
-
-    try {
-      const response = await axios.post(`${API_START_GAME}?userId=${firstPlayer.userId}`);
-
-      if (response.status === 200) {
-        alert(`Game session started successfully for ${firstPlayer.name}!`);
-        onClose();
-      } else {
-        throw new Error("Failed to start game session.");
-      }
-    } catch (error) {
-      console.error("Error starting game session:", error);
-      alert("Failed to start game session. Please try again.");
-    } finally {
-      setStartingGame(false);
-    }
-  };
+    fetchPlayers();
+  }, []);
 
   return (
     <div className="players-queue-container">
@@ -119,15 +91,8 @@ const PlayersQueue = ({ onClose }) => {
         )}
 
         <div className="queue-footer">
-          {/* <button onClick={onClose} className="close-button" aria-label="Close Queue">
+          <button onClick={onClose} className="close-button" aria-label="Close Queue">
             Close
-          </button> */}
-           <button 
-            onClick={startGameSession} 
-            className="start-button"
-            disabled={startingGame || players.length === 0}
-          >
-            {startingGame ? "Starting..." : "Start"}
           </button>
           <p>Total Players in Queue: {players.length}</p>
         </div>

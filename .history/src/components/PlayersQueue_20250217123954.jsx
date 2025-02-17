@@ -12,8 +12,6 @@ const PlayersQueue = ({ onClose }) => {
   const [startingGame, setStartingGame] = useState(false);
 
   useEffect(() => {
-    fetchPlayers();
-  }, []);
     const fetchPlayers = async () => {
       try {
         const response = await fetch(API_URL);
@@ -40,7 +38,8 @@ const PlayersQueue = ({ onClose }) => {
       }
     };
 
-    
+    fetchPlayers();
+  }, []);
 
   const startGameSession = async () => {
     if (players.length === 0) {

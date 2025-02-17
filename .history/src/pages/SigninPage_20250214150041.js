@@ -56,12 +56,11 @@ const SigninPage = () => {
         
 
         const filteredUserDetails = {
-          name: user.name,
-          username: user.username,
-          profilePicture: user.picture, // Use profilePicturePath
-          // profilePicture: user.picture ? `${baseURL}/uploads/${user.picture}` : null, 
-          email: user.email,
-          role: user.role
+          name: user.name || "Unknown Name",
+          username: user.username || "Unknown Username",
+          profilePicture: user.profilePicturePath || "default-profile.png", // Use profilePicturePath
+          email: user.email || "No Email",
+          role: user.role || "No Role"
       };
       console.log("Filtered User Details:", filteredUserDetails);
 

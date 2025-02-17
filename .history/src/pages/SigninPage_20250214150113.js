@@ -58,8 +58,7 @@ const SigninPage = () => {
         const filteredUserDetails = {
           name: user.name,
           username: user.username,
-          profilePicture: user.picture, // Use profilePicturePath
-          // profilePicture: user.picture ? `${baseURL}/uploads/${user.picture}` : null, 
+          profilePicture: user.profilePicturePath, // Use profilePicturePath
           email: user.email,
           role: user.role
       };

@@ -21,7 +21,7 @@ const GameStartTimer = ({ onGameStart, onUserAction }) => {
 
     // Cleanup timer
     return () => clearInterval(actionTimer);
-  }, [startCountdownTimer]);
+  }, []);
 
   const startCountdownTimer = () => {
     setStartCountdown(3); // Initialize countdown

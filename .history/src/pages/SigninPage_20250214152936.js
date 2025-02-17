@@ -59,7 +59,6 @@ const SigninPage = () => {
           name: user.name,
           username: user.username,
           profilePicture: user.picture, // Use profilePicturePath
-          // profilePicture: user.picture ? `${baseURL}/uploads/${user.picture}` : null, 
           email: user.email,
           role: user.role
       };

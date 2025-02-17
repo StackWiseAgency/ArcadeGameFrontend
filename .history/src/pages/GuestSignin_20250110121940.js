@@ -8,8 +8,6 @@ const GuestSignin = () => {
   const [guestId, setGuestId] = useState("");
   const navigate = useNavigate();
 
-  const API_guest_URL = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Guest/addGuest";
-
   const handleContinue = () => {
     if (guestId) {
       alert(`Guest ID: ${guestId}`);
@@ -24,7 +22,7 @@ const GuestSignin = () => {
   //     try {
   //       // Make an API request with a JSON payload
   //       const response = await axios.post(
-  //         API_guest_URL,
+  //         "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Guest/addGuest",
   //         { guestId },
   //         {
   //           headers: {

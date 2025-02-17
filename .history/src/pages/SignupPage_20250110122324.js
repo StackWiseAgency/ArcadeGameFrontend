@@ -19,7 +19,6 @@ const SignupPage = () => {
     
   });
 
-  const API_signup_URL="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Auth/Register";
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -68,7 +67,7 @@ const SignupPage = () => {
         formDataToSend.append("optInRecording", formData.optInRecording);
         formDataToSend.append("subscribeMailing", formData.subscribeMailing);
         
-        const result = await axios.post(API_signup_URL, formDataToSend, {
+        const result = await axios.post("https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Auth/Register", formDataToSend, {
           headers: {
             "Content-Type": "multipart/form-data", 
           },
@@ -76,7 +75,7 @@ const SignupPage = () => {
 
         if (result.status === 200) {
           alert("Account created successfully!");
-          navigate("/signin");
+          navigate("/GameSelect");
         }
       } catch (error) {
         console.error("Error creating account:", error.response || error.message);

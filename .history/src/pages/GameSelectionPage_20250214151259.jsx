@@ -71,13 +71,13 @@ const GameSelectionPage = () => {
 
 
   const userName = user.name || "Guest User";
-console.log(" User Name:", userName); // Logs the name or "Guest User" if missing
+console.log("🟢 User Name:", userName); // Logs the name or "Guest User" if missing
 
 const userUsername = user.username || "Guest";
-console.log("User Username:", userUsername); // Logs the username or "Guest" if missing
+console.log("🟢 User Username:", userUsername); // Logs the username or "Guest" if missing
 
-const profilePicture = user.profilePicture;
-console.log(" Profile Picture:", profilePicture); // Logs the profile picture URL or fallback image
+const profilePicture = user.profilePicture || ProfileIcon;
+console.log("🟢 Profile Picture:", profilePicture); // Logs the profile picture URL or fallback image
 
 
   useEffect(() => {
@@ -188,10 +188,6 @@ console.log(" Profile Picture:", profilePicture); // Logs the profile picture UR
                 src={profilePicture}
                 alt="User"
                 className="profile-icon"
-                onError={(e) => { 
-                  console.error(" Image failed to load:", e.target.src);
-                  e.target.src = ProfileIcon; // Set default icon if error
-              }}
                 onClick={toggleDropdown}
               />
               <div className="user-text">

@@ -1,0 +1,551 @@
+
+.arcade-game-container {
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  font-family: "Gameplay", sans-serif;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+
+.retro-top-section {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.timer-display,
+.misses-display {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.timer-display img,
+.misses-display img {
+  width: 25px;
+  gap: 5px;
+  /* height: 30px; */
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.retro-score-display {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+.game-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.retro-game-board {
+  display: grid;
+  background: rgb(29, 45, 18);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; 
+  margin: 20px auto; 
+  width: calc(714px - 2 * 7px); 
+  height: calc(714px - 2 * 7px);
+  padding: 10px;
+  border: 7px solid #fff;
+  box-sizing: border-box;
+}
+
+.retro-board-cell {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(0, 0, 0, 0.2); 
+  border: 7px solid #ffffff; 
+  margin-bottom: 12px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.retro-board-cell{
+  width: 99%; 
+  height: 99%; 
+}
+
+.retro-board-cell.bonus-cell {
+  background-color: #ffd700; 
+}
+
+.retro-board-cell.normal-cell {
+  background-color: #00bfff; 
+}
+
+.retro-disc-stack {
+  
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+.normal-disc-stack,
+.bonus-disc-stack {
+
+  display: flex;
+  align-items: center;
+  gap: 20px; 
+ 
+}
+
+.stack-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 70px; 
+  height: 70px; 
+  margin-bottom: 20px; 
+}
+
+.normal-disc-stack img,
+.bonus-disc-stack img {
+  position: absolute;
+  width: 70%; 
+  height: 70%;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.normal-disc-stack img {
+  border-color: #000; 
+}
+
+.bonus-disc-stack img {
+  border-color: #f00; 
+}
+
+.normal-disc-stack img:nth-child(n),
+.bonus-disc-stack img:nth-child(n) {
+  z-index: calc(100 - var(--n, 1)); /* Use a CSS variable, default to 1 */
+  left: calc(5px * var(--n, 1)); /* Use the same fix for left positioning */
+}
+
+
+.normal-disc-stack h3,
+.bonus-disc-stack h3 {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.start-button{
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.pawn-icon {
+  width: 200px;
+  position: absolute;
+  right: 10px;
+  top: 10%;
+  transform: translateY(-50%);
+}
+
+.star-icon {
+  width: 40px;
+  position: absolute;
+  left: 400px;
+  top: 13%;
+}
+
+.game-remote {
+ width: 200px;
+  position: absolute;
+  bottom: 10%;
+  right: 10px;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+} 
+
+/* Responsive Styles */
+
+/* Large Devices (Desktops, >1024px) */
+@media screen and (min-width: 1024px) {
+  .game-name {
+      font-size: 3rem;
+  }
+
+  .retro-top-section {
+      justify-content: space-between;
+      max-width: 1100px;
+  }
+
+  .retro-game-board {
+      width: calc(700px - 2 * 7px); /* Larger board size */
+      height: calc(700px - 2 * 7px);
+      gap: 20px;
+  }
+
+  .retro-board-cell {
+      border-width: 8px;
+  }
+
+  .timer-display img,
+  .misses-display img {
+      width: 30px; /* Slightly larger icons */
+  }
+
+  .stack-container {
+      width: 90px;
+      height: 90px;
+  }
+
+  .normal-disc-stack img,
+  .bonus-disc-stack img {
+      width: 90%; 
+      height: 90%;
+  }
+
+  .start-button {
+      font-size: 20px;
+      padding: 15px 30px;
+  }
+}
+
+/* Extra Large Devices (>1440px) */
+@media screen and (min-width: 1700px) {
+  .game-name {
+      font-size: 3.5rem;
+  }
+
+  .retro-top-section {
+      justify-content: space-around;
+      max-width: 1400px;
+  }
+
+  .retro-game-board {
+      width: calc(900px - 2 * 7px); /* Significantly larger board size */
+      height: calc(900px - 2 * 7px);
+      gap: 30px;
+  }
+
+  .retro-board-cell {
+      border-width: 10px;
+  }
+
+  .timer-display img,
+  .misses-display img {
+      width: 40px; /* Larger icons */
+  }
+
+  .stack-container {
+      width: 110px;
+      height: 110px;
+  }
+
+  .normal-disc-stack img,
+  .bonus-disc-stack img {
+      width: 100%; 
+      height: 100%;
+  }
+
+  .start-button {
+      font-size: 22px;
+      padding: 18px 35px;
+  }
+}
+
+/* Tablets (768px to 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .game-name {
+      font-size: 2.8rem;
+  }
+
+  .retro-top-section {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 900px;
+  }
+
+  .retro-game-board {
+      width: calc(500px - 2 * 7px); /* Medium board size */
+      height: calc(500px - 2 * 7px);
+      gap: 15px;
+  }
+
+  .retro-board-cell {
+      border-width: 6px;
+  }
+
+  .timer-display img,
+  .misses-display img {
+      width: 25px; /* Medium-sized icons */
+  }
+
+  .stack-container {
+      width: 80px;
+      height: 80px;
+  }
+
+  .normal-disc-stack img,
+  .bonus-disc-stack img {
+      width: 80%; 
+      height: 80%;
+  }
+
+  .start-button {
+      font-size: 18px;
+      padding: 12px 25px;
+  }
+}
+
+/* Small Devices (Phones, <768px) */
+@media screen and (max-width: 767px) {
+  .game-name {
+      font-size: 2rem;
+  }
+
+  .retro-top-section {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 100%;
+  }
+
+  .retro-game-board {
+      width: calc(300px - 2 * 7px); /* Smaller board size */
+      height: calc(300px - 2 * 7px);
+      gap: 10px; /* Adjust gap for smaller screens */
+  }
+
+  .retro-board-cell {
+      border-width: 4px;
+  }
+
+  .timer-display img,
+  .misses-display img {
+      width: 20px; /* Smaller icons */
+  }
+
+  .stack-container {
+      width: 60px;
+      height: 60px;
+  }
+
+  .normal-disc-stack img,
+  .bonus-disc-stack img {
+      width: 60%; 
+      height: 60%;
+  }
+
+  .start-button {
+      font-size: 16px;
+      padding: 10px 20px;
+  }
+
+  .pawn-icon, .star-icon, .game-remote {
+      display: none; /* Hide decorative elements on small screens */
+  }
+}
+
+/* General Visibility Handling */
+.pawn-icon, .star-icon, .game-remote {
+  z-index: 1;
+  visibility: visible;
+}
+
+.retro-game-board, .retro-top-section, .game-name {
+  position: relative;
+  z-index: 2;
+}
+
+.pawn-icon.overlap, .star-icon.overlap, .game-remote.overlap {
+  visibility: hidden; /* Hide elements overlapping with game components */
+}
+
+
+/* copy 
+
+.arcade-game-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.countdown-display {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 2rem;
+  text-align: center;
+  z-index: 10;
+}
+
+.retro-top-section {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.timer-display,
+.misses-display {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.timer-display img,
+.misses-display img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.retro-score-display {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.retro-game-board {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  width: 300px;
+  height: 300px;
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid rgb(255, 255, 255);
+  padding: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.retro-board-cell {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 4px solid white;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.retro-board-cell.bonus-cell {
+  background-color: #ffd700; 
+}
+
+.retro-board-cell.normal-cell {
+  background-color: #00bfff; 
+}
+
+.retro-disc-pile {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.retro-disc-stack {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.normal-disc-stack,
+.bonus-disc-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  width: 100px; 
+  height: 100px; 
+  margin-bottom: 20px; 
+}
+
+.normal-disc-stack img,
+.bonus-disc-stack img {
+  position: absolute;
+  width: 70%; 
+  height: 70%;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  background-color: white;
+}
+
+.normal-disc-stack img {
+  border-color: #000; 
+}
+
+.bonus-disc-stack img {
+  border-color: #f00; 
+}
+
+.normal-disc-stack img:nth-child(n),
+.bonus-disc-stack img:nth-child(n) {
+  z-index: calc(100 - n); 
+  left: calc(5px * n); 
+}
+
+.normal-disc-stack h3,
+.bonus-disc-stack h3 {
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 5px;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}  */
+
+

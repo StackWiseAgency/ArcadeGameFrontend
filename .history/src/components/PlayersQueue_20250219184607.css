@@ -1,0 +1,435 @@
+
+.players-queue-container {
+  position: fixed; /* Ensures it stays in place */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Ensures full viewport height */
+  background-color: #0f5d0f; /* Dark semi-transparent background */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+  z-index: 1000;
+  padding: 0; /* Remove any padding */
+  box-sizing: border-box; /* Ensures border/padding are inside the element's width/height */
+}
+/* .players-queue-container {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh; 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7); 
+  z-index: 1000; 
+  padding: 0 10px; 
+} */
+
+/* Full-Screen Modal */
+.queue-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 10px;
+  background-color: #0f5d0f; /* Dark overlay */
+}
+
+/* Modal Overlay with Background */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+/* Main Modal Styling */
+.queue-modal {
+  background: #0f5d0f;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1000px; /* Set max width */
+  height: 80%; /* Use 80% height */
+  max-height: 90vh; /* Prevent modal from getting too tall */
+  overflow-y: auto;
+  text-align: center;
+  color: white;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Styling */
+.queue-modal h2 {
+  font-size: 1.8rem; /* Adjust font size */
+  margin-bottom: 15px;
+}
+
+.queue-modal p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+}
+
+/* Table Styling */
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  color: white;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Table shadow */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.players-table th,
+.players-table td {
+  border: 1px solid #fff;
+  padding: 12px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.players-table th {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
+.players-table td {
+  background: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.players-table td:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+}
+
+/* Player Info Section */
+.player-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-avatar {
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+/* Footer Styling */
+.queue-footer {
+  margin-top: 30px;
+  font-size: 1.1rem;
+}
+
+.start-button {
+  margin-top: 20px;
+  background-color: #399F2E;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.start-button:hover {
+  background-color: #45a049;
+}
+
+/* Media Queries for Responsive Design */
+
+/* For Tablet and Small Desktop */
+@media (max-width: 1024px) {
+  .queue-modal {
+    max-width: 90%;
+    max-height: 80vh;
+    padding: 15px;
+  }
+
+  .queue-modal h2 {
+    font-size: 1.5rem;
+  }
+
+  .queue-modal p {
+    font-size: 1rem;
+  }
+
+  .players-table th,
+  .players-table td {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .start-button {
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+}
+
+/* For Mobile Devices */
+@media (max-width: 768px) {
+  .queue-modal {
+    max-width: 100%;
+    height: 100%;
+    max-height: 75vh;
+    padding: 10px;
+  }
+
+  .queue-modal h2 {
+    font-size: 1.2rem;
+  }
+
+  .queue-modal p {
+    font-size: 0.9rem;
+  }
+
+  .players-table th,
+  .players-table td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .start-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+/* For Smallest Mobile Screens */
+@media (max-width: 480px) {
+  .queue-modal {
+    padding: 10px;
+    max-height: 70vh;
+  }
+
+  .queue-modal h2 {
+    font-size: 1rem;
+  }
+
+  .queue-modal p {
+    font-size: 0.8rem;
+  }
+
+  .players-table th,
+  .players-table td {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .start-button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+}
+
+
+/* 
+
+.queue-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+  
+  .queue-modal {
+    background: #0f5d0f;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100vh;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .queue-modal h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .queue-modal p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .players-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: white;
+  }
+  
+  .players-table th,
+  .players-table td {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .players-table th {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .players-table td {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .player-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-avatar {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .queue-footer {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .close-button {
+    margin-top: 20px;
+    background-color: #399F2E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .close-button:hover {
+    background-color: #45a049;
+  } */
+  
+  /* copy 
+  .queue-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+  
+  .queue-modal {
+    background: #0f5d0f;
+    border-radius: 15px;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .queue-modal h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .queue-modal p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .players-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: white;
+  }
+  
+  .players-table th,
+  .players-table td {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .players-table th {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .players-table td {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .player-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-avatar {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .queue-footer {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .close-button {
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .close-button:hover {
+    background-color: #45a049;
+  }
+   */

@@ -1,0 +1,352 @@
+
+/* Full-screen modal background */
+.queue-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 10px;  /* Added padding for responsiveness on smaller devices */
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  z-index: -1;
+}
+
+/* Queue modal with responsive width and height */
+.queue-modal {
+  background: #0f5d0f;
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%; /* Ensures the modal occupies 90% of the screen width */
+  max-width: 1200px; /* Limits the width to prevent too large a modal */
+  height: auto; /* Let the content stretch */
+  max-height: 90vh; /* Limits the height to 90% of the screen */
+  text-align: center;
+  color: white;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  overflow-y: auto; /* Ensures scrolling if content overflows */
+}
+
+/* Header for queue modal */
+.queue-modal h2 {
+  font-size: 1.5rem; /* Responsive font size */
+  margin-bottom: 15px;
+}
+
+.queue-modal p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Player info table */
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  color: white;
+}
+
+.players-table th,
+.players-table td {
+  border: 1px solid #fff;
+  padding: 12px;
+  text-align: center;
+}
+
+.players-table th {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.players-table td {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Footer with button */
+.queue-footer {
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.start-button {
+  margin-top: 20px;
+  background-color: #399F2E;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.start-button:hover {
+  background-color: #45a049;
+}
+
+/* Media Queries for smaller devices */
+@media (max-width: 768px) {
+  .queue-modal {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .queue-modal h2 {
+    font-size: 1.25rem; /* Adjust header size */
+  }
+
+  .queue-modal p {
+    font-size: 0.875rem; /* Smaller paragraph text */
+  }
+
+  .start-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .player-avatar {
+    width: 35px;
+    height: 35px;
+  }
+
+  .players-table th,
+  .players-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+/* For very small screens (mobile) */
+@media (max-width: 480px) {
+  .queue-modal {
+    width: 100%;
+    max-height: 85vh;
+    padding: 10px;
+  }
+
+  .queue-modal h2 {
+    font-size: 1.1rem;
+  }
+
+  .queue-modal p {
+    font-size: 0.8rem;
+  }
+
+  .players-table th,
+  .players-table td {
+    font-size: 0.8rem;
+    padding: 6px;
+  }
+
+  .start-button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+
+
+/* 
+
+.queue-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+  
+  .queue-modal {
+    background: #0f5d0f;
+    border-radius: 15px;
+    padding: 30px;
+    width: 100vh;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .queue-modal h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .queue-modal p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .players-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: white;
+  }
+  
+  .players-table th,
+  .players-table td {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .players-table th {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .players-table td {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .player-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-avatar {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .queue-footer {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .close-button {
+    margin-top: 20px;
+    background-color: #399F2E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .close-button:hover {
+    background-color: #45a049;
+  } */
+  
+  /* copy 
+  .queue-modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: -1;
+  }
+  
+  .queue-modal {
+    background: #0f5d0f;
+    border-radius: 15px;
+    padding: 30px;
+    width: 500px;
+    text-align: center;
+    color: white;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .queue-modal h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .queue-modal p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .players-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: white;
+  }
+  
+  .players-table th,
+  .players-table td {
+    border: 1px solid #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .players-table th {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .players-table td {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .player-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-avatar {
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .queue-footer {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .close-button {
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .close-button:hover {
+    background-color: #45a049;
+  }
+   */

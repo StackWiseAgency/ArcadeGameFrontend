@@ -24,7 +24,7 @@ import GameofAim from "./components/GameofAim";
 
 // Load the Stripe object with your publishable key
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
-// console.log("Stripe Publishable Key:", process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+console.log("Stripe Publishable Key:", process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 function App() {
   return (
     <Router>

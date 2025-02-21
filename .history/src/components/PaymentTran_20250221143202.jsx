@@ -23,13 +23,6 @@ const PaymentTran = ({ selectedGame, onClose }) => {
   // Fetch the Checkout session from the backend when the component mounts
   useEffect(() => {
     const fetchCheckoutSession = async () => {
-
-      const baseUrl = window.location.origin;
-
-      // Dynamically set the success and cancel URLs
-      const successUrl = `${baseUrl}/payment-success`; // Payment success page URL
-      const cancelUrl = `${baseUrl}/payment-cancel`; // Payment cancel page URL
-
       try {
         const response = await fetch("https://arcadegamebackendapi20241227164011.azurewebsites.net/api/payment/create-checkout-session", {
           method: "POST",
@@ -38,10 +31,8 @@ const PaymentTran = ({ selectedGame, onClose }) => {
             amount,
             currency: "usd",
             gameName,
-            successUrl,
-            cancelUrl,
-            // successUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.zeuxinnovation.com%2Farticles%2Fmaximising-user-satisfaction-the-psychology-behind-effective-payment-success-page-design%2F&psig=AOvVaw1Stpq_6ncYKIbKipl7Pznb&ust=1740121797111000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCIDGxIPZ0YsDFQAAAAAdAAAAABAE", // Replace with actual success URL
-            // cancelUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Fcancellation-page--543317142547079429%2F&psig=AOvVaw0XrBAP218psin1Ugl3kwuF&ust=1740121836797000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCICDyJfZ0YsDFQAAAAAdAAAAABAE", // Replace with actual cancel URL
+            successUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.zeuxinnovation.com%2Farticles%2Fmaximising-user-satisfaction-the-psychology-behind-effective-payment-success-page-design%2F&psig=AOvVaw1Stpq_6ncYKIbKipl7Pznb&ust=1740121797111000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCIDGxIPZ0YsDFQAAAAAdAAAAABAE", // Replace with actual success URL
+            cancelUrl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Fcancellation-page--543317142547079429%2F&psig=AOvVaw0XrBAP218psin1Ugl3kwuF&ust=1740121836797000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCICDyJfZ0YsDFQAAAAAdAAAAABAE", // Replace with actual cancel URL
             checkoutUrl: "" // This will be populated by backend
           }),
         });

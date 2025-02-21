@@ -146,7 +146,7 @@ const gameImages = {
     };
 
     fetchGames();
-  }, );
+  }, []);
 
   const dropdownRef = useRef(null);
   useEffect(() => {

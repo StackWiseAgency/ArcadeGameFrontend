@@ -88,7 +88,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       cell.style.backgroundColor = "white";
       setTimeout(() => {
         cell.style.backgroundColor = "";
-      }, 500);
+      }, 300);
     }
   };
 
@@ -142,7 +142,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       const results = {
         score: score,
         misses: misses,
-        timeElapsed: 120 - timeRemaining, // Time spent playing
+        timeElapsed: 30 - timeRemaining, // Time spent playing
         status: remainingDiscs.length === 0 ? "All Discs Used!" : "Time Over!",
     };
 

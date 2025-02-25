@@ -359,7 +359,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
       <img src={star} alt="Star" className="star-icon" />
       <h1 className="game-title">Battle Tic Tac Toe</h1>
 
-      <div className="scoreboard">
+      {/* <div className="scoreboard"> */}
         <div className="team team-a">
           <h2 className="team-title">Team A</h2>
           <div className="stats-box">
@@ -370,7 +370,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
           </div>
         </div>
         
-      </div>
+      {/* </div> */}
      
       
 

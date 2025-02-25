@@ -146,7 +146,6 @@ const gameImages = {
     };
 
     fetchGames();
-    // eslint-disable-next-line
   },[] );
 
   const dropdownRef = useRef(null);

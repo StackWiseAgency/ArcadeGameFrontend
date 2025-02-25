@@ -16,8 +16,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-top: 17.2%;
-  padding-bottom: 17%;
 }
 
 .scoreboard {
@@ -73,11 +71,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 50px; 
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 10px;
-  /* padding: 5px; */
+  gap: 100%; 
+  padding: 5px;
   background: rgb(29, 45, 18); 
   border-radius: 15px;
   border: 2px solid #fff;
@@ -211,7 +206,7 @@
   width: 40px;
   position: absolute;
   left: 400px;
-  top: 5%;
+  top: 13%;
 }
 
 .game-remote {
@@ -422,14 +417,9 @@
 
   .scoreboard {
       flex-direction: row;
-      justify-content: center;
+      justify-content: space-between;
       max-width: 900px;
   }
-  .scoreboard1 {
-    flex-direction: row;
-    justify-content: center;
-    max-width: 900px;
-}
 
   .game-board {
       width: calc(900px - 2 * 7px); 
@@ -441,9 +431,9 @@
       border-width: 7px;
   }
 
-  /* .stats-box {
+  .stats-box {
       width: 120px; 
-  } */
+  }
 
   .stat1 span, .stat2 span {
       width: 90px;
@@ -458,14 +448,14 @@
 
   .pawn-icon {
       width: 200px;
-      top: 7%;
+      top: 10%;
       right: 10%;
   }
 
   .game-remote {
       width: 200px;
-      bottom: 2%;
-      right: 15%;
+      bottom: 10%;
+      right: 10%;
   }
 }
 

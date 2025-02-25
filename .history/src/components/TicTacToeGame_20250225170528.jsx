@@ -371,7 +371,17 @@ const TicTacToeGame = ({ navigateToSelection }) => {
         </div>
         
       </div>
-     
+      <div className="scoreboard1">
+      <div className="team team-b">
+          <h2 className="team-title">Team B</h2>
+          <div className="stats-box">
+            <img src={profileIcon} alt="Team B Avatar" className="player-icon" />
+            <p className="stat2">Discs <span>{putters.B}</span></p>
+            <p className="stat2">Steals <span>{steals.B}</span></p>
+            <p className="stat2">Misses <span> {misses.B}</span></p>
+          </div>
+        </div>
+      </div>
       
 
         <div className="game-board">
@@ -399,17 +409,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
           ))}
         </div>
 
-        <div className="scoreboard1">
-      <div className="team team-b">
-          <h2 className="team-title">Team B</h2>
-          <div className="stats-box">
-            <img src={profileIcon} alt="Team B Avatar" className="player-icon" />
-            <p className="stat2">Discs <span>{putters.B}</span></p>
-            <p className="stat2">Steals <span>{steals.B}</span></p>
-            <p className="stat2">Misses <span> {misses.B}</span></p>
-          </div>
-        </div>
-      </div>
+       
 
       <img src={gameRemote} alt="Game Remote" className="game-remote" />
     </div>

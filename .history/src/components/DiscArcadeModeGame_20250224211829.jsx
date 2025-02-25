@@ -88,7 +88,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       cell.style.backgroundColor = "white";
       setTimeout(() => {
         cell.style.backgroundColor = "";
-      }, 500);
+      }, 300);
     }
   };
 

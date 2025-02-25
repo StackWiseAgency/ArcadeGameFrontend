@@ -211,7 +211,7 @@
   width: 40px;
   position: absolute;
   left: 400px;
-  top: 5%;
+  top: 13%;
 }
 
 .game-remote {
@@ -464,8 +464,8 @@
 
   .game-remote {
       width: 200px;
-      bottom: 2%;
-      right: 15%;
+      bottom: 6%;
+      right: 7%;
   }
 }
 

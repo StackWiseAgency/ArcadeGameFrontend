@@ -16,8 +16,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  padding-top: 17.2%;
-  padding-bottom: 17%;
 }
 
 .scoreboard {
@@ -77,7 +75,7 @@
   padding-left: 50px;
   padding-right: 50px;
   padding-top: 10px;
-  /* padding: 5px; */
+  padding: 5px;
   background: rgb(29, 45, 18); 
   border-radius: 15px;
   border: 2px solid #fff;
@@ -211,7 +209,7 @@
   width: 40px;
   position: absolute;
   left: 400px;
-  top: 5%;
+  top: 13%;
 }
 
 .game-remote {
@@ -464,8 +462,8 @@
 
   .game-remote {
       width: 200px;
-      bottom: 2%;
-      right: 15%;
+      bottom: 6%;
+      right: 7%;
   }
 }
 

@@ -176,7 +176,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   width: 90%;
-  margin-bottom: 82px;
+  margin-bottom: 90px;
 }
 
 .normal-disc-stack,
@@ -245,8 +245,8 @@
 .pawn-icon {
   width: 200px;
   position: absolute;
-  right: 50px;
-  top: 4%;
+  right: 10px;
+  top: 10%;
   transform: translateY(-50%);
 }
 
@@ -254,14 +254,14 @@
   width: 40px;
   position: absolute;
   left: 400px;
-  top: 15%;
+  top: 13%;
 }
 
 .game-remote {
  width: 200px;
   position: absolute;
-  bottom: 1%;
-  right: 50%;
+  bottom: 10%;
+  right: 10px;
 }
 
 
@@ -461,7 +461,6 @@
   .start-button {
       font-size: 18px;
       padding: 12px 25px;
-      margin: 7.4%;
   }
 }
 

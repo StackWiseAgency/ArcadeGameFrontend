@@ -41,11 +41,11 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
     EPC003: { type: "normal", points: 10, color: orangeDisc },
     EPC004: { type: "normal", points: 10, color: blueDisc },
     EPC005: { type: "normal", points: 10, color: yellowDisc },
-    EPC011: { type: "bonus", points: 20, color: greenDisc },
-    EPC012: { type: "bonus", points: 20, color: blueDisc },
-    EPC013: { type: "bonus", points: 20, color: redDisc },
-    EPC014: { type: "bonus", points: 20, color: yellowDisc },
-    EPC015: { type: "bonus", points: 20, color: orangeDisc },
+    EPC101: { type: "bonus", points: 20, color: greenDisc },
+    EPC102: { type: "bonus", points: 20, color: blueDisc },
+    EPC103: { type: "bonus", points: 20, color: redDisc },
+    EPC104: { type: "bonus", points: 20, color: yellowDisc },
+    EPC105: { type: "bonus", points: 20, color: orangeDisc },
   };
 
   const [remainingDiscs, setRemainingDiscs] = useState([
@@ -59,16 +59,16 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
     { epc: "EPC008", ...epcMapping["EPC003"] },
     { epc: "EPC009", ...epcMapping["EPC004"] },
     { epc: "EPC010", ...epcMapping["EPC005"] },
-    { epc: "EPC011", ...epcMapping["EPC011"] },
-    { epc: "EPC012", ...epcMapping["EPC012"] },
-    { epc: "EPC013", ...epcMapping["EPC013"] },
-    { epc: "EPC014", ...epcMapping["EPC014"] },
-    { epc: "EPC015", ...epcMapping["EPC015"] },
-    { epc: "EPC016", ...epcMapping["EPC011"] },
-    { epc: "EPC017", ...epcMapping["EPC012"] },
-    { epc: "EPC018", ...epcMapping["EPC013"] },
-    { epc: "EPC019", ...epcMapping["EPC014"] },
-    { epc: "EPC020", ...epcMapping["EPC015"] },
+    { epc: "EPC101", ...epcMapping["EPC101"] },
+    { epc: "EPC102", ...epcMapping["EPC102"] },
+    { epc: "EPC103", ...epcMapping["EPC103"] },
+    { epc: "EPC104", ...epcMapping["EPC104"] },
+    { epc: "EPC105", ...epcMapping["EPC105"] },
+    { epc: "EPC106", ...epcMapping["EPC101"] },
+    { epc: "EPC107", ...epcMapping["EPC102"] },
+    { epc: "EPC108", ...epcMapping["EPC103"] },
+    { epc: "EPC109", ...epcMapping["EPC104"] },
+    { epc: "EPC110", ...epcMapping["EPC105"] },
   ]);
 
   const initialGrid = Array(3)
@@ -88,7 +88,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       cell.style.backgroundColor = "white";
       setTimeout(() => {
         cell.style.backgroundColor = "";
-      }, 500);
+      }, 300);
     }
   };
 
@@ -142,7 +142,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       const results = {
         score: score,
         misses: misses,
-        timeElapsed: 120 - timeRemaining, // Time spent playing
+        timeElapsed: 30 - timeRemaining, // Time spent playing
         status: remainingDiscs.length === 0 ? "All Discs Used!" : "Time Over!",
     };
 
@@ -209,13 +209,9 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
           console.log("📡 Received Game Moves:", response.data.tagReads); // ✅ Debugging log
   
           response.data.tagReads
-            .filter(({ epctag, row, col, antennaPort, timestamp }) => 
-              epctag && 
-              typeof row === "number" && 
-              typeof col === "number"
-            ) // ✅ Ensure valid data
-            .forEach(({ epctag, row, col, antennaPort, timestamp }) => {
-              console.log(`🎯 Move Processed: EPC=${epctag}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${timestamp}`);
+            .filter(({ epctag, row, col }) => epctag && row !== undefined && col !== undefined) // ✅ Ensure valid data
+            .forEach(({ epctag, row, col }) => {
+              console.log(`🎯 Move Processed: EPC=${epctag}, Row=${row}, Col=${col}`);
               handleInputThrow(epctag, row, col); // ✅ Pass validated move data
             });
         } else {

@@ -35,10 +35,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  /* max-width: 1920px; */
-  max-width: 100%;
-    /* 1920px is standard for a 24-inch screen in landscape */
-  max-height: 100%;  /* Adjust the height to ensure the aspect ratio is correct */
+  max-width: 1920px;  /* 1920px is standard for a 24-inch screen in landscape */
+  max-height: 1080px;  /* Adjust the height to ensure the aspect ratio is correct */
   margin: 0 auto; /* Center content on large screens */
 }
 
@@ -46,8 +44,8 @@
 .retro-top-section {
   display: flex;
   justify-content: space-between;
-  width: 98%;
-  margin-top: 100px;
+  width: 90%;
+  margin-top: 20px;
 }
 
 .timer-display,
@@ -99,7 +97,6 @@
   font-weight: bold;
   color: white;
   text-align: center;
-  margin-top: 80px;
 }
 
 /* .retro-game-board {
@@ -176,7 +173,6 @@
   justify-content: space-between;
   margin-bottom: 20px;
   width: 90%;
-  margin-bottom: 82px;
 }
 
 .normal-disc-stack,
@@ -245,8 +241,8 @@
 .pawn-icon {
   width: 200px;
   position: absolute;
-  right: 50px;
-  top: 4%;
+  right: 10px;
+  top: 10%;
   transform: translateY(-50%);
 }
 
@@ -254,14 +250,14 @@
   width: 40px;
   position: absolute;
   left: 400px;
-  top: 15%;
+  top: 13%;
 }
 
 .game-remote {
  width: 200px;
   position: absolute;
-  bottom: 1%;
-  right: 50%;
+  bottom: 10%;
+  right: 10px;
 }
 
 
@@ -433,9 +429,9 @@
   }
 
   .retro-game-board {
-      width: calc(900px - 2 * 9px); 
-      height: calc(900px - 2 * 9px);
-      gap: 9px;
+      width: calc(900px - 2 * 7px); 
+      height: calc(900px - 2 * 7px);
+      gap: 8px;
   }
 
   .retro-board-cell {
@@ -461,7 +457,6 @@
   .start-button {
       font-size: 18px;
       padding: 12px 25px;
-      margin: 7.4%;
   }
 }
 

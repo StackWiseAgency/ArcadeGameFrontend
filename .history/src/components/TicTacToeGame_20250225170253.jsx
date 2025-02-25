@@ -369,10 +369,6 @@ const TicTacToeGame = ({ navigateToSelection }) => {
             <p className="stat1">Misses <span> {misses.A}</span></p>
           </div>
         </div>
-        
-      </div>
-     
-      
 
         <div className="game-board">
           {board.map((row, rowIndex) => (
@@ -399,8 +395,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
           ))}
         </div>
 
-        <div className="scoreboard1">
-      <div className="team team-b">
+        <div className="team team-b">
           <h2 className="team-title">Team B</h2>
           <div className="stats-box">
             <img src={profileIcon} alt="Team B Avatar" className="player-icon" />

@@ -1,0 +1,351 @@
+
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* .input-container {
+  margin-bottom: 20px;
+} */
+/* 
+.keyboard-input {
+  width: 100%;
+  max-width: 400px; 
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid #e46161;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #20621e;
+  margin-bottom: 20px;
+} */
+
+.toggle-container {
+  margin-bottom: 20px;
+}
+
+.toggle {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #5e617f;
+  border: 2px solid #8e4848;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle:hover {
+  background-color: #9bad50;
+  transform: scale(1.1);
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  flex-wrap: wrap; /* Allow keys to wrap on smaller screens */
+}
+
+.key-button {
+  padding: 12px;
+  font-size: 16px;
+  margin: 5px;
+  border: 2px solid #286f1b;
+  background-color: #021e08;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  min-width: 45px; /* Ensure buttons have a consistent size */
+  min-height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.key-button:hover {
+  background-color: #c3e636;
+  transform: scale(1.1); /* Slightly enlarge buttons when hovered */
+}
+
+.backspace {
+  background-color: #ff4d4d;
+  color: rgb(31, 30, 59);
+}
+
+.space {
+  width: 100px;
+}
+
+.enter {
+  width: 100px;
+}
+
+@media (max-width: 600px) {
+  .keyboard-row {
+    flex-wrap: wrap; /* Allow the keyboard to wrap on smaller screens */
+  }
+}
+
+
+/* 
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.keyboard-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.toggle-container {
+  margin-bottom: 20px;
+}
+
+.toggle {
+  padding: 12px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  flex-wrap: wrap; 
+}
+
+.key-button {
+  padding: 12px;
+  font-size: 16px;
+  margin: 5px;
+  border: 2px solid #c84848;
+  background-color: #9880d1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  min-width: 45px; 
+  min-height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.key-button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1); 
+}
+
+.backspace {
+  background-color: #ff4d4d;
+  color: rgb(116, 155, 207);
+}
+
+.space {
+  width: 100px;
+}
+
+.enter {
+  width: 100px;
+}
+
+@media (max-width: 600px) {
+  .keyboard-row {
+    flex-wrap: wrap; 
+  }
+} */
+
+
+/* 
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.keyboard-input {
+  width: 100%;
+  max-width: 400px; 
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.key-button {
+  padding: 12px;
+  font-size: 16px;
+  margin: 5px;
+  border: 2px solid #ddd;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.key-button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1);
+}
+
+.shift {
+  background-color: #ffcc00;
+}
+
+.backspace {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.space {
+  width: 100px;
+}
+
+.enter {
+  width: 100px;
+}
+
+@media (max-width: 600px) {
+  .keyboard-row {
+    flex-wrap: wrap; 
+  }
+} */
+
+
+
+
+/* CustomKeyboard.css
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.keyboard-input {
+  width: 100%;
+  max-width: 400px; 
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); 
+  gap: 10px;
+  max-width: 400px; 
+  margin-top: 20px;
+  justify-items: center;
+}
+
+.key-button {
+  padding: 15px;
+  font-size: 18px;
+  border: 2px solid #ddd;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  min-width: 45px;
+  min-height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.key-button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.1); 
+}
+
+.backspace {
+  grid-column: span 2;
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.backspace:hover {
+  background-color: #e60000;
+}
+
+@media (max-width: 600px) {
+  .keyboard {
+    grid-template-columns: repeat(5, 1fr); 
+  }
+} */

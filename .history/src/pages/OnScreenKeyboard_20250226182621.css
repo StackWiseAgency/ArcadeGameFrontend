@@ -1,0 +1,8 @@
+/* OnScreenKeyboard.css */
+.keyboard-container {
+    width: 100%;
+    margin-top: 20px; /* Add some space from the input form */
+    display: flex;
+    justify-content: center;
+  }
+  

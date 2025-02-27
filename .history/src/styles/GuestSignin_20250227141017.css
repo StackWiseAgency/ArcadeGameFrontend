@@ -1,0 +1,248 @@
+
+.guest-signin-container {
+  /* background: url('./../assets/game-selection.png') no-repeat center center fixed; */
+  background-image: url('./../assets/guestid-background.png') ;
+  background-size: contain;
+  background-repeat: round;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Gameplay', sans-serif;
+  color: white;
+}
+
+.guest-signin-card {
+  background-image: url('./../assets/guestsignincard.png') ;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+  width: 320px;
+  height:fit-content;
+  color: #ffffff;
+  padding: 20px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.guest-signin-title {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.guest-id-container {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.guest-id-image {
+  width: 224px; 
+  max-width: 90%;
+  padding: 10px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.guest-signin-input {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; 
+  max-width: 90%;
+  padding: 1px;
+  border: 1px solid white;
+  font-size: 1rem;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgba(110, 121, 112, 0.9);
+}
+
+.guest-signin-input:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+.guest-signin-button {
+  padding: 5px;
+  margin-top: 20px;
+  background: #399F2E;
+  border: none;
+  font-size: 1rem;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guest-signin-button:hover {
+  background: #00ffcc;
+  color: black;
+  box-shadow: 0px 5px 15px rgba(0, 255, 204, 0.5);
+}
+
+.guest-signin-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .guest-signin-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .guest-signin-title {
+    font-size: 1.8rem;
+  }
+
+  .guest-id-image {
+    max-width: 250px;
+  }
+
+  .guest-signin-input {
+    font-size: 0.9rem;
+    padding: 1px;
+    width: 120px; 
+
+  }
+
+  .guest-signin-button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+/* 
+copy 
+.guest-signin-container {
+  background: url('./../assets/game-selection.png') no-repeat center center fixed;
+  background-image: url('./../assets/guestid-background.png') ;
+  background-size: contain;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Gameplay', sans-serif;
+  color: white;
+}
+
+.guest-signin-card {
+  background-image: url('./../assets/guestsignincard.png') ;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+  width: 300px;
+  height:fit-content;
+  color: #ffffff;
+  padding: 20px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.guest-signin-title {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.guest-id-container {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.guest-id-image {
+  width: 90%;
+  max-width: 250px;
+  padding: 20px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+}
+
+.guest-signin-input {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; 
+  padding: 1px;
+  border: 1px solid white;
+  font-size: 1rem;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgba(110, 121, 112, 0.9);
+}
+
+.guest-signin-input:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 10px #ffffff;
+}
+
+.guest-signin-button {
+  width: 35%;
+  padding: 5px;
+  margin-top: 20px;
+  background: #007f40;
+  border: none;
+  font-size: 1rem;
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guest-signin-button:hover {
+  background: #00ffcc;
+  color: black;
+  box-shadow: 0px 5px 15px rgba(0, 255, 204, 0.5);
+}
+
+.guest-signin-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 768px) {
+  .guest-signin-card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .guest-signin-title {
+    font-size: 1.8rem;
+  }
+
+  .guest-id-image {
+    max-width: 250px;
+  }
+
+  .guest-signin-input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .guest-signin-button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
+
+ */

@@ -1,0 +1,294 @@
+
+.lights-container {
+    background-image: url('./../assets/game-selection.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: center;
+    font-family: "Gameplay", sans-serif;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.lights-scoreboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 20px;
+   
+   
+}
+
+.lights-time-display,
+.lights-misses-display,
+.lights-disc-display {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.lights-time-display img,
+.lights-misses-display img,
+.lights-disc-display img {
+  width: 20px;
+ 
+  margin-right: 10px;
+  object-fit: cover;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.timer-icon{
+    display: block;
+}
+
+.lights-game-title {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.lights-game-board {
+    display: grid;
+    background: rgb(29, 45, 18);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
+    margin: 20px auto; 
+    width: calc(714px - 2 * 7px); 
+    height: calc(714px - 2 * 7px);
+    padding: 10px;
+    border: 7px solid #fff;
+    box-sizing: border-box;
+}
+
+.lights-board-row {
+    display: contents; 
+}
+
+.lights-board-cell {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    background: rgba(0, 0, 0, 0.2); 
+    border: 7px solid #ffffff; 
+    margin-bottom: 12px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.lights-board-cell{
+    width: 99%; 
+    height: 99%; 
+}
+.lights-board-cell:hover {
+    transform: scale(1.05); 
+}
+
+.lights-board-cell.lit {
+    background-color: rgb(86, 229, 71, 1); 
+}
+
+.lights-board-cell.off {
+    background-color: #222; 
+}
+
+.lights-result-screen {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.lights-result-screen h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.lights-result-screen p {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.lights-back-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.lights-back-button:hover {
+    background-color: #c00;
+}
+
+/* Responsive Styles */
+
+/* Large Devices (Desktops, >1024px) */
+@media screen and (min-width: 1024px) {
+    .lights-game-title {
+        font-size: 3rem;
+    }
+  
+    .lights-scoreboard {
+        justify-content: space-between;
+        max-width: 1100px;
+    }
+  
+    .lights-game-board {
+        width: calc(700px - 2 * 7px); /* Larger board size */
+        height: calc(700px - 2 * 7px);
+        gap: 20px;
+    }
+  
+    .lights-board-cell {
+        border-width: 8px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 30px; /* Slightly larger icons */
+    }
+  }
+  
+  /* Extra Large Devices (>1440px) */
+  @media screen and (min-width: 1700px) {
+    .lights-game-title {
+        font-size: 3.5rem;
+    }
+  
+    .lights-scoreboard {
+        justify-content: space-around;
+        max-width: 1400px;
+    }
+  
+    .lights-game-board {
+        width: calc(900px - 2 * 7px); /* Significantly larger board size */
+        height: calc(900px - 2 * 7px);
+        gap: 30px;
+    }
+  
+    .lights-board-cell {
+        border-width: 10px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 40px; /* Larger icons */
+    }
+  }
+  
+  /* Tablets (768px to 1024px) */
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .lights-game-title {
+        font-size: 2.8rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+  
+    .lights-scoreboard {
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 900px;
+    }
+  
+    .lights-game-board {
+        width: calc(900px - 2 * 14px); /* Medium board size */
+        height: calc(900px - 2 * 14px);
+        gap: 15px;
+        margin-top: 20%;
+        margin-bottom: 40%;
+    }
+  
+    .lights-board-cell {
+        border-width: 6px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 25px; /* Medium-sized icons */
+    }
+  }
+  
+  /* General Visibility Handling */
+  .pawn-icon, .star-icon, .game-remote {
+    z-index: 1;
+    visibility: visible;
+  }
+  
+  .lights-game-board, .lights-scoreboard {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .pawn-icon.overlap, .star-icon.overlap, .game-remote.overlap {
+    visibility: hidden;
+  }
+  
+/* Small Devices (Phones, <768px) */
+@media screen and (max-width: 767px) {
+    .lights-game-title {
+        font-size: 2rem;
+    }
+  
+    .lights-scoreboard {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 100%;
+    }
+  
+    .lights-game-board {
+        width: calc(300px - 2 * 7px); /* Smaller board size */
+        height: calc(300px - 2 * 7px);
+        gap: 10px; /* Adjust gap for smaller screens */
+    }
+  
+    .lights-board-cell {
+        border-width: 4px;
+    }
+  
+    .lights-time-display img,
+    .lights-misses-display img,
+    .lights-disc-display img {
+        width: 20px; /* Smaller icons */
+    }
+  
+    .stats-box {
+        width: 80px; /* Smaller stats box */
+    }
+  
+    .stat1 span, .stat2 span {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+  
+    .team img.player-icon {
+        width: 50px;
+        height: 50px;
+    }
+  
+    .pawn-icon, .star-icon, .game-remote {
+        display: none; /* Hide decorative elements on small screens */
+    }
+  }
+  

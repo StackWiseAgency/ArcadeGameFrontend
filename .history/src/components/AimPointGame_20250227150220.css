@@ -1,0 +1,294 @@
+
+.game-container-point {
+  background-image: url('./../assets/game-selection.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover;
+  background-position: center;
+  background-color: transparent; */
+  color: white;
+  text-align: center;
+  font-family: "Gameplay", sans-serif;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+}
+.game-title2{
+  font-size: 30px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.game-board-point {
+  display: grid;
+  background: rgb(29, 45, 18);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; 
+  margin: 20px auto; 
+  width: calc(714px - 2 * 7px); 
+  height: calc(714px - 2 * 7px);
+  padding: 10px;
+  border: 7px solid #fff;
+  box-sizing: border-box;
+
+}
+
+.board-cell-point {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2); 
+  border: 7px solid #ffffff; 
+  transition: background 0.3s ease; 
+  cursor: pointer;
+  overflow: visible; 
+  width: 99%; 
+  height: 99%; 
+
+}
+
+.active-target-point {
+  background-color: green;
+}
+
+.scoreboard-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.scoreboard-point h2 {
+  margin: 5px 0;
+}
+
+.game-over-point {
+  color: red;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.target-duration-point {
+  color: yellow;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.activation-interval-point {
+  color: orange;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+.pawn-icon-point {
+  width: 200px;
+  position: absolute;
+  right: 10px;
+  top: 10%;
+  transform: translateY(-50%);
+}
+
+.star-icon-point {
+  width: 40px;
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.game-remote-point {
+  width: 200px;
+  position: absolute;
+  bottom: 10%;
+  right: 10px;
+}
+
+/* Responsive Styles */
+
+/* Large Devices (Desktops, >1024px) */
+@media screen and (min-width: 1024px) {
+  .game-board-point {
+    width: calc(700px - 2 * 7px);
+    height: calc(700px - 2 * 7px);
+    gap: 20px;
+  }
+
+  .board-cell-point {
+    border-width: 8px;
+  }
+
+  .pawn-icon-point {
+    width: 250px;
+    top: 5%;
+    right: 5%;
+  }
+
+  .game-remote-point {
+    width: 250px;
+    bottom: 5%;
+    right: 5%;
+  }
+}
+
+/* Extra Large Devices (>1440px) */
+@media screen and (min-width: 1440px) {
+  .game-board-point {
+    width: calc(900px - 2 * 7px);
+    height: calc(900px - 2 * 7px);
+    gap: 30px;
+  }
+
+  .board-cell-point {
+    border-width: 10px;
+  }
+
+  .pawn-icon-point {
+    width: 350px;
+    top: 5%;
+    right: 5%;
+  }
+
+  .game-remote-point {
+    width: 350px;
+    bottom: 5%;
+    right: 5%;
+  }
+}
+
+/* Tablets (768px to 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .game-board-point {
+    width: calc(900px - 2 * 7px);
+    height: calc(900px - 2 * 7px);
+    gap: 15px;
+  }
+
+  .board-cell-point {
+    border-width: 6px;
+  }
+
+  .pawn-icon-point {
+    width: 200px;
+    top: 10%;
+    right: 10%;
+  }
+
+  .game-remote-point {
+    width: 200px;
+    bottom: 10%;
+    right: 10%;
+  }
+}
+
+/* Small Devices (Phones, <768px) */
+@media screen and (max-width: 767px) {
+  .game-board-point {
+    width: calc(250px - 2 * 7px);
+    height: calc(250px - 2 * 7px);
+    gap: 10px;
+  }
+
+  .board-cell-point {
+    border-width: 4px;
+  }
+
+  .pawn-icon-point, .star-icon-point, .game-remote-point {
+    display: none; 
+  }
+}
+
+
+.pawn-icon-point, .star-icon-point, .game-remote-point {
+  z-index: 1;
+  visibility: visible;
+}
+
+.game-board-point, .scoreboard-point {
+  position: relative;
+  z-index: 2;
+}
+
+.pawn-icon-point.overlap, .star-icon-point.overlap, .game-remote-point.overlap {
+  visibility: hidden;
+}
+
+/* copy
+
+.game-container-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #0e1b0e;
+  color: white;
+  height: 100vh;
+  padding: 20px;
+}
+
+.game-board-point {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.board-cell-point {
+  width: 100px;
+  height: 100px;
+  background-color: #202c20;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.active-target-point {
+  background-color: green;
+}
+
+.scoreboard-point {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.scoreboard-point h2 {
+  margin: 5px 0;
+}
+
+.game-over-point {
+  color: red;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.target-duration-point {
+  color: yellow;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.activation-interval-point {
+  color: orange;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+} */
+

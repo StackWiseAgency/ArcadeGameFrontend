@@ -1,0 +1,555 @@
+
+.tictactoe-container {
+  background-image: url('./../assets/game-selection.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+  text-align: center;
+  font-family: "Gameplay", sans-serif;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding-top: 17.2%;
+  padding-bottom: 17%;
+}
+
+/* Styles for the result screen container */
+.result-screen-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 81.9vh;
+}
+
+/* Styling for the Result Card */
+.result-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  width: 600px !important;
+  height: 300px !important;
+  background-color: #6cca5c; /* Green background */
+  margin: 0 auto;
+}
+
+/* Title for the winner message */
+.winner-text {
+  color: #040000 !important; /* Dark color for the winner */
+  font-weight: bold !important;
+  margin-top: 10px !important;
+}
+
+/* Text for the result description */
+.result-description {
+  color: #fcfcfc !important; /* Lighter color for description */
+  font-size: 14px !important;
+  margin-top: 10px !important;
+}
+
+/* Styling for the player stats container */
+.player-stats-container {
+  margin-top: 20px;
+  text-align: left;
+  color: #fcfcfc; /* Light text color */
+}
+
+/* Styling for the player headers */
+.player-stats-container h3 {
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Styling for result text (discs, steals, misses) */
+.player-stats-container p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Optional: Add margin below the card for spacing */
+.result-screen-container .result-card {
+  margin-top: 30px !important;
+}
+
+/* Styling for the ant-card title */
+.ant-card-title {
+  font-size: 24px !important;
+  font-weight: bold !important;
+  color: #000000 !important; /* Dark color for title */
+}
+
+
+
+.scoreboard {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between;
+  align-items: flex-start; */
+  margin: 20px 0;
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+}
+
+.scoreboard1 {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between;
+  align-items: flex-start; */
+  margin: 20px 0;
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+}
+.team team-a {
+  display: flex;
+  flex-direction:column;
+  padding: 2px;
+  border-radius: 10px;
+  width: 100px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+  border: 2px solid #ffffff;
+}
+
+.team team-b {
+  padding: 2px;
+  border-radius: 10px;
+  width: 100px;
+  text-align: center;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+  border: 2px solid #ffffff;
+}
+
+.team img.player-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin: 10px auto;
+  border: 2px solid white;
+}
+
+.stats-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px; 
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  /* padding: 5px; */
+  background: rgb(29, 45, 18); 
+  border-radius: 15px;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.stat1 {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  font-size: 1.1rem; 
+  color: #fff; 
+}
+
+.stat2 {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  font-size: 1.1rem; 
+  color: #fff; 
+}
+
+.stat1 span {
+  display: inline-block;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 3rem; 
+  font-weight: bold;
+  background-color: #00a000; 
+  color: #fff; 
+  border: 1px solid #ffffff;
+  border-radius: 8px; 
+  width: 90px; 
+  height: 90px;
+  align-items: center;
+  text-align: center;
+}
+
+.stat2 span {
+  display: inline-block;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 3rem; 
+  font-weight: bold;
+  background-color: #ff4500; 
+  color: #fff; 
+  border: 1px solid #ffffff;
+  border-radius: 8px; 
+  width: 90px; 
+  height: 90px;
+  align-items: center;
+  text-align: center;
+}
+
+.team h2 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.game-title {
+  font-size: 30px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.game-board {
+  display: grid;
+  background: rgb(29, 45, 18);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; 
+  margin: 20px auto; 
+  width: calc(714px - 2 * 7px); 
+  height: calc(714px - 2 * 7px);
+  padding: 10px;
+  border: 7px solid #fff;
+  box-sizing: border-box;
+}  
+
+.board-cell {
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(0, 0, 0, 0.2); 
+  border: 7px solid #ffffff; 
+  margin-bottom: 12px;
+  transition: background 0.3s ease;
+  cursor: pointer;
+  overflow: visible;
+}
+.board-cell {
+  width: 99%; 
+  height: 99%; 
+}
+
+.board-cell:hover {
+  background: rgba(255, 255, 255, 0.2); 
+}
+
+.circle-a {
+  width: 70%;
+  height: 70%;
+  background: #00a000; 
+  border-radius: 50%; 
+}
+
+.circle-b {
+  width: 70%;
+  height: 70%;
+  background: #ff4500; 
+  border-radius: 50%; 
+}
+
+.pawn-icon {
+  width: 200px;
+  position: absolute;
+  right: 10px;
+  top: 10%;
+  transform: translateY(-50%);
+}
+
+.star-icon1 {
+  width: 40px;
+  position: absolute;
+  left: 200px;
+  top: 5%;
+}
+
+.game-remote {
+ width: 200px;
+  position: absolute;
+  bottom: 10%;
+  right: 10px;
+}
+
+.api-loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #00ffcc;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.custom-notification {
+  border-radius: 10px;
+  background: linear-gradient(to right, #4CAF50, #81C784);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  padding: 15px;
+}
+
+.custom-notification .ant-notification-notice-message {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.custom-notification .ant-notification-notice-description {
+  font-size: 14px;
+  color: #f1f1f1;
+}
+
+/* Responsive Styles */
+
+/* Large Devices (Desktops, >1024px) */
+@media screen and (min-width: 1024px) {
+  .game-title {
+      font-size: 32px;
+  }
+
+  .scoreboard {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 1200px;
+  }
+
+  .game-board {
+      width: calc(600px - 2 * 7px); 
+      height: calc(600px - 2 * 7px);
+     
+  }
+
+  .board-cell {
+      border-width: 8px;
+  }
+
+  .stats-box {
+      width: 130px; 
+  }
+
+  .stat1 span, .stat2 span {
+      width: 100px;
+      height: 100px;
+      font-size: 3.5rem;
+  }
+
+  .team img.player-icon {
+      width: 80px;
+      height: 80px;
+  }
+
+  .pawn-icon {
+      width: 250px;
+      top: 5%;
+      right: 5%;
+  }
+
+  .game-remote {
+      width: 250px;
+      bottom: 5%;
+      right: 5%;
+  }
+}
+
+/* Extra Large Devices (>1440px) */
+@media screen and (min-width: 1800px) {
+  .game-title {
+      font-size: 36px;
+  }
+
+  .scoreboard {
+      flex-direction: row;
+      justify-content: space-around;
+      max-width: 1400px;
+  }
+
+  .game-board {
+      width: calc(900px - 2 * 7px); 
+      height: calc(900px - 2 * 7px);
+      gap: 8px;
+  }
+
+  .board-cell {
+      border-width: 12px;
+  }
+
+  .stats-box {
+      width: 180px; 
+  }
+
+  .stat1 span, .stat2 span {
+      width: 150px;
+      height: 150px;
+      font-size: 4.5rem;
+  }
+
+  .team img.player-icon {
+      width: 120px;
+      height: 120px;
+  }
+
+  .pawn-icon {
+      width: 350px;
+      top: 5%;
+      right: 5%;
+  }
+
+  .game-remote {
+      width: 350px;
+      bottom: 5%;
+      right: 5%;
+  }
+}
+
+  
+
+/* Small Devices (Phones, <768px) */
+@media screen and (max-width: 767px) {
+  .game-title {
+      font-size: 20px;
+  }
+
+  .scoreboard {
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      
+  }
+
+  .game-board {
+      width: calc(250px - 2 * 7px); 
+      height: calc(250px - 2 * 7px);
+      
+  }
+
+  .board-cell {
+      border-width: 4px;
+  }
+
+  .team h2{
+
+    font-size: 0.9rem;
+  }
+  .stats-box {
+    width: 70px; 
+}
+
+.stat1, .stat2 {
+ 
+  font-size: 0.9rem;
+}
+  .stat1 span, .stat2 span {
+      width: 42px;
+      height: 42px;
+      font-size: 0.9rem;
+  }
+
+  .team img.player-icon {
+      width: 40px;
+      height: 40px;
+  }
+
+  .pawn-icon, .star-icon1, .game-remote {
+      display: none;
+  }
+}
+
+/* Medium Devices (Tablets, 768px to 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .game-title {
+      font-size: 28px;
+  }
+
+  .scoreboard {
+      flex-direction: row;
+      justify-content: center;
+      max-width: 900px;
+  }
+  .scoreboard1 {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 900px;
+}
+
+  .game-board {
+      width: calc(900px - 2 * 7px); 
+      height: calc(900px - 2 * 7px);
+      
+  }
+
+  .board-cell {
+      border-width: 7px;
+  }
+
+  /* .stats-box {
+      width: 120px; 
+  } */
+
+  .stat1 span, .stat2 span {
+      width: 90px;
+      height: 90px;
+      font-size: 3rem;
+  }
+
+  .team img.player-icon {
+      width: 90px;
+      height: 90px;
+  }
+
+  .pawn-icon {
+      width: 200px;
+      top: 7%;
+      right: 10%;
+  }
+
+  .game-remote {
+      width: 200px;
+      bottom: 2%;
+      right: 15%;
+  }
+}
+
+.pawn-icon, .star-icon1, .game-remote {
+  z-index: 1; 
+  visibility: visible;
+}
+
+.game-board, .stats-box, .game-title {
+  position: relative; 
+  z-index: 2; 
+}
+
+.pawn-icon.overlap, .star-icon1.overlap, .game-remote.overlap {
+  visibility: hidden; 
+}
+
+

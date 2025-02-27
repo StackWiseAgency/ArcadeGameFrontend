@@ -7,17 +7,14 @@
     color: white;
     text-align: center;
     font-family: "Gameplay", sans-serif;
+    padding: 20px;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-wrap: wrap;
-  min-height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    flex-grow: 1;
-    margin-top: auto;
 }
 
 .lights-scoreboard {
@@ -260,8 +257,8 @@
     }
   
     .lights-game-board {
-        width: calc(400px - 2 * 7px); /* Smaller board size */
-        height: calc(400px - 2 * 7px);
+        width: calc(300px - 2 * 7px); /* Smaller board size */
+        height: calc(300px - 2 * 7px);
         gap: 10px; /* Adjust gap for smaller screens */
     }
   
@@ -275,9 +272,9 @@
         width: 20px; /* Smaller icons */
     }
   
-    .stats-box {
-        width: 450px;
-    }
+    /* .stats-box {
+        width: 80px;
+    } */
   
     .stat1 span, .stat2 span {
         width: 60px;

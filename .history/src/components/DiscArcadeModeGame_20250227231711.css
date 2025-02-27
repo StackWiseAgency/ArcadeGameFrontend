@@ -42,8 +42,6 @@
     /* 1920px is standard for a 24-inch screen in landscape */
   max-height: 100%;  /* Adjust the height to ensure the aspect ratio is correct */
   margin: 0 auto; /* Center content on large screens */
-  flex-grow: 1;
-  margin-top: auto;
 }
 
 

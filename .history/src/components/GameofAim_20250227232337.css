@@ -18,8 +18,6 @@
     position: relative;
     padding-top: 15.2%;
     padding-bottom: 17%;
-    flex-grow: 1;
-    margin-top: auto;
   }
  
  .result-screen-container1 {
@@ -96,7 +94,7 @@
     justify-content: space-between;
     align-items: flex-start;
     margin: 20px 0;
-  
+    width: 100%;
     max-width: 1100px;
     position: relative;
   }
@@ -107,7 +105,7 @@
     justify-content: space-between;
     align-items: flex-start;
     margin: 20px 0;
-  
+    width: 100%;
     max-width: 1100px;
     position: relative;
   }
@@ -423,8 +421,8 @@
 }
 
   .game-board-aim {
-      width: calc(750px - 2 * 7px); /* Medium board size */
-      height: calc(750px - 2 * 7px);
+      width: calc(900px - 2 * 7px); /* Medium board size */
+      height: calc(900px - 2 * 7px);
       gap: 8px;
   }
 
@@ -488,7 +486,6 @@
       display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     gap: 20px;
     
     background: rgb(29, 45, 18);

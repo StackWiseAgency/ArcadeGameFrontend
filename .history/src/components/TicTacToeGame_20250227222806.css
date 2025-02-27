@@ -12,16 +12,12 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   padding-top: 17.2%;
   padding-bottom: 37%;
-  min-height: 100vh;
-  flex-grow: 1;
-  margin-top: auto;
 }
 /* Styles for the result screen container */
 .result-screen-container {
@@ -386,7 +382,7 @@
   }
 
   .stats-box {
-      width: 600px; 
+      width: 130px; 
   }
 
   .stat1 span, .stat2 span {

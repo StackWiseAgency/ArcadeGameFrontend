@@ -21,7 +21,6 @@
   align-items: center;
   position: relative;
   flex-grow: 1;
-  margin-top: auto;
 }
 .game-title2{
   font-size: 30px;

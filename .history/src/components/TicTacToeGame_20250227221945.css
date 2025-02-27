@@ -12,16 +12,12 @@
   width: 100%;
   height: 100%;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
   padding-top: 17.2%;
   padding-bottom: 37%;
-  min-height: 100vh;
-  flex-grow: 1;
-  margin-top: auto;
 }
 /* Styles for the result screen container */
 .result-screen-container {
@@ -159,8 +155,8 @@
   flex-direction: row;
   align-items: center;
   gap: 50px; 
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-top: 10px;
   /* padding: 5px; */
   background: rgb(29, 45, 18); 
@@ -386,7 +382,7 @@
   }
 
   .stats-box {
-      width: 600px; 
+      width: 130px; 
   }
 
   .stat1 span, .stat2 span {
@@ -482,7 +478,7 @@
 
   
 
-/* Small Devices (Phones, <600px) */
+/* Small Devices (Phones, <768px) */
 @media screen and (max-width: 600px) {
   .game-title {
       font-size: 20px;
@@ -514,8 +510,8 @@
 }
 
   .game-board {
-      width: calc(400px - 2 * 7px); 
-      height: calc(400px - 2 * 7px);
+      width: calc(300px - 2 * 7px); 
+      height: calc(300px - 2 * 7px);
       
   }
 
@@ -528,7 +524,7 @@
     font-size: 0.9rem;
   }
   .stats-box {
-    width: 450px; 
+    width: 70px; 
 }
 
 .stat1, .stat2 {

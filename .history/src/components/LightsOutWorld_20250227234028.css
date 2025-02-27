@@ -11,7 +11,7 @@
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    min-height: 100vh;
+  min-height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -217,8 +217,8 @@
         width: calc(900px - 2 * 14px); /* Medium board size */
         height: calc(900px - 2 * 14px);
         gap: 15px;
-        /* margin-top: 20%; */
-        /* margin-bottom: 48.7%; */
+        margin-top: 20%;
+        margin-bottom: 48.7%;
     }
   
     .lights-board-cell {

@@ -299,7 +299,7 @@
   top: 5%;
 }
 
-.game-remote1 {
+.game-remote {
  width: 200px;
   position: absolute;
   bottom: 10%;
@@ -406,7 +406,7 @@
       right: 5%;
   }
 
-  .game-remote1 {
+  .game-remote {
       width: 250px;
       bottom: 5%;
       right: 5%;
@@ -473,7 +473,7 @@
       right: 5%;
   }
 
-  .game-remote1 {
+  .game-remote {
       width: 350px;
       bottom: 5%;
       right: 5%;
@@ -546,7 +546,7 @@
       height: 40px;
   }
 
-  .pawn-icon, .star-icon1, .game-remote1 {
+  .pawn-icon, .star-icon1, .game-remote {
       display: none;
   }
 }
@@ -613,14 +613,14 @@
       right: 10%;
   }
 
-  .game-remote1 {
+  .game-remote {
       width: 200px;
       bottom: 2%;
       right: 15%;
   }
 }
 
-.pawn-icon, .star-icon1, .game-remote1 {
+.pawn-icon, .star-icon1, .game-remote {
   z-index: 1; 
   visibility: visible;
 }
@@ -630,7 +630,7 @@
   z-index: 2; 
 }
 
-.pawn-icon.overlap, .star-icon1.overlap, .game-remote1.overlap {
+.pawn-icon.overlap, .star-icon1.overlap, .game-remote.overlap {
   visibility: hidden; 
 }
 

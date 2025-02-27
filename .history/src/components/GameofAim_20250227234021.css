@@ -16,6 +16,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    padding-top: 15.2%;
+    padding-bottom: 17%;
     flex-grow: 1;
     margin-top: auto;
     overflow: hidden;
@@ -455,7 +457,7 @@
   .game-remote-aim {
       width: 200px;
       bottom: 2%;
-    
+      right: 15%;
   }
 }
 

@@ -27,6 +27,7 @@
   color: white;
   text-align: center;
   font-family: "Gameplay", sans-serif;
+  padding: 40px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -138,7 +139,7 @@
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: repeat(3, 1fr);
   gap: 20px; /* Increase gap for larger screens */
-  width: 900px;  /* Adjust width for large screens */
+   width: 900px;  /* Adjust width for large screens */
   height: 900px;  /* Adjust height accordingly */
   padding: 10px;
   border: 7px solid #fff;
@@ -179,7 +180,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   width: 90%;
-  
+  margin-bottom: 82px;
 }
 
 .normal-disc-stack,
@@ -264,7 +265,7 @@
  width: 200px;
   position: absolute;
   bottom: 1%;
-  right: 40%;
+  right: 50%;
 }
 
 
@@ -436,8 +437,8 @@
   }
 
   .retro-game-board {
-      width: calc(800px - 2 * 9px); 
-      height: calc(800px - 2 * 9px);
+      width: calc(900px - 2 * 9px); 
+      height: calc(900px - 2 * 9px);
       gap: 9px;
   }
 

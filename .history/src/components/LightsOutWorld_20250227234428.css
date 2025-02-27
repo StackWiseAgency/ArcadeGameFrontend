@@ -218,7 +218,7 @@
         height: calc(900px - 2 * 14px);
         gap: 15px;
         /* margin-top: 20%; */
-        /* margin-bottom: 48.7%; */
+        margin-bottom: 48.7%;
     }
   
     .lights-board-cell {

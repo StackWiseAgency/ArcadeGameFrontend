@@ -147,7 +147,7 @@ const PlayersQueue = ({ onClose }) => {
 
       if (!gameWindow || gameWindow.closed) {
         // ❌ If the tab is not open, DO NOT open a new one. Just alert the user.
-        showPopup("Please open the Game Screen tab manually and keep it open.");
+        alert("Please open the Game Screen tab manually and keep it open.");
       } else {
         // ✅ If the tab is open, refresh it with the latest game
         gameWindow.location.href = gameScreenUrl; // Load the game screen
@@ -162,7 +162,7 @@ const PlayersQueue = ({ onClose }) => {
       }
     } catch (error) {
       console.error("Error starting game session:", error);
-      showPopup("Failed to start game session. Please try again.");
+      alert("Failed to start game session. Please try again.");
     } finally {
       setStartingGame(false);
     }

@@ -90,10 +90,10 @@ const SignupPage = () => {
         }
       } catch (error) {
         console.error("Error creating account:", error.response || error.message);
-        showPopup("There was an error creating your account. Please try again later.");
+        alert("There was an error creating your account. Please try again later.");
       }
     } else {
-      showPopup("Please fill in all required fields!");
+      alert("Please fill in all required fields!");
     }
   };
 

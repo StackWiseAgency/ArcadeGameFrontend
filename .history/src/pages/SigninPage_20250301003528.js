@@ -51,7 +51,7 @@ const handleKeyPress = (button) => {
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showPopup("Please enter a valid email address.");
-      // alert("Please enter a valid email address.");
+      alert("Please enter a valid email address.");
       return;
     }
     try {
@@ -98,12 +98,12 @@ const handleKeyPress = (button) => {
             // Navigate to the game selection page
         navigate("/GameSelect");
       } else {
-        showPopup("Invalid credentials, please try again.");
+        alert("Invalid credentials, please try again.");
       }
     } catch (error) {
       console.error("Login failed:", error.response?.data || error.message);
       if (error.response?.data?.errors) {
-        showPopup(`Validation Errors: ${JSON.stringify(error.response.data.errors, null, 2)}`);
+        alert(`Validation Errors: ${JSON.stringify(error.response.data.errors, null, 2)}`);
       } else {
         alert("An error occurred. Please try again later.");
       }

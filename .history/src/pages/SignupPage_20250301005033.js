@@ -6,7 +6,7 @@ import { notification} from "antd";
 import "./../styles/SignupPage.css";
 import Coins from "./../assets/coins.png";
 import defaultprofile from "./../assets/maleavatar.png";
-import QRCodeImage from "./../assets/qr-code.png";
+import QRCodeImage from "./../assets/qr-code1.png";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -194,7 +194,7 @@ const SignupPage = () => {
           <Link to="/signin" className="guest-link">
             Sign in
           </Link>
-          <span className="separator">    |    </span>
+          <span className="separator">|</span>
           <Link to="/guest" className="guest-link">
             Continue as a Guest
           </Link>

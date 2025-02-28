@@ -6,7 +6,7 @@ import { notification} from "antd";
 import "./../styles/SignupPage.css";
 import Coins from "./../assets/coins.png";
 import defaultprofile from "./../assets/maleavatar.png";
-import QRCodeImage from "./../assets/qr-code.png";
+import QRCodeImage from "./../assets/qr-code1.png";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({

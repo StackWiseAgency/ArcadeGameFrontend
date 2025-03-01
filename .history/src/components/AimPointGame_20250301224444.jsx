@@ -41,7 +41,7 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
       } while (randomIndex === lastActiveTargetRef.current);
 
       // let randomIndex = targetSequence[targetIndexRef.current];
-      // console.log(`🎯 Target Activated: ${randomIndex}`); 
+      // console.log(`🎯 Target Activated: ${randomIndex}`); // Debugging log
       // targetIndexRef.current = (targetIndexRef.current + 1) % targetSequence.length;
 
       setActiveTarget(randomIndex);
@@ -61,7 +61,6 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
       clearTimeout(targetTimeout);
       clearTimeout(activationTimeout);
     };
-    // eslint-disable-next-line
   }, [gameEnded, frisbees, durationSchedule, intervalSchedule, setMissedTargets]);
 
 
@@ -271,7 +270,6 @@ const AimPointGame = () => {
       clearInterval(intervalId); 
      
     };
-    // eslint-disable-next-line
   }, [useApiInput, handleMove, gameEnded]);
 
   // useEffect(() => {
@@ -357,7 +355,7 @@ const AimPointGame = () => {
       <h2 className="game-over-point">Game Over!</h2>
       <h2>Final Score: {gameResults?.score}</h2>
       <h2>Missed Targets: {gameResults?.missedTargets}</h2>
-      <h2>Time Left: {gameResults?.timeLeft}s</h2>
+      {/* <h2>Time Left: {gameResults?.timeLeft}s</h2> */}
       <h2>Frisbees Left: {gameResults?.frisbeesLeft}</h2>
       {/* <button className="back-button-point" onClick={() => window.location.reload()}>
         Play Again

@@ -16,8 +16,8 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
   const lastActiveTargetRef = useRef(null); // Use ref for last active target
   const scheduleIndexRef = useRef(0); // Ref for tracking schedule index
 
-  // const targetSequence = [3, 7, 2, 8, 4, 6, 9, 5, 1,2 ,4,5,6,7,8,9,9,4,5,6]; 
-  // const targetIndexRef = useRef(0); 
+  const targetSequence = [3, 7, 2, 8, 4, 6, 9, 5, 1,2 ,4,5,6,7,8,9,9,4,5,6]; 
+  const targetIndexRef = useRef(0); 
 
   useEffect(() => {
     if (gameEnded || frisbees <= 0) return;
@@ -34,15 +34,15 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
 
     const handleTargetDuration = () => {
      
-      let randomIndex;
-      do {
-        randomIndex = Math.floor(Math.random() * 9);
-      console.log(`🎯 Target Activated: ${randomIndex}`);
-      } while (randomIndex === lastActiveTargetRef.current);
+      // let randomIndex;
+      // do {
+      //   randomIndex = Math.floor(Math.random() * 9);
+      // console.log(`🎯 Target Activated: ${randomIndex}`);
+      // } while (randomIndex === lastActiveTargetRef.current);
 
-      // let randomIndex = targetSequence[targetIndexRef.current];
-      // console.log(`🎯 Target Activated: ${randomIndex}`); 
-      // targetIndexRef.current = (targetIndexRef.current + 1) % targetSequence.length;
+      let randomIndex = targetSequence[targetIndexRef.current];
+      console.log(`🎯 Target Activated: ${randomIndex}`); // Debugging log
+      targetIndexRef.current = (targetIndexRef.current + 1) % targetSequence.length;
 
       setActiveTarget(randomIndex);
       lastActiveTargetRef.current = randomIndex;
@@ -271,7 +271,6 @@ const AimPointGame = () => {
       clearInterval(intervalId); 
      
     };
-    // eslint-disable-next-line
   }, [useApiInput, handleMove, gameEnded]);
 
   // useEffect(() => {
@@ -357,7 +356,7 @@ const AimPointGame = () => {
       <h2 className="game-over-point">Game Over!</h2>
       <h2>Final Score: {gameResults?.score}</h2>
       <h2>Missed Targets: {gameResults?.missedTargets}</h2>
-      <h2>Time Left: {gameResults?.timeLeft}s</h2>
+      {/* <h2>Time Left: {gameResults?.timeLeft}s</h2> */}
       <h2>Frisbees Left: {gameResults?.frisbeesLeft}</h2>
       {/* <button className="back-button-point" onClick={() => window.location.reload()}>
         Play Again

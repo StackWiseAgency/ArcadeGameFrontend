@@ -16,8 +16,8 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
   const lastActiveTargetRef = useRef(null); // Use ref for last active target
   const scheduleIndexRef = useRef(0); // Ref for tracking schedule index
 
-  // const targetSequence = [3, 7, 2, 8, 4, 6, 9, 5, 1,2 ,4,5,6,7,8,9,9,4,5,6]; 
-  // const targetIndexRef = useRef(0); 
+  const targetSequence = [3, 7, 2, 8, 4, 6, 9, 5, 1]; // Fixed sequence for testing
+  const targetIndexRef = useRef(0); // Track index in sequence
 
   useEffect(() => {
     if (gameEnded || frisbees <= 0) return;
@@ -34,15 +34,14 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
 
     const handleTargetDuration = () => {
      
-      let randomIndex;
-      do {
-        randomIndex = Math.floor(Math.random() * 9);
-      console.log(`🎯 Target Activated: ${randomIndex}`);
-      } while (randomIndex === lastActiveTargetRef.current);
+      // let randomIndex;
+      // do {
+      //   randomIndex = Math.floor(Math.random() * 9);
+      // } while (randomIndex === lastActiveTargetRef.current);
 
-      // let randomIndex = targetSequence[targetIndexRef.current];
-      // console.log(`🎯 Target Activated: ${randomIndex}`); 
-      // targetIndexRef.current = (targetIndexRef.current + 1) % targetSequence.length;
+      let randomIndex = targetSequence[targetIndexRef.current];
+      console.log(`🎯 Target Activated: ${randomIndex}`); // Debugging log
+      targetIndexRef.current = (targetIndexRef.current + 1) % targetSequence.length;
 
       setActiveTarget(randomIndex);
       lastActiveTargetRef.current = randomIndex;
@@ -61,7 +60,6 @@ const useTargetCycle = (gameEnded, frisbees, durationSchedule, intervalSchedule,
       clearTimeout(targetTimeout);
       clearTimeout(activationTimeout);
     };
-    // eslint-disable-next-line
   }, [gameEnded, frisbees, durationSchedule, intervalSchedule, setMissedTargets]);
 
 
@@ -88,17 +86,7 @@ const AimPointGame = () => {
     [7, 8, 9],  // Custom order for row 0
     [4, 5, 6],  // Custom order for row 1
     [1, 2, 3], 
-  ];
-
-  const validEpcTags = new Set([
-    "E28011700000021C035AE34C", "E28011700000021C035AE347", "E28011700000021C035AE241", "E28011700000021C035AE246",
-    "E28011700000021C035AEB4A", "E28011700000021C035AE24B", "E28011700000021C035AEB40", "E28011700000021C035AEB45",
-    "E28011700000021C035AEB4F", "E28011700000021C035AEA49", "E28011700000021C035AEA44", "E28011700000021C035AEA4E",
-    "E28011700000021C035AFA39", "E28011700000021C035AFA34", "E28011700000021C035AFB3F", "E28011700000021C035AFB3A",
-    "E28011700000021C035AFB35", "E28011700000021C035AFB30", "E28011700000021C035AF23B", "E28011700000021C035AF236",
-    "E28011700000021C035AF231", "E28011700000021C035AF343", "E28011700000021C035AF33C", "E28011700000021C035AF337"
-  ]);
-
+];
   // const [board] = useState(Array(3).fill(Array(3).fill(null))); 
   const [board, setBoard] = useState(initialBoard);
   const [score, setScore] = useState(0); // Player's score
@@ -251,7 +239,7 @@ const AimPointGame = () => {
             if (dataItem.tags && Array.isArray(dataItem.tags)) {
            
               dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
-                if (validEpcTags.has(epc) && antennaPort) {
+                if (epc && antennaPort) {
                  
                   handleMove(antennaPort);
                 }
@@ -271,7 +259,6 @@ const AimPointGame = () => {
       clearInterval(intervalId); 
      
     };
-    // eslint-disable-next-line
   }, [useApiInput, handleMove, gameEnded]);
 
   // useEffect(() => {
@@ -357,7 +344,7 @@ const AimPointGame = () => {
       <h2 className="game-over-point">Game Over!</h2>
       <h2>Final Score: {gameResults?.score}</h2>
       <h2>Missed Targets: {gameResults?.missedTargets}</h2>
-      <h2>Time Left: {gameResults?.timeLeft}s</h2>
+      {/* <h2>Time Left: {gameResults?.timeLeft}s</h2> */}
       <h2>Frisbees Left: {gameResults?.frisbeesLeft}</h2>
       {/* <button className="back-button-point" onClick={() => window.location.reload()}>
         Play Again
@@ -401,8 +388,7 @@ const AimPointGame = () => {
             <div
                 key={index}
                 className={`board-cell-point ${
-                   board[Math.floor(index / 3)][index % 3] === activeTarget ? "active-target-point" : ""
-                    // index === activeTarget ? "active-target-point" : ""
+                    index === activeTarget ? "active-target-point" : ""
                 }`}
                 onClick={() => {
                     handleInputThrow(index); 

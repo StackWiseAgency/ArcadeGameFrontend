@@ -11,7 +11,7 @@
   padding: 20px;
   font-family: 'Gameplay', sans-serif;
   box-sizing: border-box;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   min-height: 100vh;
   overflow: hidden;
 }

@@ -96,15 +96,15 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
 
   ]);
 
-  // const initialGrid = Array(3)
-  //   .fill(null)
-  //   .map(() => Array(3).fill(null));
+  const initialGrid = Array(3)
+    .fill(null)
+    .map(() => Array(3).fill(null));
 
-  const initialGrid = [
-    [7, 8, 9],  // Custom order for row 0
-    [4, 5, 6],  // Custom order for row 1
-    [1, 2, 3],  // Custom order for row 2
-  ];
+  // const initialGrid = [
+  //   [7, 8, 9],  // Custom order for row 0
+  //   [4, 5, 6],  // Custom order for row 1
+  //   [1, 2, 3],  // Custom order for row 2
+  // ];
 
     //hskdjbskbskdbkvc
   // eslint-disable-next-line  
@@ -331,21 +331,20 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         });
   
         if (response.status === 200 && response.data.dataModel) {
-         
+          // console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
             response.data.dataModel.forEach((dataItem) => {
-             
+              // Ensure tags exist in each dataItem
               if (dataItem.tags && Array.isArray(dataItem.tags)) {
-               
+                // Loop through the tags array in each dataItem
                 dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
                   if (epc && antennaPort) {
-                  
-                    // const row = Math.floor((antennaPort - 1) / 3); 
-                    // const col = (antennaPort - 1) % 3; 
-
-                    const row = 2 - Math.floor((antennaPort - 1) / 3); 
-                    const col = (antennaPort - 1) % 3; 
-
-                   
+                    // Map antennaPort (1-9) to row and column for a 3x3 grid
+                    const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
+                    const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
+    
+                    // console.log(`🎯 Move Processed: EPC=${epc}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
+                    
+                    // Pass the calculated row and column to handleInputThrow
                     handleInputThrow(epc, row, col);
                   }
                 });
@@ -359,11 +358,11 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       }
     };
   
-    const intervalId = setInterval(fetchGameMoves, 2000); 
+    const intervalId = setInterval(fetchGameMoves, 2000); // ✅ Polling every 2 seconds
   
     return () => {
-      clearInterval(intervalId); 
-  
+      clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
+      // console.log("🔄 Polling stopped.");
     };
   }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
   

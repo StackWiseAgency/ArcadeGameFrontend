@@ -198,7 +198,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
     const interval = setInterval(() => {
       fetchAntennaDataFromAPI(); // Call API function periodically
-    }, 1000); // Fetch every 0.1 seconds
+    }, 100); // Fetch every 0.1 seconds
 
     return () => clearInterval(interval); 
   }, [useApiInput, isGameOver, fetchAntennaDataFromAPI]);

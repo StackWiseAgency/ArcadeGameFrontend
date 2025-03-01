@@ -96,15 +96,15 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
 
   ]);
 
-  // const initialGrid = Array(3)
-  //   .fill(null)
-  //   .map(() => Array(3).fill(null));
+  const initialGrid = Array(3)
+    .fill(null)
+    .map(() => Array(3).fill(null));
 
-  const initialGrid = [
-    [7, 8, 9],  // Custom order for row 0
-    [4, 5, 6],  // Custom order for row 1
-    [1, 2, 3],  // Custom order for row 2
-  ];
+  // const initialGrid = [
+  //   [7, 8, 9],  // Custom order for row 0
+  //   [4, 5, 6],  // Custom order for row 1
+  //   [1, 2, 3],  // Custom order for row 2
+  // ];
 
     //hskdjbskbskdbkvc
   // eslint-disable-next-line  
@@ -339,12 +339,8 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
                 dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
                   if (epc && antennaPort) {
                   
-                    // const row = Math.floor((antennaPort - 1) / 3); 
-                    // const col = (antennaPort - 1) % 3; 
-
-                    const row = 2 - Math.floor((antennaPort - 1) / 3); 
+                    const row = Math.floor((antennaPort - 1) / 3); 
                     const col = (antennaPort - 1) % 3; 
-
                    
                     handleInputThrow(epc, row, col);
                   }

@@ -36,6 +36,16 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const useApiInput = true; 
 
   const epcMapping = {
+    // EPC001: { type: "normal", points: 10, color: purpleDisc },
+    // EPC002: { type: "normal", points: 10, color: redDisc },
+    // EPC003: { type: "normal", points: 10, color: orangeDisc },
+    // EPC004: { type: "normal", points: 10, color: blueDisc },
+    // EPC005: { type: "normal", points: 10, color: yellowDisc },
+    // EPC011: { type: "bonus", points: 20, color: greenDisc },
+    // EPC012: { type: "bonus", points: 20, color: blueDisc },
+    // EPC013: { type: "bonus", points: 20, color: redDisc },
+    // EPC014: { type: "bonus", points: 20, color: yellowDisc },
+    // EPC015: { type: "bonus", points: 20, color: orangeDisc },
 
     E28011700000021C035AE34C: { type: "normal", points: 10, color: purpleDisc },
     E28011700000021C035AE347: { type: "normal", points: 10, color: redDisc },
@@ -66,6 +76,28 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   };
 
   const [remainingDiscs, setRemainingDiscs] = useState([
+    // { epc: "EPC001", ...epcMapping["EPC001"] },
+    // { epc: "EPC002", ...epcMapping["EPC002"] },
+    // { epc: "EPC003", ...epcMapping["EPC003"] },
+    // { epc: "EPC004", ...epcMapping["EPC004"] },
+    // { epc: "EPC005", ...epcMapping["EPC005"] },
+    // { epc: "EPC006", ...epcMapping["EPC001"] },
+    // { epc: "EPC007", ...epcMapping["EPC002"] },
+    // { epc: "EPC008", ...epcMapping["EPC003"] },
+    // { epc: "EPC009", ...epcMapping["EPC004"] },
+    // { epc: "EPC010", ...epcMapping["EPC005"] },
+    // { epc: "EPC011", ...epcMapping["EPC011"] },
+    // { epc: "EPC012", ...epcMapping["EPC012"] },
+    // { epc: "EPC013", ...epcMapping["EPC013"] },
+    // { epc: "EPC014", ...epcMapping["EPC014"] },
+    // { epc: "EPC015", ...epcMapping["EPC015"] },
+    // { epc: "EPC016", ...epcMapping["EPC011"] },
+    // { epc: "EPC017", ...epcMapping["EPC012"] },
+    // { epc: "EPC018", ...epcMapping["EPC013"] },
+    // { epc: "EPC019", ...epcMapping["EPC014"] },
+    // { epc: "EPC020", ...epcMapping["EPC015"] },
+
+
     // New normal Frisbees
     { epc: "E28011700000021C035AE34C", ...epcMapping["E28011700000021C035AE34C"] },
     { epc: "E28011700000021C035AE347", ...epcMapping["E28011700000021C035AE347"] },
@@ -96,15 +128,15 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
 
   ]);
 
-  // const initialGrid = Array(3)
-  //   .fill(null)
-  //   .map(() => Array(3).fill(null));
+  const initialGrid = Array(3)
+    .fill(null)
+    .map(() => Array(3).fill(null));
 
-  const initialGrid = [
-    [7, 8, 9],  // Custom order for row 0
-    [4, 5, 6],  // Custom order for row 1
-    [1, 2, 3],  // Custom order for row 2
-  ];
+  // const initialGrid = [
+  //   [7, 8, 9],  // Custom order for row 0
+  //   [4, 5, 6],  // Custom order for row 1
+  //   [1, 2, 3],  // Custom order for row 2
+  // ];
 
     //hskdjbskbskdbkvc
   // eslint-disable-next-line  
@@ -331,21 +363,20 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         });
   
         if (response.status === 200 && response.data.dataModel) {
-         
+          // console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
             response.data.dataModel.forEach((dataItem) => {
-             
+              // Ensure tags exist in each dataItem
               if (dataItem.tags && Array.isArray(dataItem.tags)) {
-               
+                // Loop through the tags array in each dataItem
                 dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
                   if (epc && antennaPort) {
-                  
-                    // const row = Math.floor((antennaPort - 1) / 3); 
-                    // const col = (antennaPort - 1) % 3; 
-
-                    const row = 2 - Math.floor((antennaPort - 1) / 3); 
-                    const col = (antennaPort - 1) % 3; 
-
-                   
+                    // Map antennaPort (1-9) to row and column for a 3x3 grid
+                    const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
+                    const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
+    
+                    // console.log(`🎯 Move Processed: EPC=${epc}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
+                    
+                    // Pass the calculated row and column to handleInputThrow
                     handleInputThrow(epc, row, col);
                   }
                 });
@@ -359,11 +390,11 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       }
     };
   
-    const intervalId = setInterval(fetchGameMoves, 2000); 
+    const intervalId = setInterval(fetchGameMoves, 2000); // ✅ Polling every 2 seconds
   
     return () => {
-      clearInterval(intervalId); 
-  
+      clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
+      // console.log("🔄 Polling stopped.");
     };
   }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
   

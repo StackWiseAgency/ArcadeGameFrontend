@@ -7,7 +7,6 @@ import timerpng from "../assets/timer.png";
 import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
-import axios from "axios";
 
 
 
@@ -126,70 +125,38 @@ const LightsOutWorld = ({ navigateToSelection }) => {
     }
   }, [grid, isGameOver, handleGameEnd, resetGrid, remainingDiscs, userHasThrown]);
   
-  // const fetchAntennaDataFromAPI = useCallback(async () => {
-  //   if (!useApiInput || isGameOver) return; 
+  const fetchAntennaDataFromAPI = useCallback(async () => {
+    if (!useApiInput || isGameOver) return; 
 
-  //   const fetchWithRetry = async (url, retries = 3) => {
-  //     for (let i = 0; i < retries; i++) {
-  //       try {
-  //         const response = await fetch(url, {
-  //           method: "POST", 
-  //           headers: {
-  //             "Content-Type": "application/json", 
-  //             "Referer": "http://localhost:3000",
-  //           },
-  //           body: JSON.stringify({ /* Include payload if needed */ }),
-  //         });
-  //         if (response.ok) return await response.json();
-  //       } catch (error) {
-  //         if (i === retries - 1) throw error; 
-  //       }
-  //     }
-  //   };
+    const fetchWithRetry = async (url, retries = 3) => {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const response = await fetch(url, {
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json", 
+              "Referer": "http://localhost:3000",
+            },
+            body: JSON.stringify({ /* Include payload if needed */ }),
+          });
+          if (response.ok) return await response.json();
+        } catch (error) {
+          if (i === retries - 1) throw error; 
+        }
+      }
+    };
     
 
-  //   try {
-  //     const data = await fetchWithRetry(Lights_Out_get_API, 3); // Retry 3 times
-  //     const { row, col } = data;
-  //     if (row >= 0 && row < 3 && col >= 0 && col < 3) { // Validate row and col
-  //       handleThrow(row, col);
-  //     } else {
-  //       console.warn("Invalid data received from API:", data);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching antenna data:", error);
-  //   }
-  // }, [useApiInput, isGameOver, handleThrow]);
-  const fetchAntennaDataFromAPI = useCallback(async () => {
-    if (!useApiInput || isGameOver) return;
-
     try {
-      const response = await axios.get(Lights_Out_get_API);
-      
-      if (response.status !== 200) {
-        console.warn("⚠️ API request failed");
-        return;
-      }
-      
-      const data = response.data;
-      if (data && Array.isArray(data.dataModel)) {
-        data.dataModel.forEach((dataItem) => {
-          if (dataItem.tags && Array.isArray(dataItem.tags)) {
-            dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
-              if (epc && antennaPort) {
-                const row = Math.floor((antennaPort - 1) / 3);
-                const col = (antennaPort - 1) % 3;
-                // handleThrow(epc, row, col);
-                handleThrow(row, col);
-              }
-            });
-          }
-        });
+      const data = await fetchWithRetry(Lights_Out_get_API, 3); // Retry 3 times
+      const { row, col } = data;
+      if (row >= 0 && row < 3 && col >= 0 && col < 3) { // Validate row and col
+        handleThrow(row, col);
       } else {
-        console.warn("⚠️ API response missing dataModel or tags.");
+        console.warn("Invalid data received from API:", data);
       }
     } catch (error) {
-      console.error("🚨 Error fetching antenna data:", error);
+      console.error("Error fetching antenna data:", error);
     }
   }, [useApiInput, isGameOver, handleThrow]);
   
@@ -198,7 +165,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
     const interval = setInterval(() => {
       fetchAntennaDataFromAPI(); // Call API function periodically
-    }, 1000); // Fetch every 0.1 seconds
+    }, 100); // Fetch every 0.1 seconds
 
     return () => clearInterval(interval); 
   }, [useApiInput, isGameOver, fetchAntennaDataFromAPI]);

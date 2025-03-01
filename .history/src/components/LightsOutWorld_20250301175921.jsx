@@ -7,7 +7,6 @@ import timerpng from "../assets/timer.png";
 import pawn from "../assets/pawn.png";
 import star from "../assets/star.png";
 import gameRemote from "../assets/gameremote.png";
-import axios from "axios";
 
 
 
@@ -198,7 +197,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
     const interval = setInterval(() => {
       fetchAntennaDataFromAPI(); // Call API function periodically
-    }, 1000); // Fetch every 0.1 seconds
+    }, 100); // Fetch every 0.1 seconds
 
     return () => clearInterval(interval); 
   }, [useApiInput, isGameOver, fetchAntennaDataFromAPI]);

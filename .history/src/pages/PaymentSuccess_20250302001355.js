@@ -8,7 +8,7 @@ import CryptoJS from "crypto-js"; // Assuming you are using CryptoJS for encrypt
 import "./PaymentSuccess.css";
 
 const SECRET_KEY=process.env.React_APP_SECRET_KEY;
-const ADD_toQueue_API="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/playersInQueue/Add";
+const ADD_toQueue_API=process.env.React_APP_ADD_toQueue_API;
 
 const PaymentSuccess = () => {
   const [paymentData, setPaymentData] = useState(null); // To hold the decrypted data

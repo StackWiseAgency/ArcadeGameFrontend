@@ -226,29 +226,9 @@ const PlayersQueue = ({ onClose }) => {
         <Input type="email" placeholder="Enter email" value={authEmail} onChange={(e) => setAuthEmail(e.target.value)} style={{ marginBottom: 10 }} />
         <Input type="password" placeholder="Enter password" value={authPassword} onChange={(e) => setAuthPassword(e.target.value)} style={{ marginBottom: 10 }} />
         {authError && <p style={{ color: "red" }}>{authError}</p>}
-        {/* <Button type="primary" onClick={authenticateUser} style={{ width: "100%", marginBottom: 10, background: "rgb(66, 199, 51)" }} className="Button1">
+        <Button type="primary" onClick={authenticateUser} style={{ width: "100%", marginBottom: 10, background: "rgb(66, 199, 51)" }} className="Button1">
           Verify & Start
-        </Button> */}
-        <Button 
-            type="primary" 
-            onClick={() => {
-              authenticateUser(); // Existing function call
-
-              // API call to Clear_RFID_Queue_API
-              axios.get(Clear_RFID_Queue_API)
-                  .then(response => {
-                      console.log("✅ RFID Queue Cleared Successfully:", response.data);
-                  })
-                  .catch(error => {
-                      console.error("🚨 Error clearing RFID queue:", error);
-                  });
-              }} 
-              style={{ width: "100%", marginBottom: 10, background: "rgb(66, 199, 51)" }} 
-              className="Button1"
-        >
-              Verify & Start
         </Button>
-
       </Modal>
     </div>
   );

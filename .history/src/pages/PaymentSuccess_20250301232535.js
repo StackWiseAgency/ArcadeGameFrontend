@@ -103,11 +103,11 @@ const PaymentSuccess = () => {
 
       {error && <div className="error-message">{error}</div>}
 
-      {/* {loading ? (
+      {loading ? (
         <p>Loading...</p>
       ) : (
         <Link to="/GameSelect" className="btn btn-primary">Back to Games</Link>
-      )} */}
+      )}
     </div>
   );
 };

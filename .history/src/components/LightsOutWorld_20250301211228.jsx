@@ -83,15 +83,6 @@ const LightsOutWorld = ({ navigateToSelection }) => {
     [1, 2, 3],  // Custom order for row 2
   ];
 
-  const validEpcTags = new Set([
-    "E28011700000021C035AE34C", "E28011700000021C035AE347", "E28011700000021C035AE241", "E28011700000021C035AE246",
-    "E28011700000021C035AEB4A", "E28011700000021C035AE24B", "E28011700000021C035AEB40", "E28011700000021C035AEB45",
-    "E28011700000021C035AEB4F", "E28011700000021C035AEA49", "E28011700000021C035AEA44", "E28011700000021C035AEA4E",
-    "E28011700000021C035AFA39", "E28011700000021C035AFA34", "E28011700000021C035AFB3F", "E28011700000021C035AFB3A",
-    "E28011700000021C035AFB35", "E28011700000021C035AFB30", "E28011700000021C035AF23B", "E28011700000021C035AF236",
-    "E28011700000021C035AF231", "E28011700000021C035AF343", "E28011700000021C035AF33C", "E28011700000021C035AF337"
-]);
-
   const resetGrid = useCallback(() => {
     // const newGrid = Array(3)
     //   .fill(null)
@@ -239,7 +230,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
             data.dataModel.forEach((dataItem) => {
                 if (dataItem.tags && Array.isArray(dataItem.tags)) {
                     dataItem.tags.forEach(({ epc, antennaPort }) => {
-                        if (validEpcTags.has(epc) && antennaPort) {
+                        if (epc && antennaPort) {
                             // const row = (antennaPort - 1) % 3;
                             // const col = 2 - Math.floor((antennaPort - 1) / 3);
 
@@ -264,7 +255,6 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
     // Cleanup: Cancel previous requests when a new one is made
     return () => source.cancel("New API request made, cancelling previous one.");
-  // eslint-disable-next-line
   }, [useApiInput, isGameOver, handleThrow]);
 
   

@@ -243,7 +243,7 @@ const AimPointGame = () => {
         console.error("🚨 Error fetching data:", error);
       }
     };
-    const intervalId = setInterval(fetchData, 3000);
+    const intervalId = setInterval(fetchData, 500);
     return () => {
       clearInterval(intervalId); 
      

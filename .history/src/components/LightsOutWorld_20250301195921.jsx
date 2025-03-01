@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useCallback } from "react";
 import Timer from "./Timer";
 import "./LightsOutWorld.css";
@@ -27,6 +25,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   const [lastThrowTime, setLastThrowTime] = useState(Date.now()); 
   const [useManualInput] = useState(false); 
   const [useApiInput] = useState(true); 
+  const [useWebSocketInput] = useState(false); 
   const [gameResults, setGameResults] = useState(null); 
 
   const API_tosendgame_result = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
@@ -72,31 +71,15 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   }, [grid, timer, remainingDiscs, misses]);
 
 
-  // const initialGrid = [
-  //   [7, 4, 1],  // Row 0
-  //   [8, 5, 2],  // Row 1
-  //   [9, 6, 3],  // Row 2
-  // ];
-   const initialGrid = [
-    [7, 8, 9],  // Custom order for row 0
-    [4, 5, 6],  // Custom order for row 1
-    [1, 2, 3],  // Custom order for row 2
+  const initialGrid = [
+    [7, 4, 1],  // Row 0
+    [8, 5, 2],  // Row 1
+    [9, 6, 3],  // Row 2
   ];
-
-  const validEpcTags = new Set([
-    "E28011700000021C035AE34C", "E28011700000021C035AE347", "E28011700000021C035AE241", "E28011700000021C035AE246",
-    "E28011700000021C035AEB4A", "E28011700000021C035AE24B", "E28011700000021C035AEB40", "E28011700000021C035AEB45",
-    "E28011700000021C035AEB4F", "E28011700000021C035AEA49", "E28011700000021C035AEA44", "E28011700000021C035AEA4E",
-    "E28011700000021C035AFA39", "E28011700000021C035AFA34", "E28011700000021C035AFB3F", "E28011700000021C035AFB3A",
-    "E28011700000021C035AFB35", "E28011700000021C035AFB30", "E28011700000021C035AF23B", "E28011700000021C035AF236",
-    "E28011700000021C035AF231", "E28011700000021C035AF343", "E28011700000021C035AF33C", "E28011700000021C035AF337"
-]);
-
   const resetGrid = useCallback(() => {
     // const newGrid = Array(3)
     //   .fill(null)
     //   .map(() => Array(3).fill(false)); 
-   
     const newGrid = initialGrid.map(row => row.map(() => false));
 
     let lightsToTurnOn = Math.floor(Math.random() * 3) + 3;
@@ -116,164 +99,119 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
   const handleThrow = useCallback((row, col) => {
     if (isGameOver) return;
-
-    if (!userHasThrown) { setUserHasThrown(true); }
+    if (!userHasThrown) {
+      setUserHasThrown(true); 
+    }
     setLastThrowTime(Date.now()); 
-
     if (remainingDiscs <= 1) {
       setRemainingDiscs(0); 
       handleGameEnd(); 
       return;
     }
 
-    // const newGrid = grid.map((gridRow, rowIndex) =>
-    //   gridRow.map((cell, colIndex) => {
-    //     if (rowIndex === row && colIndex === col) {
-    //       if (cell) {
-    //         setRemainingDiscs((prev) => Math.max(0, prev - 1)); 
-    //         return false; 
-    //       } else {
-    //         setMisses((prev) => prev + 1); 
-    //         setRemainingDiscs((prev) => Math.max(0, prev - 1)); 
-    //       }
-    //     }
-    //     return cell;
-    //   })
-    // );
-    // setGrid(newGrid);
+    const newGrid = grid.map((gridRow, rowIndex) =>
+      gridRow.map((cell, colIndex) => {
+        if (rowIndex === row && colIndex === col) {
+          if (cell) {
+            setRemainingDiscs((prev) => Math.max(0, prev - 1)); 
+            return false; 
+          } else {
+            setMisses((prev) => prev + 1); 
+            setRemainingDiscs((prev) => Math.max(0, prev - 1)); 
+          }
+        }
+        return cell;
+      })
+    );
+    setGrid(newGrid);
 
    
-    // if (newGrid.flat().every((cell) => !cell)) {
-    //   if (remainingDiscs > 0) {
-    //     resetGrid(); 
-    //   } else {
-    //     handleGameEnd(); 
-    //   }
-    // }
-    setGrid(prevGrid => {
-      const newGrid = prevGrid.map((gridRow, rowIndex) =>
-          gridRow.map((cell, colIndex) => {
-              if (rowIndex === row && colIndex === col) {
-                  if (cell) {
-                      setRemainingDiscs(prev => Math.max(0, prev - 1));
-                      return false;
-                  } else {
-                      setMisses(prev => prev + 1);
-                      setRemainingDiscs(prev => Math.max(0, prev - 1));
-                  }
-              }
-              return cell;
-          })
-      );
-
-      if (newGrid.flat().every(cell => !cell)) {
-          if (remainingDiscs > 0) {
-              resetGrid();
-          } else {
-              handleGameEnd();
-          }
+    if (newGrid.flat().every((cell) => !cell)) {
+      if (remainingDiscs > 0) {
+        resetGrid(); 
+      } else {
+        handleGameEnd(); 
       }
-
-      return newGrid;
-  });
-  }, [ isGameOver, handleGameEnd, resetGrid, remainingDiscs, userHasThrown]);
+    }
+  }, [grid, isGameOver, handleGameEnd, resetGrid, remainingDiscs, userHasThrown]);
   
-
   // const fetchAntennaDataFromAPI = useCallback(async () => {
-  //   if (!useApiInput || isGameOver) return;
+  //   if (!useApiInput || isGameOver) return; 
 
-  //   const source = axios.CancelToken.source();
+  //   const fetchWithRetry = async (url, retries = 3) => {
+  //     for (let i = 0; i < retries; i++) {
+  //       try {
+  //         const response = await fetch(url, {
+  //           method: "POST", 
+  //           headers: {
+  //             "Content-Type": "application/json", 
+  //             "Referer": "http://localhost:3000",
+  //           },
+  //           body: JSON.stringify({ /* Include payload if needed */ }),
+  //         });
+  //         if (response.ok) return await response.json();
+  //       } catch (error) {
+  //         if (i === retries - 1) throw error; 
+  //       }
+  //     }
+  //   };
+    
 
   //   try {
-  //     // const response = await axios.get(Lights_Out_get_API);
-  //     const response = await axios.get(Lights_Out_get_API, { cancelToken: source.token });
-      
-  //     if (response.status !== 200) {
-  //       console.warn("⚠️ API request failed");
-  //       return;
-  //     }
-      
-  //     const data = response.data;
-  //     if (data && Array.isArray(data.dataModel)) {
-  //       data.dataModel.forEach((dataItem) => {
-  //         if (dataItem.tags && Array.isArray(dataItem.tags)) {
-  //           dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
-  //             if (epc && antennaPort) {
-  //               // const row = Math.floor((antennaPort - 1) / 3);
-  //               // const col = (antennaPort - 1) % 3;
-
-  //               const row = (antennaPort - 1) % 3;
-  //               const col = 2 - Math.floor((antennaPort - 1) / 3);
-                
-  //               // handleThrow(epc, row, col);
-  //               handleThrow(row, col);
-  //             }
-  //           });
-  //         }
-  //       });
+  //     const data = await fetchWithRetry(Lights_Out_get_API, 3); // Retry 3 times
+  //     const { row, col } = data;
+  //     if (row >= 0 && row < 3 && col >= 0 && col < 3) { // Validate row and col
+  //       handleThrow(row, col);
   //     } else {
-  //       console.warn("⚠️ API response missing dataModel or tags.");
+  //       console.warn("Invalid data received from API:", data);
   //     }
   //   } catch (error) {
-  //     console.error("🚨 Error fetching antenna data:", error);
+  //     console.error("Error fetching antenna data:", error);
   //   }
   // }, [useApiInput, isGameOver, handleThrow]);
-
   const fetchAntennaDataFromAPI = useCallback(async () => {
     if (!useApiInput || isGameOver) return;
 
-    // Create a cancel token to prevent overlapping requests
-    const source = axios.CancelToken.source();
-
     try {
-        // Fetch the latest antenna data from API
-        const response = await axios.get(Lights_Out_get_API, { cancelToken: source.token });
+      const response = await axios.get(Lights_Out_get_API);
+      
+      if (response.status !== 200) {
+        console.warn("⚠️ API request failed");
+        return;
+      }
+      
+      const data = response.data;
+      if (data && Array.isArray(data.dataModel)) {
+        data.dataModel.forEach((dataItem) => {
+          if (dataItem.tags && Array.isArray(dataItem.tags)) {
+            dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
+              if (epc && antennaPort) {
+                // const row = Math.floor((antennaPort - 1) / 3);
+                // const col = (antennaPort - 1) % 3;
 
-        if (response.status !== 200) {
-            console.warn("⚠️ API request failed");
-            return;
-        }
-
-        const data = response.data;
-        if (data && Array.isArray(data.dataModel)) {
-            data.dataModel.forEach((dataItem) => {
-                if (dataItem.tags && Array.isArray(dataItem.tags)) {
-                    dataItem.tags.forEach(({ epc, antennaPort }) => {
-                        if (validEpcTags.has(epc) && antennaPort) {
-                            // const row = (antennaPort - 1) % 3;
-                            // const col = 2 - Math.floor((antennaPort - 1) / 3);
-
-                              const row = 2 - Math.floor((antennaPort - 1) / 3); 
-                              const col = (antennaPort - 1) % 3; 
-                            
-                            handleThrow(row, col);
-                        }
-                    });
-                }
+                const row = (antennaPort - 1) % 3;
+                const col = 2 - Math.floor((antennaPort - 1) / 3);
+                
+                // handleThrow(epc, row, col);
+                handleThrow(row, col);
+              }
             });
-        } else {
-            console.warn("⚠️ API response missing dataModel or tags.");
-        }
+          }
+        });
+      } else {
+        console.warn("⚠️ API response missing dataModel or tags.");
+      }
     } catch (error) {
-        if (axios.isCancel(error)) {
-            console.log("🛑 API request cancelled:", error.message);
-        } else {
-            console.error("🚨 Error fetching antenna data:", error);
-        }
+      console.error("🚨 Error fetching antenna data:", error);
     }
-
-    // Cleanup: Cancel previous requests when a new one is made
-    return () => source.cancel("New API request made, cancelling previous one.");
-  // eslint-disable-next-line
   }, [useApiInput, isGameOver, handleThrow]);
-
   
   useEffect(() => {
     if (!useApiInput || isGameOver) return;
 
     const interval = setInterval(() => {
       fetchAntennaDataFromAPI(); // Call API function periodically
-    }, 500); // Fetch every 0.1 seconds
+    }, 2000); // Fetch every 0.1 seconds
 
     return () => clearInterval(interval); 
   }, [useApiInput, isGameOver, fetchAntennaDataFromAPI]);
@@ -288,6 +226,42 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
     return () => clearInterval(timerInterval);
   }, [userHasThrown, isGameOver]);
+
+  useEffect(() => {
+    if (!useWebSocketInput || isGameOver) return;
+
+    const connection = new signalR.HubConnectionBuilder()
+      .withUrl("https://arcadegamebackendapi20241227164011.azurewebsites.net/gameHub", {
+        transport: signalR.HttpTransportType.WebSockets | 
+                  signalR.HttpTransportType.ServerSentEvents | 
+                  signalR.HttpTransportType.LongPolling, 
+                   //skipNegotiation: true,
+      })
+      .withHubProtocol(new signalR.JsonHubProtocol())
+      .configureLogging(signalR.LogLevel.Information) // Optional: Logging for debugging
+      .withAutomaticReconnect() 
+      .build();
+
+    connection.start()
+      .then(() => {
+        //console.log("SignalR connection established using fallback transports");
+        connection.on("ReceiveMove", (row, col) => {
+        //  console.log(`Move received: Row=${row}, Col=${col}`);
+          handleThrow(row, col); // Update UI or game state
+        });
+      })
+      .catch((err) => console.error("SignalR connection error:", err));
+
+    return () => {
+      if (connection) {
+        connection.stop()
+            .then(() => 
+              console.log("SignalR connection stopped")
+          )
+            .catch((err) => console.error("Error stopping SignalR connection:", err));
+      }
+    };
+  }, [useWebSocketInput, isGameOver, handleThrow]);
 
   useEffect(() => {
     if (isGameOver) return;
@@ -312,6 +286,9 @@ const LightsOutWorld = ({ navigateToSelection }) => {
       <p>Time: {`${Math.floor(timer / 60)}:${timer % 60}`}</p>
       <p>Discs Left: {remainingDiscs}</p>
       <p>Misses: {misses}</p>
+      {/* <button className="lights-back-button" onClick={navigateToSelection}>
+        Back to Game Selection
+      </button> */}
     </div>
   );
 

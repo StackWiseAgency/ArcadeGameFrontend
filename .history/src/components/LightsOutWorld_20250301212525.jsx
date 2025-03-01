@@ -264,7 +264,6 @@ const LightsOutWorld = ({ navigateToSelection }) => {
 
     // Cleanup: Cancel previous requests when a new one is made
     return () => source.cancel("New API request made, cancelling previous one.");
-  // eslint-disable-next-line
   }, [useApiInput, isGameOver, handleThrow]);
 
   

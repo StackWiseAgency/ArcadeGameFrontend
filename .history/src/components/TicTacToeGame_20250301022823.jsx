@@ -13,7 +13,7 @@ import { Card, Typography } from 'antd';
 
 const { Title, Text } = Typography;
 
-const API_URL_Tic_Tac_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
+const API_URL_gameresult = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
 
 const TicTacToeGame = ({ navigateToSelection }) => {
   const initialBoard = Array(3)
@@ -288,7 +288,7 @@ const TicTacToeGame = ({ navigateToSelection }) => {
 
   const sendResultsToAPI = async (results) => {
     try {
-        const response = await fetch(API_URL_Tic_Tac_gameresult, {
+        const response = await fetch(API_URL_gameresult, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

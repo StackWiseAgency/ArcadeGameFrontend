@@ -80,7 +80,7 @@ const AimPointGame = () => {
   const [board] = useState(Array(3).fill(Array(3).fill(null))); // 3x3 grid
   const [score, setScore] = useState(0); // Player's score
   const [missedTargets, setMissedTargets] = useState(0); // Missed targets count
-  const [timer, setTimer] = useState(120); // 2-minute timer
+  const [timer, setTimer] = useState(180); // 2-minute timer
   const [gameEnded, setGameEnded] = useState(false); // Game over flag
   const [frisbees, setFrisbees] = useState(20); // Total number of frisbees
   const useManualInput = false;  // Toggle for manual board clicks
@@ -215,21 +215,46 @@ const AimPointGame = () => {
   // }, [useApiInput, handleMove]);
 
   useEffect(() => {
-    if (!useApiInput || gameEnded) return; 
+    if (!useApiInput) return; // ✅ Prevent unnecessary API calls if useApiInput is false
+
+    // Function to fetch data from the API endpoint
     const fetchData = async () => {
       try {
         const response = await axios.get(ReceiveMove_API, {
           headers: { "Content-Type": "application/json" },
         });
-    
+
+      //   if (response.status === 200 && response.data.dataModel) {
+      //     // const { epc, antennaPort, firstSeenTimestamp, isHeartBeat } = response.data;
+      //     response.data.dataModel.forEach((dataItem) => {
+      //       // Ensure tags exist in each dataItem
+      //       if (dataItem.tags && Array.isArray(dataItem.tags)) {
+      //         // Loop through the tags array in each dataItem
+      //         dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
+
+      //               // Log the received data for debugging
+      //                 console.log(`📡 Data Received: EPC=${epc}, Antenna Port=${antennaPort}, First Seen Timestamp=${firstSeenTimestamp}, Heartbeat=${isHeartBeat}`);
+
+      //               // Process the data by calling the provided handleMove function and passing only the antennaPort
+      //               handleMove(antennaPort); // Passing antennaPort only
+      //           }
+      //         });
+
+      //       }
+      // );  
       if (response.status === 200 && response.data.dataModel) {
+        // console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
           response.data.dataModel.forEach((dataItem) => {
-      
+            // Ensure tags exist in each dataItem
             if (dataItem.tags && Array.isArray(dataItem.tags)) {
-           
+              // Loop through the tags array in each dataItem
               dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
                 if (epc && antennaPort) {
-                 
+                  // Map antennaPort (1-9) to row and column for a 3x3 grid
+  
+                  // console.log(`🎯 Move Processed: EPC=${epc}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
+                  
+                  // Pass the calculated row and column to handleInputThrow
                   handleMove(antennaPort);
                 }
               });
@@ -243,12 +268,16 @@ const AimPointGame = () => {
         console.error("🚨 Error fetching data:", error);
       }
     };
+
+    // Poll the API every 0.1 second (100 milliseconds)
     const intervalId = setInterval(fetchData, 1000);
+
+    // Cleanup on component unmount
     return () => {
-      clearInterval(intervalId); 
-     
+      clearInterval(intervalId); // Stop polling when component is unmounted
+      console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, handleMove, gameEnded]);
+  }, [useApiInput, handleMove]);
 
   // useEffect(() => {
   //   if (!useApiInput) return; // Don't start if useApiInput is false

@@ -28,8 +28,8 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   const [gameResults, setGameResults] = useState(null); 
 
   const API_tosendgame_result = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
-  const Lights_Out_get_API="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Webhook/GetLatestRfidData";
-  //const ReceiveMove_API= process.env.React_APP_ReceiveMove_API;
+  const Lights_Out_get_API="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameSimulation/simulate";
+  const ReceiveMove_API= process.env.React_APP_ReceiveMove_API;
 
   const sendResultsToAPI = async (results) => {
     try {
@@ -148,7 +148,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
     
 
     try {
-      const data = await fetchWithRetry(Lights_Out_get_API, 3); // Retry 3 times
+      const data = await fetchWithRetry(ReceiveMove_API, 3); // Retry 3 times
       const { row, col } = data;
       if (row >= 0 && row < 3 && col >= 0 && col < 3) { // Validate row and col
         handleThrow(row, col);

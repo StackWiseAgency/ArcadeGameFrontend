@@ -20,7 +20,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const [score, setScore] = useState(0);
   // eslint-disable-next-line
   const [misses, setMisses] = useState(0); 
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
   const [startButtonDisabled, setStartButtonDisabled] = useState(false);
   
   const [timeRemaining, setTimeRemaining] = useState(120); 
@@ -348,7 +348,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   // }, [useApiInput, gameStarted, handleInputThrow]);
 
   useEffect(() => {
-    if (!useApiInput || !gameStarted || gameEnded) return; // ✅ Prevent unnecessary API calls
+    if (!useApiInput || !gameStarted) return; // ✅ Prevent unnecessary API calls
   
     const fetchGameMoves = async () => {
       try {
@@ -357,23 +357,23 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         });
   
         if (response.status === 200 && response.data.dataModel) {
-          // console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
-            response.data.dataModel.forEach((dataItem) => {
-              // Ensure tags exist in each dataItem
-              if (dataItem.tags && Array.isArray(dataItem.tags)) {
-                // Loop through the tags array in each dataItem
-                dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
-                  if (epc && antennaPort) {
-                    // Map antennaPort (1-9) to row and column for a 3x3 grid
-                    const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
-                    const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
-    
-                    // console.log(`🎯 Move Processed: EPC=${epc}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
-                    
-                    // Pass the calculated row and column to handleInputThrow
-                    handleInputThrow(epc, row, col);
-                  }
-                });
+          console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
+  
+          // Process the received data
+          response.data.dataModel.forEach((dataEntry) => {
+            if (dataEntry.tags && Array.isArray(dataEntry.tags)) {
+              dataEntry.tags.forEach(({ epctag, antennaPort, firstSeenTimestamp, isHeartBeat }) => {
+                if (epctag && antennaPort) {
+                  // Map antennaPort (1-9) to row and column for a 3x3 grid
+                  const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
+                  const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
+  
+                  console.log(`🎯 Move Processed: EPC=${epctag}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
+                  
+                  // Pass the calculated row and column to handleInputThrow
+                  handleInputThrow(epctag, row, col);
+                }
+              });
             }
           });
         } else {
@@ -388,9 +388,9 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   
     return () => {
       clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
-      // console.log("🔄 Polling stopped.");
+      console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
+  }, [useApiInput, gameStarted, handleInputThrow]);
   
   
   
@@ -506,7 +506,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
               </div>
             ))}
           </div>
-          {/* <button
+          <button
             className="start-button"
             onClick={() => {
               setGameStarted(true);
@@ -515,7 +515,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
             disabled={startButtonDisabled}
           >
             Start Game
-          </button> */}
+          </button>
         </>
       )}
 
@@ -538,7 +538,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         
       <div className="retro-disc-stack">
           <div className="normal-disc-stack">
-            <h3>Normal Discs: {remainingDiscs.filter((disc) => disc.type === "normal").length}</h3>
+            <h3>Normal Discs: {remainingDiscs.filter((disc) => disc.type === "normal").length-2}</h3>
             <div className="stack-container">
               {remainingDiscs.filter((disc) => disc.type === "normal").map((disc, index) => (
                 <img
@@ -555,7 +555,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
             </div>
           </div>
           <div className="bonus-disc-stack">
-            <h3>Bonus Discs: {remainingDiscs.filter((disc) => disc.type === "bonus").length}</h3>
+            <h3>Bonus Discs: {remainingDiscs.filter((disc) => disc.type === "bonus").length-2}</h3>
             <div className="stack-container">
               {remainingDiscs.filter((disc) => disc.type === "bonus").map((disc, index) => (
                 <img

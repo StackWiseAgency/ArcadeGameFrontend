@@ -20,7 +20,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const [score, setScore] = useState(0);
   // eslint-disable-next-line
   const [misses, setMisses] = useState(0); 
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
   const [startButtonDisabled, setStartButtonDisabled] = useState(false);
   
   const [timeRemaining, setTimeRemaining] = useState(120); 
@@ -76,56 +76,26 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   };
 
   const [remainingDiscs, setRemainingDiscs] = useState([
-    // { epc: "EPC001", ...epcMapping["EPC001"] },
-    // { epc: "EPC002", ...epcMapping["EPC002"] },
-    // { epc: "EPC003", ...epcMapping["EPC003"] },
-    // { epc: "EPC004", ...epcMapping["EPC004"] },
-    // { epc: "EPC005", ...epcMapping["EPC005"] },
-    // { epc: "EPC006", ...epcMapping["EPC001"] },
-    // { epc: "EPC007", ...epcMapping["EPC002"] },
-    // { epc: "EPC008", ...epcMapping["EPC003"] },
-    // { epc: "EPC009", ...epcMapping["EPC004"] },
-    // { epc: "EPC010", ...epcMapping["EPC005"] },
-    // { epc: "EPC011", ...epcMapping["EPC011"] },
-    // { epc: "EPC012", ...epcMapping["EPC012"] },
-    // { epc: "EPC013", ...epcMapping["EPC013"] },
-    // { epc: "EPC014", ...epcMapping["EPC014"] },
-    // { epc: "EPC015", ...epcMapping["EPC015"] },
-    // { epc: "EPC016", ...epcMapping["EPC011"] },
-    // { epc: "EPC017", ...epcMapping["EPC012"] },
-    // { epc: "EPC018", ...epcMapping["EPC013"] },
-    // { epc: "EPC019", ...epcMapping["EPC014"] },
-    // { epc: "EPC020", ...epcMapping["EPC015"] },
-
-
-    // New normal Frisbees
-    { epc: "E28011700000021C035AE34C", ...epcMapping["E28011700000021C035AE34C"] },
-    { epc: "E28011700000021C035AE347", ...epcMapping["E28011700000021C035AE347"] },
-    { epc: "E28011700000021C035AE241", ...epcMapping["E28011700000021C035AE241"] },
-    { epc: "E28011700000021C035AE246", ...epcMapping["E28011700000021C035AE246"] },
-    { epc: "E28011700000021C035AEB4A", ...epcMapping["E28011700000021C035AEB4A"] },
-    { epc: "E28011700000021C035AE24B", ...epcMapping["E28011700000021C035AE24B"] },
-    { epc: "E28011700000021C035AEB40", ...epcMapping["E28011700000021C035AEB40"] },
-    { epc: "E28011700000021C035AEB45", ...epcMapping["E28011700000021C035AEB45"] },
-    { epc: "E28011700000021C035AEB4F", ...epcMapping["E28011700000021C035AEB4F"] },
-    { epc: "E28011700000021C035AEA49", ...epcMapping["E28011700000021C035AEA49"] },
-    { epc: "E28011700000021C035AEA44", ...epcMapping["E28011700000021C035AEA44"] },
-    { epc: "E28011700000021C035AEA4E", ...epcMapping["E28011700000021C035AEA4E"] },
-
-    // New bonus Frisbees
-    { epc: "E28011700000021C035AFA39", ...epcMapping["E28011700000021C035AFA39"] },
-    { epc: "E28011700000021C035AFA34", ...epcMapping["E28011700000021C035AFA34"] },
-    { epc: "E28011700000021C035AFB3F", ...epcMapping["E28011700000021C035AFB3F"] },
-    { epc: "E28011700000021C035AFB3A", ...epcMapping["E28011700000021C035AFB3A"] },
-    { epc: "E28011700000021C035AFB35", ...epcMapping["E28011700000021C035AFB35"] },
-    { epc: "E28011700000021C035AFB30", ...epcMapping["E28011700000021C035AFB30"] },
-    { epc: "E28011700000021C035AF23B", ...epcMapping["E28011700000021C035AF23B"] },
-    { epc: "E28011700000021C035AF236", ...epcMapping["E28011700000021C035AF236"] },
-    { epc: "E28011700000021C035AF231", ...epcMapping["E28011700000021C035AF231"] },
-    { epc: "E28011700000021C035AF343", ...epcMapping["E28011700000021C035AF343"] },
-    { epc: "E28011700000021C035AF33C", ...epcMapping["E28011700000021C035AF33C"] },
-    { epc: "E28011700000021C035AF337", ...epcMapping["E28011700000021C035AF337"] },
-
+    { epc: "EPC001", ...epcMapping["EPC001"] },
+    { epc: "EPC002", ...epcMapping["EPC002"] },
+    { epc: "EPC003", ...epcMapping["EPC003"] },
+    { epc: "EPC004", ...epcMapping["EPC004"] },
+    { epc: "EPC005", ...epcMapping["EPC005"] },
+    { epc: "EPC006", ...epcMapping["EPC001"] },
+    { epc: "EPC007", ...epcMapping["EPC002"] },
+    { epc: "EPC008", ...epcMapping["EPC003"] },
+    { epc: "EPC009", ...epcMapping["EPC004"] },
+    { epc: "EPC010", ...epcMapping["EPC005"] },
+    { epc: "EPC011", ...epcMapping["EPC011"] },
+    { epc: "EPC012", ...epcMapping["EPC012"] },
+    { epc: "EPC013", ...epcMapping["EPC013"] },
+    { epc: "EPC014", ...epcMapping["EPC014"] },
+    { epc: "EPC015", ...epcMapping["EPC015"] },
+    { epc: "EPC016", ...epcMapping["EPC011"] },
+    { epc: "EPC017", ...epcMapping["EPC012"] },
+    { epc: "EPC018", ...epcMapping["EPC013"] },
+    { epc: "EPC019", ...epcMapping["EPC014"] },
+    { epc: "EPC020", ...epcMapping["EPC015"] },
   ]);
 
   const initialGrid = Array(3)
@@ -152,10 +122,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const handleApiThrow = useCallback((epc, row, col) => {
     if (!gameStarted) return; // ✅ Prevent handling throws if the game isn't running
   
-    // const disc = remainingDiscs.find((d) => d.epc === epc);
-    const validDiscs = remainingDiscs.slice(0, 20); // Only the first 20 discs are valid
-
-  const disc = validDiscs.find((d) => d.epc === epc);
+    const disc = remainingDiscs.find((d) => d.epc === epc);
     
     if (!disc) {
       console.warn(`🚨 Warning: Received invalid EPC - ${epc}`);
@@ -348,7 +315,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   // }, [useApiInput, gameStarted, handleInputThrow]);
 
   useEffect(() => {
-    if (!useApiInput || !gameStarted || gameEnded) return; // ✅ Prevent unnecessary API calls
+    if (!useApiInput || !gameStarted) return; // ✅ Prevent unnecessary API calls
   
     const fetchGameMoves = async () => {
       try {
@@ -357,23 +324,23 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
         });
   
         if (response.status === 200 && response.data.dataModel) {
-          // console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
-            response.data.dataModel.forEach((dataItem) => {
-              // Ensure tags exist in each dataItem
-              if (dataItem.tags && Array.isArray(dataItem.tags)) {
-                // Loop through the tags array in each dataItem
-                dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
-                  if (epc && antennaPort) {
-                    // Map antennaPort (1-9) to row and column for a 3x3 grid
-                    const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
-                    const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
-    
-                    // console.log(`🎯 Move Processed: EPC=${epc}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
-                    
-                    // Pass the calculated row and column to handleInputThrow
-                    handleInputThrow(epc, row, col);
-                  }
-                });
+          console.log("📡 Received Game Moves:", response.data.dataModel); // ✅ Debugging log
+  
+          // Process the received data
+          response.data.dataModel.forEach((dataEntry) => {
+            if (dataEntry.tags && Array.isArray(dataEntry.tags)) {
+              dataEntry.tags.forEach(({ epctag, antennaPort, firstSeenTimestamp, isHeartBeat }) => {
+                if (epctag && antennaPort) {
+                  // Map antennaPort (1-9) to row and column for a 3x3 grid
+                  const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
+                  const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
+  
+                  console.log(`🎯 Move Processed: EPC=${epctag}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
+                  
+                  // Pass the calculated row and column to handleInputThrow
+                  handleInputThrow(epctag, row, col);
+                }
+              });
             }
           });
         } else {
@@ -388,9 +355,9 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   
     return () => {
       clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
-      // console.log("🔄 Polling stopped.");
+      console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
+  }, [useApiInput, gameStarted, handleInputThrow]);
   
   
   
@@ -506,7 +473,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
               </div>
             ))}
           </div>
-          {/* <button
+          <button
             className="start-button"
             onClick={() => {
               setGameStarted(true);
@@ -515,7 +482,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
             disabled={startButtonDisabled}
           >
             Start Game
-          </button> */}
+          </button>
         </>
       )}
 

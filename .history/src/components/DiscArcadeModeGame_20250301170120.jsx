@@ -348,7 +348,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   // }, [useApiInput, gameStarted, handleInputThrow]);
 
   useEffect(() => {
-    if (!useApiInput || !gameStarted || gameEnded) return; // ✅ Prevent unnecessary API calls
+    if (!useApiInput || !gameStarted) return; // ✅ Prevent unnecessary API calls
   
     const fetchGameMoves = async () => {
       try {
@@ -390,7 +390,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
       // console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
+  }, [useApiInput, gameStarted, handleInputThrow]);
   
   
   

@@ -39,7 +39,7 @@ const games = [
     },
   ];
 
-
+const API_GAMES_URL = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Game/getAllGames";
 const API_GAMES_URL= process.env.REACT_APP_API_GAMES_URL;
 
 const GameSelectionPage = () => {

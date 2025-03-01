@@ -390,7 +390,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
       clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
       // console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
+  }, [useApiInput, gameStarted, handleInputThrow]);
   
   
   

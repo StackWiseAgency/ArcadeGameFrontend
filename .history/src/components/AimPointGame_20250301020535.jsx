@@ -215,27 +215,23 @@ const AimPointGame = () => {
   // }, [useApiInput, handleMove]);
 
   useEffect(() => {
-    if (!useApiInput || gameEnded) return; 
+    if (!useApiInput) return; // ✅ Prevent unnecessary API calls if useApiInput is false
+
+    // Function to fetch data from the API endpoint
     const fetchData = async () => {
       try {
         const response = await axios.get(ReceiveMove_API, {
           headers: { "Content-Type": "application/json" },
         });
-    
-      if (response.status === 200 && response.data.dataModel) {
-          response.data.dataModel.forEach((dataItem) => {
-      
-            if (dataItem.tags && Array.isArray(dataItem.tags)) {
-           
-              dataItem.tags.forEach(({ epc, antennaPort, firstSeenTimestamp }) => {
-                if (epc && antennaPort) {
-                 
-                  handleMove(antennaPort);
-                }
-              });
-          }
-        });
-        
+
+        if (response.status === 200 && response.data) {
+          const { epc, antennaPort, firstSeenTimestamp, isHeartBeat } = response.data;
+
+          // Log the received data for debugging
+          console.log(`📡 Data Received: EPC=${epc}, Antenna Port=${antennaPort}, First Seen Timestamp=${firstSeenTimestamp}, Heartbeat=${isHeartBeat}`);
+
+          // Process the data by calling the provided handleMove function and passing only the antennaPort
+          handleMove(antennaPort); // Passing antennaPort only
         } else {
           console.warn("⚠️ API response is missing data or invalid.");
         }
@@ -243,12 +239,16 @@ const AimPointGame = () => {
         console.error("🚨 Error fetching data:", error);
       }
     };
+
+    // Poll the API every 0.1 second (100 milliseconds)
     const intervalId = setInterval(fetchData, 1000);
+
+    // Cleanup on component unmount
     return () => {
-      clearInterval(intervalId); 
-     
+      clearInterval(intervalId); // Stop polling when component is unmounted
+      console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, handleMove, gameEnded]);
+  }, [useApiInput, handleMove]);
 
   // useEffect(() => {
   //   if (!useApiInput) return; // Don't start if useApiInput is false

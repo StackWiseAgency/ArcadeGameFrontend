@@ -20,7 +20,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   const [score, setScore] = useState(0);
   // eslint-disable-next-line
   const [misses, setMisses] = useState(0); 
-  const [gameStarted, setGameStarted] = useState(true);
+  const [gameStarted, setGameStarted] = useState(false);
   const [startButtonDisabled, setStartButtonDisabled] = useState(false);
   
   const [timeRemaining, setTimeRemaining] = useState(120); 
@@ -348,7 +348,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   // }, [useApiInput, gameStarted, handleInputThrow]);
 
   useEffect(() => {
-    if (!useApiInput || !gameStarted || gameEnded) return; // ✅ Prevent unnecessary API calls
+    if (!useApiInput || !gameStarted) return; // ✅ Prevent unnecessary API calls
   
     const fetchGameMoves = async () => {
       try {
@@ -374,6 +374,21 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
                     handleInputThrow(epc, row, col);
                   }
                 });
+          // Process the received data
+          // response.data.dataModel.forEach((dataEntry) => {
+          //   if (dataEntry.tags && Array.isArray(dataEntry.tags)) {
+          //     dataEntry.tags.forEach(({ epctag, antennaPort, firstSeenTimestamp, isHeartBeat }) => {
+          //       if (epctag && antennaPort) {
+          //         // Map antennaPort (1-9) to row and column for a 3x3 grid
+          //         const row = Math.floor((antennaPort - 1) / 3); // Calculate row based on antennaPort
+          //         const col = (antennaPort - 1) % 3; // Calculate column based on antennaPort
+  
+          //         console.log(`🎯 Move Processed: EPC=${epctag}, Row=${row}, Col=${col}, Antenna=${antennaPort}, Time=${firstSeenTimestamp}`);
+                  
+          //         // Pass the calculated row and column to handleInputThrow
+          //         handleInputThrow(epctag, row, col);
+          //       }
+          //     });
             }
           });
         } else {
@@ -388,9 +403,9 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
   
     return () => {
       clearInterval(intervalId); // ✅ Cleanup polling when component unmounts
-      // console.log("🔄 Polling stopped.");
+      console.log("🔄 Polling stopped.");
     };
-  }, [useApiInput, gameStarted, handleInputThrow, gameEnded]);
+  }, [useApiInput, gameStarted, handleInputThrow]);
   
   
   
@@ -506,7 +521,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
               </div>
             ))}
           </div>
-          {/* <button
+          <button
             className="start-button"
             onClick={() => {
               setGameStarted(true);
@@ -515,7 +530,7 @@ const DiscArcadeModeGame = ({ navigateToSelection }) => {
             disabled={startButtonDisabled}
           >
             Start Game
-          </button> */}
+          </button>
         </>
       )}
 

@@ -28,7 +28,7 @@ const LightsOutWorld = ({ navigateToSelection }) => {
   const [gameResults, setGameResults] = useState(null); 
 
   const API_tosendgame_result = "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameStatistics/createGameStatistics";
-  const Lights_Out_get_API="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Webhook/GetLatestRfidData";
+  const Lights_Out_get_API="https://arcadegamebackendapi20241227164011.azurewebsites.net/api/GameSimulation/simulate";
   //const ReceiveMove_API= process.env.React_APP_ReceiveMove_API;
 
   const sendResultsToAPI = async (results) => {

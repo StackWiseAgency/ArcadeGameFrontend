@@ -4,11 +4,11 @@
   background-position: center;
   background-repeat: no-repeat;
   color: white;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 50px;
   font-family: 'Gameplay', sans-serif;
   box-sizing: border-box;
   /* flex-wrap: wrap; */
@@ -126,7 +126,9 @@
   gap: 20px;
   width: 100%;
   max-width: 710px;
-  /* margin-top: 20px; */
+  margin-top: 20px;
+  overflow: auto;
+
 }
 
 .games-grid > :nth-child(2n + 1):last-child  {

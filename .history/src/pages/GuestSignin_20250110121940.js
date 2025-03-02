@@ -5,12 +5,12 @@ import { useNavigate } from "react-router-dom";
 import "./../styles/GuestSignin.css";
 
 const GuestSignin = () => {
-  const [guestId, setGuestId] = useState("");
+  const [guestName, setGuestName] = useState("");
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    if (guestId) {
-      alert(`Guest ID: ${guestId}`);
+    if (guestName) {
+      alert(`Guest ID: ${guestName}`);
       navigate("/GameSelect"); // Redirect to GameSelect page after signup
     } else {
       alert("Please fill in Guest ID field!");
@@ -18,12 +18,12 @@ const GuestSignin = () => {
   };
 
   // const handleContinue = async () => {
-  //   if (guestId) {
+  //   if (guestName) {
   //     try {
   //       // Make an API request with a JSON payload
   //       const response = await axios.post(
   //         "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Guest/addGuest",
-  //         { guestId },
+  //         { guestName },
   //         {
   //           headers: {
   //             "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const GuestSignin = () => {
   //         }
   //       );
   //       if (response.status === 200) {
-  //         alert(`Guest ID: ${guestId} is valid and you are ready to play!`);
+  //         alert(`Guest ID: ${guestName} is valid and you are ready to play!`);
   //         navigate("/GameSelect");
   //       } else {
   //         alert("Failed to sign in with Guest ID. Please try again.");
@@ -61,8 +61,8 @@ const GuestSignin = () => {
             <input
               type="text"
               className="guest-signin-input"
-              value={guestId}
-              onChange={(e) => setGuestId(e.target.value)}
+              value={guestName}
+              onChange={(e) => setGuestName(e.target.value)}
             />
           </div>  
         </div>
@@ -85,12 +85,12 @@ export default GuestSignin;
 // import "./../styles/GuestSignin.css";
 
 // const GuestSignin = () => {
-//   const [guestId, setGuestId] = useState("");
+//   const [guestName, setGuestName] = useState("");
 //   const navigate = useNavigate();
 
 //   const handleContinue = () => {
-//     if (guestId) {
-//       alert(`Guest ID: ${guestId}`);
+//     if (guestName) {
+//       alert(`Guest ID: ${guestName}`);
 //       navigate("/GameSelect"); // Redirect to GameSelect page after signup
 //     } else {
 //       alert("Please fill in Guest ID field!");
@@ -98,12 +98,12 @@ export default GuestSignin;
 //   };
 
 //   // const handleContinue = async () => {
-//   //   if (guestId) {
+//   //   if (guestName) {
 //   //     try {
 //   //       // Make an API request with a JSON payload
 //   //       const response = await axios.post(
 //   //         "https://arcadegamebackendapi20241227164011.azurewebsites.net/api/Guest/addGuest",
-//   //         { guestId },
+//   //         { guestName },
 //   //         {
 //   //           headers: {
 //   //             "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default GuestSignin;
 //   //         }
 //   //       );
 //   //       if (response.status === 200) {
-//   //         alert(`Guest ID: ${guestId} is valid and you are ready to play!`);
+//   //         alert(`Guest ID: ${guestName} is valid and you are ready to play!`);
 //   //         navigate("/GameSelect");
 //   //       } else {
 //   //         alert("Failed to sign in with Guest ID. Please try again.");
@@ -141,8 +141,8 @@ export default GuestSignin;
 //             <input
 //               type="text"
 //               className="guest-signin-input"
-//               value={guestId}
-//               onChange={(e) => setGuestId(e.target.value)}
+//               value={guestName}
+//               onChange={(e) => setGuestName(e.target.value)}
 //             />
 //           </div>  
 //         </div>

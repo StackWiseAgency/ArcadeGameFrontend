@@ -2,8 +2,7 @@
 
 
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import CryptoJS from "crypto-js"; // Assuming you are using CryptoJS for encryption/decryption
 import "./PaymentSuccess.css";
@@ -28,7 +27,7 @@ const PaymentSuccess = () => {
         setCountdown((prev) => {
           if (prev === 1) {
             clearInterval(timer);
-            navigate("/"); // Change this to your desired page
+            navigate("/your-target-page"); // Change this to your desired page
           }
           return prev - 1;
         });

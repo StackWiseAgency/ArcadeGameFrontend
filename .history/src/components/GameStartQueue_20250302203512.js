@@ -141,8 +141,8 @@ const PlayersQueue = ({ onClose }) => {
   };
 
 
-  const gameScreenUrl = "https://flingdisc-egcyacbxcfewfadc.canadacentral-01.azurewebsites.net/game-screen";
-  // const gameScreenUrl = "http://localhost:3000/game-screen";
+  // const gameScreenUrl = "https://flingdisc-egcyacbxcfewfadc.canadacentral-01.azurewebsites.net/game-screen";
+  const gameScreenUrl = "http://localhost:3000/game-screen";
   
   const startGameSession = async () => {
     let gameWindow = null;
@@ -160,7 +160,7 @@ const PlayersQueue = ({ onClose }) => {
       // localStorage.removeItem("selectedGame");
       // localStorage.removeItem("gameUpdate");
 
-      
+
       console.log("🚀 First Player Data (Before Processing):", firstPlayer);
         const params = new URLSearchParams();
 
@@ -194,8 +194,6 @@ const PlayersQueue = ({ onClose }) => {
 
       
       localStorage.setItem("gameUpdate", Date.now()); 
-      // localStorage.removeItem("selectedGame");
-
 
       } else {
         throw new Error("Failed to start game session.");

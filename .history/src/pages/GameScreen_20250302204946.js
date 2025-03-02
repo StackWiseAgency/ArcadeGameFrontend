@@ -38,7 +38,7 @@ const GameScreen = () => {
   useEffect(() => {
     // ✅ Load game details from `localStorage`
 
-    // localStorage.setItem("selectedGame", JSON.stringify({ name: gameName }));
+    localStorage.setItem("selectedGame", JSON.stringify({ name: gameName }));
     console.log(localStorage.getItem("selectedGame")); // ✅ Check if it's saved
     
 

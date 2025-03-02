@@ -141,8 +141,8 @@ const PlayersQueue = ({ onClose }) => {
   };
 
 
-  const gameScreenUrl = "https://flingdisc-egcyacbxcfewfadc.canadacentral-01.azurewebsites.net/game-screen";
-  // const gameScreenUrl = "http://localhost:3000/game-screen";
+  // const gameScreenUrl = "https://flingdisc-egcyacbxcfewfadc.canadacentral-01.azurewebsites.net/game-screen";
+  const gameScreenUrl = "http://localhost:3000/game-screen";
   
   const startGameSession = async () => {
     let gameWindow = null;
@@ -193,8 +193,7 @@ const PlayersQueue = ({ onClose }) => {
       }
 
       
-      localStorage.setItem("gameUpdate", Date.now()); 
-      // localStorage.removeItem("selectedGame");
+      localStorage.removeItem("selectedGame");
 
 
       } else {

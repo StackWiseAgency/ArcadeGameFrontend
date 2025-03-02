@@ -8,7 +8,7 @@ import GameStartQueue from "../components/GameStartQueue";
 import { useNavigate, Link } from "react-router-dom";
 import Coins from "./../assets/coins.png";
 import "./../styles/SigninPage.css"; // Import the CSS file
-import { useLocation } from "react-router-dom";
+
 
 
 const SigninPage = () => {
@@ -30,14 +30,6 @@ const SigninPage = () => {
 //     sessionStorage.setItem("hasRun", "true");
 // }, []);
 
-const location = useLocation(); // ✅ Detects route change
-
-useEffect(() => {
-
-
-  localStorage.clear();
-  sessionStorage.clear();
-}, [location.pathname]);
 
 
 

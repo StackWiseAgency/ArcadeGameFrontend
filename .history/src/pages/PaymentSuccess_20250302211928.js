@@ -28,7 +28,7 @@ const PaymentSuccess = () => {
         setCountdown((prev) => {
           if (prev === 1) {
             clearInterval(timer);
-            navigate("/"); // Change this to your desired page
+            navigate("https://flingdisc-egcyacbxcfewfadc.canadacentral-01.azurewebsites.net/"); // Change this to your desired page
           }
           return prev - 1;
         });
